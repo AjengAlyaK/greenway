@@ -3,23 +3,18 @@ import Grid from '@mui/material/Grid';
 import CommonButton from '../../Components/common/CommonButton/CommonButton';
 
 const Authentication = () => {
-    const buttonStyles = {
-    
-    }
     return (
-        <Grid item xs={8}>
+        <Grid item xs={8} styles={{backgroundColor: '#009be5'}}>
             This is authentication page
             <CommonButton
                 variant="contained"
-                sx={buttonStyles}
             >
                 Add User
             </CommonButton>
             <CommonButton
-                variant="outlined"
-                sx={buttonStyles}
+                variant="contained"
             >
-                Add User
+                Web setup
             </CommonButton>
         </Grid>
     );
