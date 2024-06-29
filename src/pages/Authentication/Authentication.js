@@ -1,22 +1,38 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
-import CommonButton from '../../Components/common/CommonButton/CommonButton';
+import NotificationBell from '../../Components/common/NotificationBell/NotificationBell';
+import BasicMenu from '../../Components/common/BasicMenu/BasicMenu';
 
 const Authentication = () => {
+    const [open, setOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleOpen = (event) => {
+        setAnchorEl(event.currentTarget)
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    }
+
     return (
-        <Grid item xs={8} styles={{backgroundColor: '#009be5'}}>
-            This is authentication page
-            <CommonButton
-                variant="contained"
-            >
-                Add User
-            </CommonButton>
-            <CommonButton
-                variant="contained"
-            >
-                Web setup
-            </CommonButton>
-        </Grid>
+        <div>
+            <Grid item xs={8}>
+                This is an Authentication page
+                <NotificationBell
+                    iconColor="primary"
+                    badgeContent={9}
+                    anchorEl={anchorEl}
+                    onClick={handleOpen}
+                />
+                <BasicMenu
+                    open={open}
+                    anchorEl={anchorEl}
+                    handleClose={handleClose}
+                />
+            </Grid>
+        </div>
     );
 };
 
