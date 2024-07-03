@@ -1,50 +1,39 @@
-import React from 'react';
-import Grid from '@mui/material/Grid';
+import React, { useState } from 'react';
 import BasicCard from '../../Components/common/BasicCard/BasicCard';
 import SearchBar from '../../Components/common/SearchBar/SearchBar';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { IconButton, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import CommonButton from '../../Components/common/CommonButton/CommonButton';
+import GridWrapper from '../../Components/common/GridWrapper/GridWrapper';
+import { cardHeaderStyles } from './styles';
+import BasicModal from '../../Components/common/BasicModal/BasicModal';
 
 const Authentication = () => {
+    const [open, setOpen] = useState(false);
+    console.log(open);
     const getHeader = () => {
         const handleChange = (value) => {
             console.log(value);
         };
 
         const addUser = () => {
-            console.log('click');
-        };
-
-        const headerStyles = {
-            wrapper: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingLeft: '20px',
-                paddingRight: '20px',
-                height: '65px',
-                backgroundColor: '#f5f5f5',
-                BorderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-            },
-            addUserButton: {
-                fontSize: '1.05rem',
-            },
+            setOpen(true);
         };
 
         return (
-            <Box sx={headerStyles.wrapper}>
+            <Box sx={cardHeaderStyles.wrapper}>
                 <SearchBar
                     placeholder="Search by email address, phone number, or user UID"
                     onChange={(event) => handleChange(event.target.value)}
+                    searchBarWidth={'600px'}
                 />
-                <Box sx={headerStyles.addUserButton}>
+                <Box>
                     <CommonButton
                         variant="contained"
                         onClick={addUser}
                         size="large"
-                        sx={headerStyles.addUserButton}
+                        sx={cardHeaderStyles.addUserButton}
                     >
                         Add User
                     </CommonButton>
@@ -59,18 +48,19 @@ const Authentication = () => {
     const getContent = () => (
         <Typography
             align="center"
-            sx={{margin: '40px 16px', color: 'rgba(0, 0, 0, 0.6)', fontSize: '1.3rem'}}
+            sx={{ margin: '40px 16px', color: 'rgba(0, 0, 0, 0.6)', fontSize: '1.3rem' }}
         >
             No users for this project yet
         </Typography>
     )
     return (
-        <Grid item xs={12} sx={{ marginLeft: '320px', backgroundColor: '#eaeff1', padding: '48px 32px', minHeight: 'calc(100vh - 166px)', position: 'relative'}}>
-            <BasicCard 
+        <GridWrapper>
+            <BasicCard
                 header={getHeader()}
                 content={getContent()}
             />
-        </Grid>
+            <BasicModal open={open} onClose={() => setOpen(false)} />
+        </GridWrapper>
     );
 };
 
