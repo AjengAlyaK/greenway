@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import CommonButton from '../../Components/common/CommonButton/CommonButton';
 import GridWrapper from '../../Components/common/GridWrapper/GridWrapper';
 import { cardHeaderStyles } from './styles';
-import BasicModal from '../../Components/common/BasicModal/BasicModal';
+import NewUserModal from '../../Components/Modals/NewUserModal/NewUserModal';
 
 const Authentication = () => {
     const [open, setOpen] = useState(false);
@@ -59,7 +59,7 @@ const Authentication = () => {
                 header={getHeader()}
                 content={getContent()}
             />
-            <BasicModal open={open} onClose={() => setOpen(false)} />
+            <NewUserModal open={open} onClose={() => setOpen(false)} />
         </GridWrapper>
     );
 };
