@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BasicModal from '../../common/BasicModal/BasicModal';
 import { Box, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-const NewUserModal = ({ open, onClose }) => {
+const defaultInputValues = {
+    userId: '',
+    email: '',
+    phoneNumber: '',
+}
+
+const NewUserModal = ({ open, onClose, addNewUser }) => {
+    const [values, setValues] = useState(defaultInputValues)
     const modalStyles = {
         inputFields: {
             display: 'flex',
             flexDirection: 'column',
             marginTop: '20px',
             marginBottom: '15px',
-            '.MuiInput-root': {
+            '.MuiFormControl-root': {
                 marginBottom: '20px',
             },
         }
-    }
+    };
+
+    useEffect(() => {
+        if(open) setValues(defaultInputValues);
+    }, [open]);
+
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
     const validationSchema = Yup.object().shape({
         userId: Yup.string()
@@ -26,6 +39,7 @@ const NewUserModal = ({ open, onClose }) => {
             .required('Email is required')
             .email('Emmail  is invalid'),
         phoneNumber: Yup.string()
+            .matches(phoneRegExp, 'Phone number is not valid'),
     });
 
     const {
@@ -36,6 +50,15 @@ const NewUserModal = ({ open, onClose }) => {
         resolver: yupResolver(validationSchema)
     });
 
+    const addUser = (data) => {
+        addNewUser(data)
+    }
+
+    const handleChange = (value) => {
+        setValues(value);
+        console.log(value)
+    }
+
     const getContent = () => {
         return (
             <Box sx={modalStyles.inputFields}>
@@ -44,11 +67,34 @@ const NewUserModal = ({ open, onClose }) => {
                     name="userId"
                     label="User ID"
                     required
-                    error
-                    helperText={'This is error message'}
+                    {...register('userId')}
+                    error={errors.userId ? true : false}
+                    helperText={errors.userId?.message}
+                    value={values.userId}
+                    onChange={(event) => handleChange({...values, userId: event.target.value})}
                 />
-                {/* <Input placeholder="Phone number" />
-                <Input placeholder="User id" /> */}
+                <TextField
+                    placeholder="Email"
+                    name="email"
+                    label="Email"
+                    required
+                    {...register('email')}
+                    error={errors.email ? true : false}
+                    helperText={errors.email?.message}
+                    value={values.email}
+                    onChange={(event) => handleChange({...values, email: event.target.value})}
+                />
+                <TextField
+                    placeholder="Phone Number"
+                    name="phoneNumber"
+                    label="Phone Number"
+                    required
+                    {...register('phoneNumber')}
+                    error={errors.phoneNumber ? true : false}
+                    helperText={errors.phoneNumber?.message}
+                    value={values.phoneNumber}
+                    onChange={(event) => handleChange({...values, phoneNumber: event.target.value})}
+                />
             </Box>
         );
     }
@@ -59,7 +105,7 @@ const NewUserModal = ({ open, onClose }) => {
             title="New User"
             subTitle="Fill out inputs and hit 'submit' button."
             content={getContent()}
-            validate={handleSubmit()}
+            validate={handleSubmit(addUser)}
         >
 
         </BasicModal>
