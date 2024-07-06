@@ -12,11 +12,25 @@ import NewUserModal from '../../Components/Modals/NewUserModal/NewUserModal';
 const Authentication = () => {
     const [open, setOpen] = useState(false);
     const [users, setUsers] = useState([]);
-    console.log(open);
+    const [searchResults, setSearchResults] = useState(users);
+
     const getHeader = () => {
-        const handleChange = (value) => {
-            console.log(value);
+        const handleSearch = (value) => {
+            filterData(value);
         };
+
+        const filterData = (value) => {
+            const lowercasedValue = value.toLowerCase().trim();
+            if (lowercasedValue === '') setUsers(searchResults);
+            else {
+                const filteredData = searchResults.filter((item) => {
+                    return Object.keys(item).some((key) =>
+                        item[key].toString().toLowerCase().includes(lowercasedValue)
+                    );
+                });
+                setUsers(filteredData)
+            }
+        }
 
         const addUser = () => {
             setOpen(true);
@@ -26,7 +40,7 @@ const Authentication = () => {
             <Box sx={cardHeaderStyles.wrapper}>
                 <SearchBar
                     placeholder="Search by email address, phone number, or user UID"
-                    onChange={(event) => handleChange(event.target.value)}
+                    onChange={(event) => handleSearch(event.target.value)}
                     searchBarWidth={'600px'}
                 />
                 <Box>
@@ -55,7 +69,7 @@ const Authentication = () => {
         <>
             {users.length ?
                 users.map((user) =>
-                    <Box sx={cardHeaderStyles.wrapper}>
+                    <Box sx={{ marginBottom: '20px' }}>
                         <Typography>User ID: {user.userId}</Typography>
                         <Typography>Email: {user.email}</Typography>
                         <Typography>Phone Number: {user.phoneNumber}</Typography>

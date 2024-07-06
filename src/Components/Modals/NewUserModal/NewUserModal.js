@@ -37,7 +37,7 @@ const NewUserModal = ({ open, onClose, addNewUser }) => {
             .min(6, 'User ID must be at least 6 characters'),
         email: Yup.string()
             .required('Email is required')
-            .email('Emmail  is invalid'),
+            .email('Email  is invalid'),
         phoneNumber: Yup.string()
             .matches(phoneRegExp, 'Phone number is not valid'),
     });
