@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
-const DataTable = ({ rows, columns, loading }) => {
+const DataTable = ({ rows, columns, loading, sx}) => {
+    const [pageSize, setPageSize] = useState(2);
+
     return (
-        <div style={{ height: 350, width: '100%' }}>
-            <DataGrid rows={rows} columns={columns} loading={loading} />
-        </div>
+        <DataGrid
+            rows={rows}
+            columns={columns}
+            loading={loading}
+            sx={sx}
+            checkboxSelection
+            pagination
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            rowsPerPageOptions={[2, 5, 10]}
+        />
     );
 };
 
