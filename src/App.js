@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "./Components/Navbar/Navbar";
-import Grid from '@mui/material/Grid';
-import Header from "./Components/Header/Header";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { Box, CssBaseline} from "@mui/material";
+import ResponsiveAppBar from "./Components/Navbar";
+import HeroArea from "./Components/HeroArea";
 
 function App() {
-  const [ title, setTitle ] = useState('test');
-  const location = useLocation();
-
-  useEffect(() => {
-    const parsedTitle = location.pathname.replace(/\W/g, ' ');
-    console.log(parsedTitle)
-    setTitle(parsedTitle);
-  }, [location]);
-
-  return (
-    <Grid container>
-      <Navbar />
-      <Header title={title}/>
-      <Outlet />
-    </Grid>
-  )
+    return (
+        <Box sx={{
+            minHeight: '100vh',
+            bgcolor: '#F8FFF8',
+            display: 'flex',
+            flexDirection: 'column',
+            rowGap: 0,
+        }}
+        >
+            {/* navbar */}
+            <CssBaseline />
+            <ResponsiveAppBar />
+            {/* hero area */}
+            <HeroArea />
+            {/* record */}
+            
+        </Box >
+    )
 }
 
 export default App;
