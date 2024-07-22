@@ -6,7 +6,7 @@ const HeroArea = () => {
         <Grid
             container
             spacing={{ xs: 15, md: 2 }}
-            sx={{ flexGrow: 1, py: 0, px: 5 }}
+            sx={{ flexGrow: 1, py: 0, px: 10 }}
         >
             {/* Left Content */}
             <Grid
@@ -20,7 +20,7 @@ const HeroArea = () => {
             >
                 <Stack spacing={6}>
                     <Stack spacing={2}>
-                        <Typography variant="h2">TRAVEL AND</Typography>
+                        <Typography variant="h2" sx={{fontWeight: 500}}>TRAVEL AND</Typography>
                         <Typography variant="h2">SAVE NATURE</Typography>
                         <Stack alignItems="flex-start" spacing={4}>
                             <Typography sx={{ fontSize: 16, textAlign: "justify" }}>

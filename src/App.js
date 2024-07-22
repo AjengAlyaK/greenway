@@ -2,6 +2,9 @@ import React from "react";
 import { Box, CssBaseline} from "@mui/material";
 import ResponsiveAppBar from "./Components/Navbar";
 import HeroArea from "./Components/HeroArea";
+import Record from "./Components/Record";
+import BetterFuture from "./Components/BetterFuture";
+import Explore from "./Components/Explore";
 
 function App() {
     return (
@@ -19,7 +22,11 @@ function App() {
             {/* hero area */}
             <HeroArea />
             {/* record */}
-            
+            <Record/>
+            {/* better future */}
+            <BetterFuture />
+            {/* explore */}
+            <Explore/>
         </Box >
     )
 }
