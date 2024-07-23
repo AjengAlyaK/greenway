@@ -5,6 +5,7 @@ import HeroArea from "./Components/HeroArea";
 import Record from "./Components/Record";
 import BetterFuture from "./Components/BetterFuture";
 import Explore from "./Components/Explore";
+import CampaignSlightly from "./Components/CampaignSlightly";
 
 function App() {
     return (
@@ -27,6 +28,8 @@ function App() {
             <BetterFuture />
             {/* explore */}
             <Explore/>
+            {/* little campaign */}
+            <CampaignSlightly/>
         </Box >
     )
 }

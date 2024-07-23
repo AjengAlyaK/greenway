@@ -41,8 +41,8 @@ const BetterFuture = () => {
                 alignItems="center"
             >
                 <Stack spacing={2}>
-                    <Typography variant="h3">Eco Friendly Travel For</Typography>
-                    <Typography variant="h3">Better Future</Typography>
+                    <Typography variant="h3" sx={{color: '#006E6F', fontWeight: 'bold'}}>Eco Friendly Travel For</Typography>
+                    <Typography variant="h3" sx={{color: '#006E6F', fontWeight: 'bold'}}>Better Future</Typography>
                     <Typography sx={{textAlign: "justify"}}>Welcome to a new era of travel where adventure meets environmental stewardship. Your Gateway to Sustainable Exploration in Indonesia! Start your journey with us and traverse Indonesia in a more responsible, eco-conscious manner.</Typography>
                 </Stack>
             </Grid>

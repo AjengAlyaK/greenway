@@ -32,12 +32,12 @@ const Record = () => {
                 justifyContent="center"
                 sx={{ flexGrow: 1 }}
             >
-                <Stack direction="row" spacing={3} sx={{ p: 5, backgroundColor: "#1976d3" }}>
+                <Stack direction="row" spacing={3} sx={{ p: 5, bgcolor: '#5AC9A2' }}>
                     {RecordContents.map((content, index) => (
                         <Paper
                             sx={{
                                 width: 237.7,
-                                height: 160,
+                                height: 180,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
