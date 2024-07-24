@@ -1,56 +1,68 @@
-import { Grid, Paper, Stack, Typography } from '@mui/material';
-import React from 'react';
-
-const test = [
-    {
-        index: 0,
-        title: "test 1"
-    },
-    {
-        index: 1,
-        title: "test 2"
-    },
-    {
-        index: 2,
-        title: "test 3"
-    },
-    {
-        index: 3,
-        title: "test 4"
-    },
-]
+import { Grid, Stack, Typography, Box } from '@mui/material';
+import React, { useEffect } from 'react';
+// card
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncReceiveCampaigns } from '../states/campaign/Action';
 
 const CampaignSlightly = () => {
+    const { campaigns } = useSelector((states) => states);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(asyncReceiveCampaigns());
+    }, [dispatch]);
+    const displayedCampaigns = campaigns.slice(0, 4);
     return (
         <Grid
             container
             spacing={2}
             sx={{ py: 7, px: 10, justifyContent: 'center', alignItems: 'center' }}
-        // sx={{flexGrow: 1}}
         >
             <Grid
                 item
                 xs={12}
-            sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Stack spacing={2} sx={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                    <Typography variant="h3" sx={{ textAlign: 'center' }}>Campaign</Typography>
+                    <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', color: '#006E6F' }}>Campaign</Typography>
                     <Stack direction="row" spacing={2} sx={{ width: '100%', justifyContent: 'space-between', py: 5 }}>
-                        {test.map((content, index) => (
-                            <Paper
-                                key={index}
-                                sx={{
-                                    width: 255,
-                                    height: 190,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    p: 2
-                                }}
-                            >
-                                {content.title}
-                            </Paper>
+                        {displayedCampaigns.map((campaign, index) => (
+                            <Card key={index} sx={{ width: 345, borderRadius: 3 }}>
+                                <CardActionArea>
+                                    <Box sx={{ position: 'relative' }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="200"
+                                            image={campaign.picture}
+                                            alt={campaign.picture}
+                                        />
+                                        <Box
+                                            sx={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                bottom: 0,
+                                                backgroundColor: 'rgba(0, 0, 0, 0.3)', // Dark overlay with 50% opacity
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                color: 'white',
+                                                fontSize: '1.5rem',
+                                                fontWeight: 'bold',
+                                                opacity: 1,
+                                                transition: 'opacity 0.3s ease',
+                                            }}
+                                        >
+                                            <Typography>
+                                                {campaign.location}
+                                            </Typography> {/* Optional text to display */}
+                                        </Box>
+                                    </Box>
+                                </CardActionArea>
+                            </Card>
                         ))}
                     </Stack>
                 </Stack>

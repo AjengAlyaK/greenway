@@ -35,6 +35,7 @@ const Record = () => {
                 <Stack direction="row" spacing={3} sx={{ p: 5, bgcolor: '#5AC9A2' }}>
                     {RecordContents.map((content, index) => (
                         <Paper
+                            key={index}
                             sx={{
                                 width: 237.7,
                                 height: 180,
