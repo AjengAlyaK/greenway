@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -23,9 +23,9 @@ function ResponsiveAppBar() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
+    // const handleOpenUserMenu = (event) => {
+    //     setAnchorElUser(event.currentTarget);
+    // };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static" sx={{ bgcolor: "#F8FFF8" }}>
+        <AppBar elevation={0} position="fixed" sx={{ bgcolor: "#F8FFF8" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -89,7 +89,7 @@ function ResponsiveAppBar() {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center" sx={{color: '#006E6F'}}>{page}</Typography>
+                                    <Typography textAlign="center" sx={{ color: '#006E6F' }}>{page}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -127,9 +127,12 @@ function ResponsiveAppBar() {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
+                            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> */}
+                            {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                            <Box>
+                                <Button sx={{ bgcolor: "#006E6F" }} variant="contained">Login</Button>
+                            </Box>
+                            {/* </IconButton> */}
                         </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}

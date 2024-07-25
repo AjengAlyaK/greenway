@@ -1,7 +1,7 @@
 import api from '../../utils/api';
 
 const ActionType = {
-    RECEIVE_CAMPAIGNS: 'GET_CAMPAIGNS',
+    RECEIVE_CAMPAIGNS: 'RECEIVE_CAMPAIGNS',
 };
 
 function receiveCampaignsActionCreator(campaigns) {
@@ -13,7 +13,7 @@ function receiveCampaignsActionCreator(campaigns) {
     }
 }
 
-function asyncReceiveCampaigns(campaigns) {
+function asyncReceiveCampaigns() {
     return async (dispatch) => {
         try {
             const campaigns = await api.campaigns();

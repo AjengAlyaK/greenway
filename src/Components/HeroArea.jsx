@@ -27,7 +27,7 @@ const HeroArea = () => {
                                 Welcome to a new era of travel where adventure meets environmental stewardship. Your Gateway to Sustainable Exploration in Indonesia! Start your journey with us and traverse Indonesia in a more responsible, eco-conscious manner.
                             </Typography>
                             <Box>
-                                <Button variant="contained">Go Travel</Button>
+                                <Button sx={{bgcolor: "#006E6F"}}variant="contained">Go Travel</Button>
                             </Box>
                         </Stack>
                     </Stack>
