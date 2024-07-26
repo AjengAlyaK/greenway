@@ -8,6 +8,9 @@ import Explore from "./Components/Explore";
 import CampaignSlightly from "./Components/CampaignSlightly";
 import theme from "./ThemeCustomize";
 import Review from "./Components/Review";
+import Video from "./Components/Video";
+import CommunityIsCalling from "./Components/CommunityIsCalling";
+import Footer from "./Components/Footer";
 
 function App() {
     return (
@@ -35,6 +38,12 @@ function App() {
                 <CampaignSlightly />
                 {/* review */}
                 <Review/>
+                {/* video */}
+                <Video/>
+                {/* join community */}
+                <CommunityIsCalling/>
+                {/* footer */}
+                <Footer/>
             </Box >
         </ThemeProvider>
     )
