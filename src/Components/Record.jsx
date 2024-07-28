@@ -22,7 +22,8 @@ const RecordContents = [
         count: 25,
         title: "Articles"
     },
-]
+];
+
 const Record = () => {
     return (
         <Grid container spacing={2}>
@@ -32,7 +33,7 @@ const Record = () => {
                 justifyContent="center"
                 sx={{ flexGrow: 1 }}
             >
-                <Stack direction="row" spacing={3} sx={{ p: 5, bgcolor: '#5AC9A2' }}>
+                <Stack direction={{xs: 'column', md: 'row'}} spacing={3} sx={{ p: 5, bgcolor: '#5AC9A2' }}>
                     {RecordContents.map((content, index) => (
                         <Paper
                             key={index}
