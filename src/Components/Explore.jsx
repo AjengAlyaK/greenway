@@ -24,24 +24,22 @@ const Explore = () => {
         <Grid
             container
             spacing={2}
-            // sx={{py: 5}}
-            sx={{ py: 7, px: 10, justifyContent: 'center', alignItems: 'center' }}
+            sx={{ py: { xs: 4, sm: 6, md: 7 }, px: { xs: 2, sm: 5, md: 10 }, justifyContent: 'center', alignItems: 'center', }}
         >
             <Grid
                 item
                 container
-                sx={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                 xs={12}
-                md={6}
             >
-                <Stack direction='row' spacing={4} justifyContent='center' alignItems='center'  sx={{ px: 10 }}>
+                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 4 }} justifyContent='center' alignItems='center' >
                     {ExploreContents.map((content, index) => (
                         <Paper
                             key={index}
                             sx={{
-                                width: 345,
-                                height: 250,
-                                p: 3,
+                                width: { xs: '100%', md: 345 },
+                                height: { xs: 200, md: 250 },
+                                p: { xs: 2, md: 3 },
                                 display: 'flex',
                                 flexDirection: 'column',
                                 justifyContent: 'center',
@@ -51,13 +49,13 @@ const Explore = () => {
                                 borderRadius: 4
                             }}
                         >
-                            <Typography variant="h4" py={1} sx={{ fontWeight: 'bold' }}>{content.title}</Typography>
-                            <Typography py={2}>{content.subtitle}</Typography>
+                            <Typography py={1} sx={{ typography: { xs: 'h5', sm: 'h4' }, fontWeight: { xs: 'bold' } }}>{content.title}</Typography>
+                            <Typography py={{ xs: 1, md: 2 }} sx={{ typography: { xs: 'body1' } }}>{content.subtitle}</Typography>
                         </Paper>
                     ))}
                 </Stack>
             </Grid>
-        </Grid>
+        </Grid >
     );
 };
 
