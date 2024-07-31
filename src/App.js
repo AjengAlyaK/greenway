@@ -35,15 +35,15 @@ function App() {
                 {/* explore */}
                 <Explore />
                 {/* little campaign */}
-                {/* <CampaignSlightly /> */}
+                <CampaignSlightly />
                 {/* review */}
-                {/* <Review/> */}
+                <Review/>
                 {/* video */}
-                {/* <Video/> */}
+                <Video/>
                 {/* join community */}
-                {/* <CommunityIsCalling/> */}
+                <CommunityIsCalling/>
                 {/* footer */}
-                {/* <Footer/> */}
+                <Footer/>
             </Box >
         </ThemeProvider>
     )
