@@ -8,7 +8,7 @@ const Footer = () => {
             spacing={5}
             sx={{ flexGrow: 1, 
                 pb: 5, 
-                px: { xs: 2, md: 10 }, 
+                px: { xs: 2, md: 13 }, 
             bgcolor: "#004847" }}
         >
             <Grid

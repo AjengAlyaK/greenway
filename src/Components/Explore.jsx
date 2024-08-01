@@ -24,7 +24,7 @@ const Explore = () => {
         <Grid
             container
             spacing={2}
-            sx={{ py: { xs: 4, sm: 6, md: 7 }, px: { xs: 2, sm: 5, md: 10 }, justifyContent: 'center', alignItems: 'center', }}
+            sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, sm: 5, md: 13 }, justifyContent: 'center', alignItems: 'center', }}
         >
             <Grid
                 item
@@ -37,7 +37,7 @@ const Explore = () => {
                         <Paper
                             key={index}
                             sx={{
-                                width: { xs: '100%', md: 345 },
+                                width: { xs: '100%', md: 340 },
                                 height: { xs: 200, md: 250 },
                                 p: { xs: 2, md: 3 },
                                 display: 'flex',

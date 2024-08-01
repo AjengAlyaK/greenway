@@ -19,7 +19,7 @@ const CampaignSlightly = () => {
         <Grid
             container
             spacing={2}
-            sx={{ py: 7, px: 10, justifyContent: 'center', alignItems: 'center' }}
+            sx={{ py: {xs:3, md:5}, px: { xs: 2, md: 13 }, justifyContent: 'center', alignItems: 'center' }}
         >
             <Grid
                 item
@@ -27,11 +27,11 @@ const CampaignSlightly = () => {
                 sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             >
                 <Stack spacing={2} sx={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                    <Typography variant="h3" sx={{ textAlign: 'center', fontWeight: 'bold', color: '#006E6F', pb: 3 }}>Campaign</Typography>
+                    <Typography sx={{ typography: { xs: 'h4', sm: 'h3' }, fontWeight: { xs: 'bold', md: 'bold' }, textAlign: { xs: 'center', md: 'start' }, color: '#006E6F', pb: {xs:1, md:2}}}>Campaign</Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
                         <Button variant="contained" sx={{ bgcolor: "#006E6F" }} size="small">See All</Button>
                     </Box>
-                    <Stack direction="row" spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>
+                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>
                         {displayedCampaigns.map((campaign, index) => (
                             <Card key={index} sx={{ width: 345, borderRadius: 3 }}>
                                 <CardActionArea>
@@ -66,7 +66,7 @@ const CampaignSlightly = () => {
                                                 {campaign.name}
                                             </Typography>
                                             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                                <FmdGoodIcon sx={{ mr: 1 }}/>
+                                                <FmdGoodIcon sx={{ mr: 1 }} />
                                                 <Typography>
                                                     {campaign.location}
                                                 </Typography>

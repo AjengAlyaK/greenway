@@ -8,7 +8,7 @@ const CommunityIsCalling = () => {
         <Grid
             container
             spacing={2}
-            sx={{ flexGrow: 1, py: 5, px: 10 }}
+            sx={{ flexGrow: 1, pt: { xs: 3, md: 5 }, pb: 10, px: { xs: 2, md: 13 } }}
         >
             {/* left content */}
             <Grid
@@ -22,12 +22,12 @@ const CommunityIsCalling = () => {
             >
                 <Stack spacing={6}>
                     <Stack spacing={2}>
-                        <Typography variant="h3" sx={{ color: '#006E6F', fontWeight: 'bold' }}>Community Is Calling, No Need to Stalling</Typography>
+                        <Typography sx={{ typography: { xs: 'h4', sm: 'h3' }, fontWeight: { xs: 'bold', md: 'bold' }, textAlign: { xs: 'center', md: 'start' }, color: '#006E6F' }}>Community Is Calling, No Need to Stalling</Typography>
                         <Stack spacing={4}>
-                            <Typography sx={{ textAlign: "justify" }}>
+                            <Typography variant="body1" sx={{ textAlign: { xs: 'center', md: 'justify' } }}>
                                 Join our discussion community! Discover new ideas and exchange experience with thousands of members. Let's join now!
                             </Typography>
-                            <Box>
+                            <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
                                 <Button variant="contained" sx={{ bgcolor: "#006E6F" }}>Join Now</Button>
                             </Box>
                         </Stack>
@@ -45,11 +45,11 @@ const CommunityIsCalling = () => {
                 alignItems="center"
             >
                 <Stack spacing={2}>
-                    <Box sx={{ width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
+                    <Box sx={{ width: '100%', display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
                         <img
                             src={illustration}
                             alt="community illustration"
-                            style={{ width: '90%', height: 'auto' }}
+                            style={{ width: '100%', height: 'auto' }}
                         />
                     </Box>
                 </Stack>

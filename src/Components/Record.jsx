@@ -28,7 +28,7 @@ const Record = () => {
     return (
         <Grid
             container
-            sx={{ px: { xs: 2, md: 10 } }}
+            sx={{ px: { xs: 2, md: 13 } }}
         >
             {RecordContents.map((content, index) => (
                 <Grid

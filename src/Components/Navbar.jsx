@@ -15,6 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Tak_berjudul63-hd__2_-removebg-preview.png?alt=media&token=eca5f180-7753-4567-94a5-6ed13f674861";
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,10 +37,21 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar elevation={0} position="fixed" sx={{ bgcolor: "#F8FFF8" }}>
-            <Container maxWidth="xl">
+        <AppBar elevation={0} position="fixed" sx={{ bgcolor: "#F8FFF8", px: { md: 13 } }}>
+            <Container maxWidth="xl" sx={{ px: { md: 0 } }}>
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    {/* logo md*/}
+                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+                    <Box
+                        component="img"
+                        src={logo}
+                        alt="GreenWay"
+                        sx={{
+                            display: { xs: 'none', md: 'flex' },
+                            height: 40, // Adjust as needed
+                            mr: 1,
+                        }}
+                    />
                     <Typography
                         variant="h6"
                         noWrap
@@ -50,14 +62,14 @@ function ResponsiveAppBar() {
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            // letterSpacing: '.3rem',
                             color: '#006E6F',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        GreenWay
                     </Typography>
-
+                    {/* pages */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -94,6 +106,7 @@ function ResponsiveAppBar() {
                             ))}
                         </Menu>
                     </Box>
+                    {/* logo xs*/}
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
@@ -113,7 +126,8 @@ function ResponsiveAppBar() {
                     >
                         LOGO
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    {/* pages */}
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
@@ -124,7 +138,7 @@ function ResponsiveAppBar() {
                             </Button>
                         ))}
                     </Box>
-
+                    {/* login */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> */}

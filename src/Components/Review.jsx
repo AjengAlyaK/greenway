@@ -12,13 +12,13 @@ const Review = () => {
     }, [dispatch]);
     return (
         <>
-            <Box sx={{ pt: 5, pb: 2, px: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#006E6F' }}>People are Talking ...</Typography>
+            <Box sx={{ pt: { xs: 3, md: 5 }, pb: { xs: 1, md: 2 }, px: { xs: 2, md: 13 }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Typography sx={{ typography: { xs: 'h4', sm: 'h3' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F' }}>People are Talking ...</Typography>
             </Box>
             <Grid
                 container
                 spacing={3}
-                sx={{ py: 5, px: 10, justifyContent: 'center', alignItems: 'center' }}
+                sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, md: 13 }, justifyContent: 'center', alignItems: 'center' }}
             >
                 {reviews.map((content, index) => (
                     <Grid item xs={12} md={4} key={content.id} spacing={2}>
