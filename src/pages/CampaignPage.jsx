@@ -25,7 +25,7 @@ const CampaignPage = () => {
             </Grid>
             {campaigns.map((campaign, index) => (
                 <Grid item xs={12} md={3}>
-                    <CardCampaign index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
+                    <CardCampaign id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
                 </Grid>
             ))}
         </Grid>
