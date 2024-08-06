@@ -11,7 +11,7 @@ import { Box, Typography } from '@mui/material';
 
 const CardCampaign = ({ id, index, picture, name, location }) => {
     return (
-        <Card key={index} sx={{ width: 250, borderRadius: 3 }}>
+        <Card key={index} sx={{ width: {xs: '100%', md:250}, borderRadius: 3, margin: 'auto' }}>
             <CardActionArea
                 component={Link}
                 to={`/campaign/${id}`}

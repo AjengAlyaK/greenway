@@ -12,8 +12,14 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
-const pages = ['Home', 'Artikel', 'Destination', 'About Us'];
+const pages = [
+    { name: 'Home', link: '/' },
+    { name: 'Artikel', link: '/articles' },
+    { name: 'Destination', link: '/destination' },
+    { name: 'About Us', link: '/about-us' }
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Tak_berjudul63-hd__2_-removebg-preview.png?alt=media&token=eca5f180-7753-4567-94a5-6ed13f674861";
 
@@ -99,9 +105,9 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center" sx={{ color: '#006E6F' }}>{page}</Typography>
+                            {pages.map((page, index) => (
+                                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center" sx={{ color: '#006E6F' }}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -128,13 +134,15 @@ function ResponsiveAppBar() {
                     </Typography>
                     {/* pages */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-                        {pages.map((page) => (
+                        {pages.map((page, index) => (
                             <Button
-                                key={page}
+                                key={index}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: '#006E6F', display: 'block' }}
+                                component={Link}
+                                to={page.link}
                             >
-                                {page}
+                                {page.name}
                             </Button>
                         ))}
                     </Box>

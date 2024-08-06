@@ -16,7 +16,7 @@ const ImageInDetail = ({ picture, location, title }) => {
                         {location}
                     </Typography>
                 </Box>
-                <Typography sx={{ typography: { xs: 'h4', md: 'h4' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F' }}>
+                <Typography sx={{ typography: { xs: 'h5', md: 'h4' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F' }}>
                     {title}
                 </Typography>
             </Stack>

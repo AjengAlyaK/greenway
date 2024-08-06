@@ -35,10 +35,22 @@ const api = (() => {
         return reviews;
     }
 
+    async function articles() {
+        const response = await fetch(`${BASE_URL}/articles`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        }
+        const { data: { articles } } = responseJson;
+        return articles;
+    }
+
     return {
         campaigns,
         getCampaignDetail,
-        reviews
+        reviews,
+        articles
     };
 })();
 
