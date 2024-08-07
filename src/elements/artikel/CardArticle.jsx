@@ -6,7 +6,7 @@ import { Typography, Card, CardContent, CardMedia, CardActionArea } from '@mui/m
 
 const CardArticle = ({ image, title, link }) => {
     return (
-        <Card sx={{ maxWidth: 250, borderRadius: 3 }}>
+        <Card sx={{ width: {xs:'100%', md:250}, borderRadius: 3 }}>
             <CardActionArea
                 component="a"
                 href={link}
@@ -16,7 +16,7 @@ const CardArticle = ({ image, title, link }) => {
             >
                 <CardMedia
                     component="img"
-                    height="150"
+                    height="160"
                     image={image}
                     alt={title}
                 />

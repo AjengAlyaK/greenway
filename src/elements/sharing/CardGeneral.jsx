@@ -9,7 +9,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 // component MUI
 import { Box, Typography } from '@mui/material';
 
-const CardCampaign = ({ id, index, picture, name, location }) => {
+const CardGeneral = ({ id, index, picture, name, location }) => {
     return (
         <Card key={index} sx={{ width: {xs: '100%', md:250}, borderRadius: 3, margin: 'auto' }}>
             <CardActionArea
@@ -60,7 +60,7 @@ const CardCampaign = ({ id, index, picture, name, location }) => {
     );
 };
 
-CardCampaign.propTypes = {
+CardGeneral.propTypes = {
     id: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     picture: PropTypes.string.isRequired,
@@ -68,4 +68,4 @@ CardCampaign.propTypes = {
     location: PropTypes.string.isRequired,
 };
 
-export default CardCampaign;
+export default CardGeneral;

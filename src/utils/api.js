@@ -46,11 +46,23 @@ const api = (() => {
         return articles;
     }
 
+    async function destinations() {
+        const response = await fetch(`${BASE_URL}/destinations`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        }
+        const { data } = responseJson;
+        return data;
+    }
+
     return {
         campaigns,
         getCampaignDetail,
         reviews,
-        articles
+        articles,
+        destinations
     };
 })();
 

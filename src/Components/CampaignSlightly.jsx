@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveCampaigns } from '../states/campaign/Action';
 import { Link } from 'react-router-dom';
-import CardCampaign from '../elements/campaign/CardCampaign';
+import CardCampaign from '../elements/sharing/CardGeneral';
 
 const CampaignSlightly = () => {
     const { campaigns } = useSelector((states) => states);
