@@ -54,7 +54,7 @@ function ResponsiveAppBar() {
                         alt="GreenWay"
                         sx={{
                             display: { xs: 'none', md: 'flex' },
-                            height: 40, // Adjust as needed
+                            height: 45, // Adjust as needed
                             mr: 1,
                         }}
                     />
@@ -152,7 +152,8 @@ function ResponsiveAppBar() {
                             {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> */}
                             {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
                             <Box>
-                                <Button sx={{ bgcolor: "#006E6F" }} variant="contained">Login</Button>
+                                <Button sx={{ bgcolor: "#006E6F" }} variant="contained" component={Link}
+                                    to="/login">Login</Button>
                             </Box>
                             {/* </IconButton> */}
                         </Tooltip>
