@@ -6,6 +6,7 @@ import DetailCampaignPage from './pages/DetailCampaignPage';
 import ArticlePage from './pages/ArticlePage';
 import DestionationPage from './pages/DestionationPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
             <Route path="/articles" element={<ArticlePage />} />
             <Route path="/destinations" element={<DestionationPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
         </Routes>
     );
 };

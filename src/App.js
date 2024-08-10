@@ -18,11 +18,11 @@ function App() {
             >
                 {/* navbar */}
                 <CssBaseline />
-                {/* <ResponsiveAppBar /> */}
+                <ResponsiveAppBar />
                 {/* main */}
                 <Router/>
                 {/* footer */}
-                {/* <Footer /> */}
+                <Footer />
             </Box >
         </ThemeProvider>
     )

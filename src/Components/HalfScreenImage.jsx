@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Paper, Typography, Box, Stack } from '@mui/material';
 
-const HalfScreenImage = ({picture, greeting, words, author}) => {
+const HalfScreenImage = ({ picture, greeting, words, author }) => {
     return (
         <Paper sx={{
             width: '100%',
@@ -17,7 +17,7 @@ const HalfScreenImage = ({picture, greeting, words, author}) => {
                 alt="pic"
                 style={{
                     width: '100%',
-                    maxHeight: '100%',
+                    height: '100%',
                     objectFit: 'cover'
                 }}
             />
@@ -34,11 +34,11 @@ const HalfScreenImage = ({picture, greeting, words, author}) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     p: 5,
-                    width: '50%'
+                    width: { xs: '100%', md: '50%' }
                 }}
             >
                 <Stack spacing={2}>
-                    <Typography variant="h3" sx={{ fontWeight: 'bold', color: 'white' }}>
+                    <Typography variant="h3" sx={{ typography: { xs: 'h4', md: 'h3' }, fontWeight: { xs: 'bold', md: 'bold' }, color: 'white' }}>
                         {greeting}
                     </Typography>
                     <Typography variant="body1" sx={{ color: 'white' }}>

@@ -3,6 +3,8 @@ import React from 'react';
 import { Grid, Stack, Typography, Button } from '@mui/material';
 import HalfScreenImage from '../Components/HalfScreenImage';
 import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom';
+import TitleEntrance from '../elements/entrance/TitleEntrance';
 
 const picture = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/semeru.jpg?alt=media&token=1b762c8d-a67a-4c42-a29e-e65c12daa77a";
 const greeting = "Welcome Back!";
@@ -11,8 +13,11 @@ const author = "- Fiersa Besari";
 
 const LoginPage = props => {
     return (
-        <Grid container spacing={0} sx={{ height: '100vh' }}>
-            <Grid item xs={6}
+        <Grid container spacing={0} sx={{ height: '100vh', bgcolor: '#F8FFF8' }}>
+            <Grid
+                item
+                xs={12}
+                md={6}
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
@@ -23,17 +28,15 @@ const LoginPage = props => {
             >
                 <HalfScreenImage picture={picture} greeting={greeting} words={words} author={author} />
             </Grid>
-            <Grid item container xs={6} justifyContent="center" alignItems="center" sx={{ px: 5 }}>
+            <Grid item container xs={12} md={6} justifyContent="center" alignItems="center" sx={{ px: 5, height: '100%' }}>
                 <Grid item xs={12}>
                     <Stack spacing={4}>
-                        <Grid item container justifyContent="center">
-                            <Typography variant="h2" sx={{ fontWeight: 'bold' }}>GreenWay</Typography>
-                        </Grid>
+                        <TitleEntrance />
                         <Stack spacing={2}>
-                            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                            <Button variant="contained">Contained</Button>
-                            <Typography variant="body1">Don't have an account? Register</Typography>
+                            <TextField id="outlined-basic" label="Email" variant="outlined" />
+                            <TextField id="outlined-basic" label="Password" variant="outlined" />
+                            <Button variant="contained" sx={{ bgcolor: "#006E6F" }}>Log In</Button>
+                            <Typography variant="body1">Don't have an account? <Link to="/register">Register</Link></Typography>
                         </Stack>
                     </Stack>
                 </Grid>
