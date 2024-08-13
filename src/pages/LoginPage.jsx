@@ -36,7 +36,7 @@ const LoginPage = props => {
                             <TextField id="outlined-basic" label="Email" variant="outlined" />
                             <TextField id="outlined-basic" label="Password" variant="outlined" />
                             <Button variant="contained" sx={{ bgcolor: "#006E6F" }}>Log In</Button>
-                            <Typography variant="body1">Don't have an account? <Link to="/register">Register</Link></Typography>
+                            <Typography variant="body1">Don't have an account? <Link to="/signup">Register</Link></Typography>
                         </Stack>
                     </Stack>
                 </Grid>
