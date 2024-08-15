@@ -25,7 +25,7 @@ const DestionationPage = () => {
                     <Paper sx={{ p: 1, borderRadius: 3, border: '1.5px solid #006E6F' }}>
                         <Grid item container alignItems="center">
                             <SearchIcon />
-                            <InputBase placeholder="Search" sx={{px: 1}}/>
+                            <InputBase placeholder="Search" sx={{px: 1, width: '90%'}}/>
                         </Grid>
                     </Paper>
                 </Grid>
