@@ -24,8 +24,8 @@ const BetterFuture = () => {
                     spacing={2}
                     sx={{
                         display: 'flex',
-                        alignItems: 'center', // Center content within Stack
-                        width: '100%', // Ensure Stack takes full width
+                        alignItems: 'center', 
+                        width: '100%',
                         pb: { xs: 4, md: 0 }
                     }}
                 >

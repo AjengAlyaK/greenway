@@ -8,7 +8,6 @@ import { asyncReceiveDetailCampaign } from '../states/campaignDetail/action';
 
 const DetailCampaignPage = () => {
     const { id } = useParams();
-    // const { campaign = null } = useSelector((states) => states);
     const campaign = useSelector((state) => state.campaign);
     console.log(campaign)
     const dispatch = useDispatch();

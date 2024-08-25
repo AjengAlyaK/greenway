@@ -16,7 +16,6 @@ const Footer = () => {
                 container
                 spacing={3}
                 xs={12}
-                // sx={{flexGrow: 1}}
             >
                 <Grid
                     item
@@ -83,7 +82,6 @@ const Footer = () => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                // sx={{px: 5}}
             >
                 <Typography sx={{color: 'white'}}>© 2024 GreenWay. All rights reserved.</Typography>
             </Grid>

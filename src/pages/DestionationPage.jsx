@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Grid, InputBase, Paper } from '@mui/material';
 import TitleContent from '../elements/sharing/TitleContent';
-// import CardGeneral from '../elements/sharing/CardGeneral';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDestinations } from '../states/destination/action';
 import CardGeneral from '../elements/sharing/CardGeneral';
@@ -32,7 +31,7 @@ const DestionationPage = () => {
             </Grid>
             {destinations.map((destination, index) => (
                 <Grid item xs={12} md={3}>
-                    <CardGeneral id={destination.id} index={index} picture={destination.photo} name={destination.name} location={destination.location} />
+                    <CardGeneral path="#" id="#" index={index} picture={destination.photo} name={destination.name} location={destination.location} />
                 </Grid>
             ))}
         </Grid>

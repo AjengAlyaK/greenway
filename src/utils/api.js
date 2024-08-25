@@ -18,6 +18,7 @@ const api = (() => {
     function putAccessToken(token) {
         localStorage.setItem('accessToken', token)
     }
+    
     // campaign
     async function campaigns() {
         const response = await fetch(`${BASE_URL}/campaigns`);

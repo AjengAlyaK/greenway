@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,7 +17,7 @@ const pages = [
     { name: 'Home', link: '/' },
     { name: 'Artikel', link: '/articles' },
     { name: 'Destination', link: '/destinations' },
-    { name: 'About Us', link: '/about-us' }
+    { name: 'About Us', link: '#' }
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Tak_berjudul63-hd__2_-removebg-preview.png?alt=media&token=eca5f180-7753-4567-94a5-6ed13f674861";
@@ -30,9 +29,6 @@ function ResponsiveAppBar() {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    // const handleOpenUserMenu = (event) => {
-    //     setAnchorElUser(event.currentTarget);
-    // };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -46,15 +42,13 @@ function ResponsiveAppBar() {
         <AppBar elevation={0} position="fixed" sx={{ bgcolor: "#F8FFF8", px: { md: 13 } }}>
             <Container maxWidth="xl" sx={{ px: { md: 0 } }}>
                 <Toolbar disableGutters>
-                    {/* logo md*/}
-                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
                     <Box
                         component="img"
                         src={logo}
                         alt="GreenWay"
                         sx={{
                             display: { xs: 'none', md: 'flex' },
-                            height: 45, // Adjust as needed
+                            height: 45, 
                             mr: 1,
                         }}
                     />
@@ -68,7 +62,6 @@ function ResponsiveAppBar() {
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            // letterSpacing: '.3rem',
                             color: '#006E6F',
                             textDecoration: 'none',
                         }}
@@ -149,8 +142,6 @@ function ResponsiveAppBar() {
                     {/* login */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}> */}
-                            {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
                             <Box>
                                 <Button sx={{ bgcolor: "#006E6F" }} variant="contained" component={Link}
                                     to="/login">Login</Button>
