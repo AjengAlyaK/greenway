@@ -12,11 +12,13 @@ GreenWay is an eco-travel app built with React, Redux, and Material-UI, leveragi
 ### Tech Stack <a name="tech-stack"></a>
 <details>
   <summary>API</summary>
+  
   - https://restapi-greenway.vercel.app/
 </details>
 
 <details>
   <summary>Frontend</summary>
+  
   - React
   - Redux
   - MUI
