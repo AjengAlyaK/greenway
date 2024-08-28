@@ -27,11 +27,13 @@ function asyncSetAuthUser({ email, password }) {
     return async (dispatch) => {
         try {
             const token = await api.login({email, password});
+            console.log(token);
             api.putAccessToken(token);
             const authUser = await api.getOwnProfile();
             dispatch(setAuthUserActionCreator(authUser));
         } catch (error) {
             alert(error.message);
+            console.log(error.message)
         }
     };
 }

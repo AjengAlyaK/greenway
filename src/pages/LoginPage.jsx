@@ -18,6 +18,8 @@ const LoginPage = props => {
 
     const onLogin = async ({ email, password }) => {
         await dispatch(asyncSetAuthUser({ email, password }));
+        console.log(email);
+        console.log(password);
         Navigate('/')
     };
     

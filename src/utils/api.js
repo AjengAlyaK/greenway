@@ -93,11 +93,12 @@ const api = (() => {
             throw new Error(message);
         }
         const { data: { token } } = responseJson;
+        console.log(token);
         return token;
     }
 
     async function getOwnProfile() {
-        const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
+        const response = await _fetchWithAuth(`${BASE_URL}/me`);
         const responseJson = await response.json();
         const { status, message } = responseJson;
         if (status !== 'success') {
@@ -118,7 +119,6 @@ const api = (() => {
         destinations,
         login,
         getOwnProfile,
-
     };
 })();
 
