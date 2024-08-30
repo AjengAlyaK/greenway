@@ -1,14 +1,24 @@
 import React from 'react';
-import { Grid, Stack, Typography, Button, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import HalfScreenImage from '../Components/HalfScreenImage';
-import TitleEntrance from '../elements/entrance/TitleEntrance';
+import { useDispatch } from 'react-redux';
+import { asyncRegisterUser } from '../states/register/action';
+import RegisterInput from '../Components/RegisterInput';
 
 const picture = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/beach%201.jpg?alt=media&token=1b00e76b-68cc-4ce3-a205-2981f56b3c42";
 const greeting = "Welcome!";
 const words = "As long as you don't have the subtle feeling of seeing nature, your soul is not alive.";
 const author = "- Prof. Dr. Hamka";
 const RegisterPage = () => {
+    const Navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const onRegister = async ({ name, email, password }) => {
+        await dispatch(asyncRegisterUser({ name, email, password }));
+        console.log(name, email,  password);
+        Navigate('/login');
+    }
     return (
         <Grid
             container
@@ -47,16 +57,7 @@ const RegisterPage = () => {
                 <Grid
                     xs={12}
                 >
-                    <Stack spacing={4}>
-                        <TitleEntrance />
-                        <Stack spacing={2}>
-                            <TextField id="outlined-basic" label="Name" variant="outlined" />
-                            <TextField id="outlined-basic" label="Email" variant="outlined" />
-                            <TextField id="outlined-basic" label="Password" variant="outlined" />
-                            <Button variant="contained" sx={{ bgcolor: "#006E6F" }}>Sign In</Button>
-                            <Typography variant="body1">Don't have an account? <Link to="/login">Register</Link></Typography>
-                        </Stack>
-                    </Stack>
+                    <RegisterInput register={onRegister}/>
                 </Grid>
             </Grid>
         </Grid>

@@ -12,6 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const pages = [
     { name: 'Home', link: '/' },
@@ -23,6 +25,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Tak_berjudul63-hd__2_-removebg-preview.png?alt=media&token=eca5f180-7753-4567-94a5-6ed13f674861";
 
 function ResponsiveAppBar() {
+    const { authUser } = useSelector((state) => state);
+    console.log(authUser);
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -48,7 +52,7 @@ function ResponsiveAppBar() {
                         alt="GreenWay"
                         sx={{
                             display: { xs: 'none', md: 'flex' },
-                            height: 45, 
+                            height: 45,
                             mr: 1,
                         }}
                     />
@@ -142,9 +146,18 @@ function ResponsiveAppBar() {
                     {/* login */}
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <Box>
-                                <Button sx={{ bgcolor: "#006E6F" }} variant="contained" component={Link}
-                                    to="/login">Login</Button>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                {authUser ? (
+                                    <Typography sx={{ color: "#006E6F", display: 'flex', alignItems: 'center', pr: 2 }}>
+                                        Logout
+                                        <LogoutIcon sx={{ color: "#006E6F", ml: 1 }} />
+                                    </Typography>
+                                ) : (
+                                    <Button sx={{ bgcolor: "#006E6F" }} variant="contained" component={Link} to="/login">
+                                        Login
+                                    </Button>
+                                )}
+
                             </Box>
                             {/* </IconButton> */}
                         </Tooltip>
