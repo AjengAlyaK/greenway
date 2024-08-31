@@ -8,12 +8,11 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncUnsetAuthUser } from '../states/authUser/action';
 
 const pages = [
     { name: 'Home', link: '/' },
@@ -25,8 +24,10 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Tak_berjudul63-hd__2_-removebg-preview.png?alt=media&token=eca5f180-7753-4567-94a5-6ed13f674861";
 
 function ResponsiveAppBar() {
-    const { authUser } = useSelector((state) => state);
-    console.log(authUser);
+    const { authUser = null } = useSelector((state) => state);
+    console.log('ini', authUser)
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -40,6 +41,16 @@ function ResponsiveAppBar() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const onLogin = () => {
+        navigate('/login');
+    };
+
+    const onSignOut = () => {
+        dispatch(asyncUnsetAuthUser());
+        navigate('/')
+        console.log('harusnya gaada', authUser);
     };
 
     return (
@@ -145,22 +156,15 @@ function ResponsiveAppBar() {
                     </Box>
                     {/* login */}
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                {authUser ? (
-                                    <Typography sx={{ color: "#006E6F", display: 'flex', alignItems: 'center', pr: 2 }}>
-                                        Logout
-                                        <LogoutIcon sx={{ color: "#006E6F", ml: 1 }} />
-                                    </Typography>
-                                ) : (
-                                    <Button sx={{ bgcolor: "#006E6F" }} variant="contained" component={Link} to="/login">
-                                        Login
-                                    </Button>
-                                )}
-
+                                <Button
+                                    sx={{ bgcolor: "#006E6F" }}
+                                    variant="contained"
+                                    onClick={authUser ? onSignOut : onLogin}
+                                >
+                                    {authUser ? "Sign Out" : "Log In"}
+                                </Button>
                             </Box>
-                            {/* </IconButton> */}
-                        </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
