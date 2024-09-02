@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveCampaigns } from '../states/campaign/Action';
 import { Link } from 'react-router-dom';
-import CardCampaign from '../elements/sharing/CardGeneral';
+import CardGeneral from '../elements/sharing/CardGeneral';
 
 const CampaignSlightly = () => {
     const { campaigns } = useSelector((states) => states);
@@ -31,7 +31,7 @@ const CampaignSlightly = () => {
                     </Box>
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>
                         {displayedCampaigns.map((campaign, index) => (
-                            <CardCampaign id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
+                            <CardGeneral path="campaign" id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
                         ))}
                     </Stack>
                 </Stack>

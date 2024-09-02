@@ -31,7 +31,7 @@ const DestionationPage = () => {
             </Grid>
             {destinations.map((destination, index) => (
                 <Grid item xs={12} md={3}>
-                    <CardGeneral path="#" id="#" index={index} picture={destination.photo} name={destination.name} location={destination.location} />
+                    <CardGeneral path="destination" id={destination.id} index={index} picture={destination.photo} name={destination.name} location={destination.location} />
                 </Grid>
             ))}
         </Grid>
