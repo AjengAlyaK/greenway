@@ -1,7 +1,8 @@
-import { Box, Grid, Paper, Typography, Avatar } from '@mui/material';
+import { Box, Grid, Paper, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveReviews } from '../states/review/Action';
+import AvatarGeneral from '../elements/sharing/AvatarGeneral';
 
 const Review = () => {
     const { reviews } = useSelector((states) => states);
@@ -30,7 +31,8 @@ const Review = () => {
                                 justifyContent="flex-start"
                                 alignItems="flex-start"
                             >
-                                <Avatar src={content.photo} alt={`photo of ${content.name}`} sx={{ width: 54, height: 54 }} />
+                                {/* <Avatar src={content.photo} alt={`photo of ${content.name}`} sx={{ width: 54, height: 54 }} /> */}
+                                <AvatarGeneral source={content.photo} alternative={content.name} />
                                 <Typography sx={{ pt: 2 }}>{content.review}</Typography>
                                 <Typography sx={{ fontWeight: 'bold', pt: 2 }}>{content.name}</Typography>
                                 <Typography sx={{ pb: 1 }}>{content.occupation}</Typography>
