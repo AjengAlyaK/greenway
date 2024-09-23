@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material';
 
 const TitleContent = ({title, subtitle}) => {
     return (
-        <Stack spacing={2}>
+        <Stack spacing={3}>
             <Typography sx={{ color: '#006E6F', typography: { xs: 'h4', md: 'h3' }, textAlign: { xs: 'center', md: 'center' }, fontWeight: { xs: 'bold', md: 'bold' } }}>
                 {title}
             </Typography>
