@@ -6,6 +6,7 @@ import articlesReducer from "./article/reducer";
 import destinationsReducer from "./destination/reducer";
 import authReducer from "./authUser/reducer";
 import registerReducer from "./register/reducer";
+import { destinationDetailReducer } from "./destinationDetail/Reducer";
 
 const store = configureStore({
     reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
         reviews: reviewsReducer,
         articles: articlesReducer,
         destinations: destinationsReducer,
+        destination: destinationDetailReducer,
     }
 });
 

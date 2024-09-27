@@ -75,6 +75,17 @@ const api = (() => {
         return data;
     }
 
+    async function getDestinationDetail(id) {
+        const response = await fetch(`${BASE_URL}/destination/${id}`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        }
+        const { data: { detailDestination } } = responseJson;
+        return detailDestination;
+    }
+
     async function login({ email, password }) {
         const response = await fetch(`${BASE_URL}/login`, {
             method: 'POST',
@@ -142,6 +153,7 @@ const api = (() => {
         reviews,
         articles,
         destinations,
+        getDestinationDetail,
         login,
         getOwnProfile,
         register
