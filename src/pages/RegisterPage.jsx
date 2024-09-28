@@ -19,6 +19,7 @@ const RegisterPage = () => {
         console.log(name, email,  password);
         Navigate('/login');
     }
+    
     return (
         <Grid
             container

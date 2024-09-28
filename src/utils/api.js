@@ -86,6 +86,29 @@ const api = (() => {
         return detailDestination;
     }
 
+    async function commentOnDestination({ text }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/destination/comment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                text,
+            }),
+        });
+
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+
+        const { data: { comment } } = responseJson;
+
+        return comment;
+    }
+
     async function login({ email, password }) {
         const response = await fetch(`${BASE_URL}/login`, {
             method: 'POST',
@@ -140,7 +163,7 @@ const api = (() => {
         }
 
         const { data: { user } } = responseJson;
-        return user; 
+        return user;
     }
 
 
@@ -154,6 +177,7 @@ const api = (() => {
         articles,
         destinations,
         getDestinationDetail,
+        commentOnDestination,
         login,
         getOwnProfile,
         register

@@ -9,6 +9,7 @@ import WarningBar from '../elements/sharing/WarningBar';
 import CommentCard from '../Components/CommentCard';
 import { useParams } from 'react-router';
 import { asyncReceiveDestinationDetail } from '../states/destinationDetail/Action';
+import { addCommentOnDestination } from '../states/componentOnDestination/action';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -25,6 +26,10 @@ const DetailDestinationPage = () => {
         return <p>Loading ...</p>
     }
 
+    const addComment = ({ comment }) => {
+        dispatch(addCommentOnDestination({ comment }))
+    }
+
     return (
         <Grid
             container
@@ -37,7 +42,7 @@ const DetailDestinationPage = () => {
             <ImageInDetail picture={destination.photo} location={destination.location} title={destination.name} />
             <DetailInformation subtitle="Description" value={destination.description} />
             <Comments count={commentLength} />
-            {authUser ? <FormComment /> : <WarningBar object="start a new comment" />}
+            {authUser ? <FormComment addComment={addComment} /> : <WarningBar object="start a new comment" />}
             <Grid
                 container
                 item
@@ -48,7 +53,7 @@ const DetailDestinationPage = () => {
                     sx={{ width: '100%', py: 4 }}
                 >
                     {destination.comments.map((comment, index) => (
-                        <CommentCard name={comment.owner.name} photo={comment.owner.photo} comment={comment.comment} timestamp={comment.createdAt} />
+                        <CommentCard key={index} name={comment.owner.name} photo={comment.owner.photo} comment={comment.comment} timestamp={comment.createdAt} />
                     ))}
                 </Stack>
             </Grid>
