@@ -86,14 +86,15 @@ const api = (() => {
         return detailDestination;
     }
 
-    async function commentOnDestination({ text }) {
-        const response = await _fetchWithAuth(`${BASE_URL}/destination/comment`, {
+    async function commentOnDestination({ text, id }) {
+        console.log('Sending Comment:', { text });
+        const response = await _fetchWithAuth(`${BASE_URL}/destination/${id}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                text,
+                comment: text,
             }),
         });
 

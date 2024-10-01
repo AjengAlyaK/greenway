@@ -2,19 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Grid, Stack, TextField } from '@mui/material';
 import useInput from '../hooks/useInput';
+import { useParams } from 'react-router';
 
 const FormComment = ({ addComment }) => {
     const [comment, onCommentChange] = useInput('');
+    const { id } = useParams();
+    console.log(id)
 
     const handleSubmit = (event) => {
-        addComment({ comment });
+        event.preventDefault();
+        addComment({ comment, id });
     }
 
     return (
         <Grid
             container
             item
-            // spacing={0}
             direction="column"
         >
             <Stack spacing={2}>

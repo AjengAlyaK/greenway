@@ -1,4 +1,4 @@
-import { ActionType } from "./action"
+import { ActionType } from "./action";
 
 export const commentOnDstination = (comment = [], action = {}) => {
     switch (action.type) {

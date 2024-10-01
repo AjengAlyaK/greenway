@@ -9,7 +9,7 @@ import WarningBar from '../elements/sharing/WarningBar';
 import CommentCard from '../Components/CommentCard';
 import { useParams } from 'react-router';
 import { asyncReceiveDestinationDetail } from '../states/destinationDetail/Action';
-import { addCommentOnDestination } from '../states/componentOnDestination/action';
+import { asyncAddCommentOnDestination } from '../states/commentOnDestination/action';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -26,8 +26,8 @@ const DetailDestinationPage = () => {
         return <p>Loading ...</p>
     }
 
-    const addComment = ({ comment }) => {
-        dispatch(addCommentOnDestination({ comment }))
+    const addComment = ({ comment, id }) => {
+        dispatch(asyncAddCommentOnDestination({ text: comment, id }))
     }
 
     return (
