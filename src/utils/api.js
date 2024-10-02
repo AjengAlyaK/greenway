@@ -88,26 +88,32 @@ const api = (() => {
 
     async function commentOnDestination({ text, id }) {
         console.log('Sending Comment:', { text });
+
         const response = await _fetchWithAuth(`${BASE_URL}/destination/${id}/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                comment: text,
+                comment: text, 
             }),
         });
 
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Request failed with status ${response.status}: ${errorText}`);
+        }
+
         const responseJson = await response.json();
-        const { status, message } = responseJson;
+        console.log('Parsed Response:', responseJson);
+
+        const { status, message, data } = responseJson;
 
         if (status !== 'success') {
             throw new Error(message);
-        };
+        }
 
-        const { data: { comment } } = responseJson;
-
-        return comment;
+        return data.comment; 
     }
 
     async function login({ email, password }) {

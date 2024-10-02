@@ -11,11 +11,11 @@ export const addCommentOnDestination = (comment) => ({
     }
 });
 
-export const asyncAddCommentOnDestination = ({ text: comment, id }) => {
+export const asyncAddCommentOnDestination = ({ text, id }) => {
     return async (dispatch) => {
         try {
-            const response = await api.commentOnDestination({ comment, id });
-            dispatch(addCommentOnDestination(response));
+            const newComment = await api.commentOnDestination({ text, id });
+            dispatch(addCommentOnDestination(newComment));
         } catch (error) {
             alert(error.message);
         }

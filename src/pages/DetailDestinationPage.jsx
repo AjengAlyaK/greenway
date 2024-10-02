@@ -14,21 +14,21 @@ import { asyncAddCommentOnDestination } from '../states/commentOnDestination/act
 const DetailDestinationPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { authUser = null, destination } = useSelector((state) => state);
+    const { authUser = null, destination, commentOnDestination } = useSelector((state) => state);
 
     const commentLength = destination?.comments?.length || 0;
 
     useEffect(() => {
         dispatch(asyncReceiveDestinationDetail(id));
-    }, [id, dispatch]);
+    }, [id, dispatch, commentOnDestination]);
 
     if (!destination) {
         return <p>Loading ...</p>
     }
 
     const addComment = ({ comment, id }) => {
-        dispatch(asyncAddCommentOnDestination({ text: comment, id }))
-    }
+        dispatch(asyncAddCommentOnDestination({ text: comment, id }));
+    };
 
     return (
         <Grid
