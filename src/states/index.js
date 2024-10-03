@@ -7,7 +7,6 @@ import destinationsReducer from "./destination/reducer";
 import authReducer from "./authUser/reducer";
 import registerReducer from "./register/reducer";
 import { destinationDetailReducer } from "./destinationDetail/Reducer";
-import { commentOnDstination } from "./commentOnDestination/reducer";
 
 const store = configureStore({
     reducer: {
@@ -19,7 +18,6 @@ const store = configureStore({
         articles: articlesReducer,
         destinations: destinationsReducer,
         destination: destinationDetailReducer,
-        commentOnDestination: commentOnDstination
     }
 });
 
