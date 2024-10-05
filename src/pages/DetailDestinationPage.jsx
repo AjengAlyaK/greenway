@@ -9,6 +9,7 @@ import WarningBar from '../elements/sharing/WarningBar';
 import CommentCard from '../Components/CommentCard';
 import { useParams } from 'react-router';
 import { asyncReceiveDestinationDetail, asyncAddCommentOnDestination } from '../states/destinationDetail/Action';
+import { formatDistanceToNow } from 'date-fns';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -51,17 +52,22 @@ const DetailDestinationPage = () => {
                     spacing={3}
                     sx={{ width: '100%', py: 4 }}
                 >
-                    {destination.comments.map((comment, index) => (
-                        <CommentCard key={index} name={comment.owner.name} photo={comment.owner.photo} comment={comment.comment} timestamp={comment.createdAt} />
-                    ))}
+                    {destination.comments
+                        .slice()
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                        .map((comment, index) => (
+                            <CommentCard
+                                key={index}
+                                name={comment.owner.name}
+                                photo={comment.owner.photo}
+                                comment={comment.comment}
+                                timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
+                            />
+                        ))}
                 </Stack>
             </Grid>
         </Grid>
     );
-};
-
-DetailDestinationPage.propTypes = {
-
 };
 
 export default DetailDestinationPage;

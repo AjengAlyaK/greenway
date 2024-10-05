@@ -5,13 +5,14 @@ import useInput from '../hooks/useInput';
 import { useParams } from 'react-router';
 
 const FormComment = ({ addComment }) => {
-    const [comment, onCommentChange] = useInput('');
+    const [comment, onCommentChange, setComment] = useInput('');
     const { id } = useParams();
     console.log(id)
 
     const handleSubmit = (event) => {
         event.preventDefault();
         addComment({ comment, id });
+        setComment('');
     }
 
     return (
