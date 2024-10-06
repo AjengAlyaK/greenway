@@ -1,9 +1,16 @@
 import { Box, Button, Grid, Stack, Typography } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 const illustration = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Connected%20world-bro.png?alt=media&token=4ef3b596-261a-456d-85a0-7501b941c12c";
 
 const CommunityIsCalling = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/discussion");
+    }
+
     return (
         <Grid
             container
@@ -28,7 +35,7 @@ const CommunityIsCalling = () => {
                                 Join our discussion community! Discover new ideas and exchange experience with thousands of members. Let's join now!
                             </Typography>
                             <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
-                                <Button variant="contained" sx={{ bgcolor: "#006E6F" }}>Join Now</Button>
+                                <Button variant="contained" sx={{ bgcolor: "#006E6F" }} onClick={handleClick}>Join Now</Button>
                             </Box>
                         </Stack>
                     </Stack>
