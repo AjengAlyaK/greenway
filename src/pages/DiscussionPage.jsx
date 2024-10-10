@@ -2,6 +2,12 @@ import React from 'react';
 import { Button, Grid, Stack, Typography } from '@mui/material';
 import OneLineTitle from '../elements/sharing/OneLineTitle';
 
+// const temporary = {
+//     photo: "", 
+//     name: "", 
+//     timestamp: "",
+// }
+
 const DiscussionPage = () => {
     return (
         <Grid container spacing={3} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
@@ -15,6 +21,9 @@ const DiscussionPage = () => {
                     <Stack>
                         <OneLineTitle title="Discussion Available" />
                     </Stack>
+                </Stack>
+                <Stack>
+                    
                 </Stack>
             </Grid>
         </Grid>

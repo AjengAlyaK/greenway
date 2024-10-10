@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { Box, Card, CardContent, Grid, IconButton } from '@mui/material';
 import AvatarGeneral from '../elements/sharing/AvatarGeneral';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CommentPopover from './CommentPopover';
 import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
-import CommentContent from '../elements/sharing/CommentContent';
+import CommentPopover from './CommentPopover';
 
-const CommentCard = ({ name, photo, comment, timestamp }) => {
+const DiscussionCard = ({ photo, name, timestamp }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -38,7 +37,6 @@ const CommentCard = ({ name, photo, comment, timestamp }) => {
                             </IconButton>
                         </Box>
                     </Grid>
-                    <CommentContent comment={comment} />
                 </CardContent>
             </Card>
 
@@ -47,15 +45,10 @@ const CommentCard = ({ name, photo, comment, timestamp }) => {
     );
 };
 
-CommentCard.propTypes = {
-    name: PropTypes.string.isRequired,
+DiscussionCard.propTypes = {
     photo: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
 };
 
-CommentCard.defaultProps = {
-    timestamp: "17 days ago"
-};
-
-export default CommentCard;
+export default DiscussionCard;
