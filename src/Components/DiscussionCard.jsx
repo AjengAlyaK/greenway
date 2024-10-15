@@ -5,8 +5,9 @@ import AvatarGeneral from '../elements/sharing/AvatarGeneral';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentPopover from './CommentPopover';
+import CommentContent from '../elements/sharing/CommentContent';
 
-const DiscussionCard = ({ photo, name, timestamp }) => {
+const DiscussionCard = ({ photo, name, timestamp, comment }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -37,6 +38,7 @@ const DiscussionCard = ({ photo, name, timestamp }) => {
                             </IconButton>
                         </Box>
                     </Grid>
+                    <CommentContent comment={comment} />
                 </CardContent>
             </Card>
 
@@ -49,6 +51,7 @@ DiscussionCard.propTypes = {
     photo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
 };
 
 export default DiscussionCard;
