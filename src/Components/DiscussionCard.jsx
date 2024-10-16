@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Card, CardContent, Grid, IconButton } from '@mui/material';
+import { Box, Card, CardContent, Grid, IconButton, Typography } from '@mui/material';
 import AvatarGeneral from '../elements/sharing/AvatarGeneral';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentPopover from './CommentPopover';
 import CommentContent from '../elements/sharing/CommentContent';
+import DiscussionContent from './DiscussionContent';
 
 const DiscussionCard = ({ photo, name, timestamp, comment }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -38,7 +39,10 @@ const DiscussionCard = ({ photo, name, timestamp, comment }) => {
                             </IconButton>
                         </Box>
                     </Grid>
-                    <CommentContent comment={comment} />
+
+                    {/* <CommentContent comment={comment} /> */}
+                    <DiscussionContent />
+
                 </CardContent>
             </Card>
 
