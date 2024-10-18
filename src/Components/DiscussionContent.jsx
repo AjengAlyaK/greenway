@@ -1,42 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Stack, Typography } from '@mui/material';
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
-import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
+import ReactButtonGroup from './ReactButtonGroup';
 
-const DiscussionContent = props => {
+const DiscussionContent = ({ title, body, category, likes, dislikes, comments }) => {
     return (
         <Box sx={{ pt: 2 }}>
             <Stack spacing={2}>
                 <Stack spacing={1}>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Let say this is title</Typography>
-                    <Typography variant="subtitle1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit dolorem molestiae numquam cum at minima nulla voluptate, praesentium unde, ab ut omnis! Cum aliquam esse a necessitatibus temporibus fuga sed!</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{title}</Typography>
+                    <Typography variant="subtitle1">{body}</Typography>
                 </Stack>
                 <Box>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>#nosurprises</Typography>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>#{category}</Typography>
                 </Box>
-                <Stack direction="row" spacing={3}>
-                    <Box sx={{ display: 'flex' }}>
-                        <ThumbUpOutlinedIcon sx={{ mr: 1 }} />
-                        <Typography>3</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex' }}>
-                        <ThumbDownOutlinedIcon sx={{ mr: 1 }} />
-                        <Typography>9</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex' }}>
-                        <ModeCommentOutlinedIcon sx={{ mr: 1 }} />
-                        <Typography>2</Typography>
-                    </Box>
-                </Stack>
+                <>
+                    <ReactButtonGroup likes={likes} dislikes={dislikes} comments={comments} />
+                </>
             </Stack>
         </Box>
     );
 };
 
 DiscussionContent.propTypes = {
-
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    likes: PropTypes.string.isRequired,
+    dislikes: PropTypes.string.isRequired,
+    comments: PropTypes.string.isRequired,
 };
 
 export default DiscussionContent;

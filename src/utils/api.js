@@ -95,7 +95,7 @@ const api = (() => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                comment: text,                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                comment: text,
             }),
         });
 
@@ -113,7 +113,7 @@ const api = (() => {
             throw new Error(message);
         }
 
-        return data.comment; 
+        return data.comment;
     }
 
     async function login({ email, password }) {
@@ -173,6 +173,16 @@ const api = (() => {
         return user;
     }
 
+    async function discussions() {
+        const response = await fetch(`${BASE_URL}/discussions`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        }
+        const { data: { discussions } } = responseJson;
+        return discussions;
+    }
 
     return {
         getAccessToken,
@@ -185,6 +195,7 @@ const api = (() => {
         destinations,
         getDestinationDetail,
         commentOnDestination,
+        discussions,
         login,
         getOwnProfile,
         register

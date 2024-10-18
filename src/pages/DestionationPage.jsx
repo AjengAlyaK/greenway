@@ -16,6 +16,7 @@ const DestionationPage = () => {
     useEffect(() => {
         dispatch(asyncReceiveDestinations())
     }, [dispatch]);
+    
     return (
         <Grid container spacing={3} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
             <Grid item container spacing={3} justifyContent="center" xs={12} sx={{ mb: { md: 2 } }}>
