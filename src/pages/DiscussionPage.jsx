@@ -10,7 +10,9 @@ import { formatDistanceToNow } from 'date-fns';
 const DiscussionPage = () => {
     const { discussions } = useSelector((states) => states);
     console.log(discussions);
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(asyncReceiveDiscussions())
     }, [dispatch]);

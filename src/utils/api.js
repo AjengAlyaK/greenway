@@ -184,6 +184,39 @@ const api = (() => {
         return discussions;
     }
 
+    async function upVoteDiscussion({ discussionId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/${discussionId}/up-votes`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { vote } } = responseJson;
+        return vote;
+    }
+
+    async function downVoteDiscussion({ discussionId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/${discussionId}/down-votes`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { vote } } = responseJson;
+        return vote;
+    }
+
+    async function netralVoteDiscussion({ discussionId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/${discussionId}/netral-votes`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { vote } } = responseJson;
+        return vote;
+    }
+
     return {
         getAccessToken,
         _fetchWithAuth,
@@ -196,6 +229,9 @@ const api = (() => {
         getDestinationDetail,
         commentOnDestination,
         discussions,
+        upVoteDiscussion,
+        downVoteDiscussion,
+        netralVoteDiscussion,
         login,
         getOwnProfile,
         register
