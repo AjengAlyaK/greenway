@@ -47,6 +47,7 @@ export function asyncUpVote({ discussionId }) {
         try {
             const upVote = await api.upVoteDiscussion({ discussionId });
             dispatch(upVoteActionCreator(upVote))
+            console.log(upVote)
         } catch (error) {
             console.log('Error fetching:', error)
         }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Stack, Typography } from '@mui/material';
 import ReactButtonGroup from './ReactButtonGroup';
 
-const DiscussionContent = ({ title, body, category, likes, dislikes, comments }) => {
+const DiscussionContent = ({ discussionId, title, body, category, likes, dislikes, comments, clickUpVote }) => {
     return (
         <Box sx={{ pt: 2 }}>
             <Stack spacing={2}>
@@ -15,7 +15,13 @@ const DiscussionContent = ({ title, body, category, likes, dislikes, comments })
                     <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>#{category}</Typography>
                 </Box>
                 <>
-                    <ReactButtonGroup likes={likes} dislikes={dislikes} comments={comments} />
+                    <ReactButtonGroup
+                        discussionId={discussionId}
+                        likes={likes}
+                        dislikes={dislikes}
+                        comments={comments}
+                        clickUpVote={clickUpVote}
+                    />
                 </>
             </Stack>
         </Box>
@@ -23,12 +29,14 @@ const DiscussionContent = ({ title, body, category, likes, dislikes, comments })
 };
 
 DiscussionContent.propTypes = {
+    discussionId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    likes: PropTypes.string.isRequired,
-    dislikes: PropTypes.string.isRequired,
-    comments: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    dislikes: PropTypes.number.isRequired,
+    comments: PropTypes.number.isRequired,
+    clickUpVote: PropTypes.func.isRequired,
 };
 
 export default DiscussionContent;

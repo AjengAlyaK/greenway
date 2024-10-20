@@ -1,4 +1,4 @@
-import { ActionType } from "./action"
+import { ActionType } from "./action";
 
 export const discussionReducer = (discussions = [], action = {}) => {
     switch (action.type) {

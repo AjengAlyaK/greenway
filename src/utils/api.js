@@ -185,7 +185,12 @@ const api = (() => {
     }
 
     async function upVoteDiscussion({ discussionId }) {
-        const response = await _fetchWithAuth(`${BASE_URL}/${discussionId}/up-votes`);
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/up-votes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
         const responseJson = await response.json();
         const { status, message } = responseJson;
         if (status !== 'success') {
@@ -196,7 +201,7 @@ const api = (() => {
     }
 
     async function downVoteDiscussion({ discussionId }) {
-        const response = await _fetchWithAuth(`${BASE_URL}/${discussionId}/down-votes`);
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/down-votes`);
         const responseJson = await response.json();
         const { status, message } = responseJson;
         if (status !== 'success') {
@@ -207,7 +212,7 @@ const api = (() => {
     }
 
     async function netralVoteDiscussion({ discussionId }) {
-        const response = await _fetchWithAuth(`${BASE_URL}/${discussionId}/netral-votes`);
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/netral-votes`);
         const responseJson = await response.json();
         const { status, message } = responseJson;
         if (status !== 'success') {

@@ -5,11 +5,11 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 
-const ReactButtonGroup = ({ likes, dislikes, comments }) => {
+const ReactButtonGroup = ({ discussionId, likes, dislikes, comments, clickUpVote }) => {
     return (
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton aria-label='like'>
+                <IconButton aria-label='like' onClick={() => clickUpVote({ discussionId })}>
                     <ThumbUpOutlinedIcon />
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{likes}</Typography>
@@ -31,9 +31,11 @@ const ReactButtonGroup = ({ likes, dislikes, comments }) => {
 };
 
 ReactButtonGroup.propTypes = {
-    likes: PropTypes.string.isRequired,
-    dislikes: PropTypes.string.isRequired,
-    comments: PropTypes.string.isRequired,
+    discussionId: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    dislikes: PropTypes.number.isRequired,
+    comments: PropTypes.number.isRequired,
+    clickUpVote: PropTypes.func.isRequired,
 };
 
 export default ReactButtonGroup;

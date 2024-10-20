@@ -7,7 +7,7 @@ import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentPopover from './CommentPopover';
 import DiscussionContent from './DiscussionContent';
 
-const DiscussionCard = ({ photo, name, timestamp, title, body, category, likes, dislikes, comments }) => {
+const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, category, likes, dislikes, comments, clickUpVote }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -40,7 +40,16 @@ const DiscussionCard = ({ photo, name, timestamp, title, body, category, likes, 
                     </Grid>
 
                     {/* <CommentContent comment={comment} /> */}
-                    <DiscussionContent title={title} body={body} category={category} likes={likes} dislikes={dislikes} comments={comments} />
+                    <DiscussionContent
+                        discussionId={discussionId}
+                        title={title}
+                        body={body}
+                        category={category}
+                        likes={likes}
+                        dislikes={dislikes}
+                        comments={comments}
+                        clickUpVote={clickUpVote}
+                    />
                 </CardContent>
             </Card>
 
@@ -50,13 +59,15 @@ const DiscussionCard = ({ photo, name, timestamp, title, body, category, likes, 
 };
 
 DiscussionCard.propTypes = {
+    discussionId: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,
-    likes: PropTypes.string.isRequired,
-    dislikes: PropTypes.string.isRequired,
-    comments: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    dislikes: PropTypes.number.isRequired,
+    comments: PropTypes.number.isRequired,
+    clickUpVote: PropTypes.func.isRequired,
 };
 
 export default DiscussionCard;
