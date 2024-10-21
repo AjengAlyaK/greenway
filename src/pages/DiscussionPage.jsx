@@ -4,7 +4,7 @@ import OneLineTitle from '../elements/sharing/OneLineTitle';
 import DiscussionCard from '../Components/DiscussionCard';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncReceiveDiscussions, asyncUpVote } from '../states/discussion/action';
+import { asyncReceiveDiscussions } from '../states/discussion/action';
 import { formatDistanceToNow } from 'date-fns';
 
 const DiscussionPage = () => {
@@ -16,10 +16,6 @@ const DiscussionPage = () => {
     useEffect(() => {
         dispatch(asyncReceiveDiscussions())
     }, [dispatch]);
-
-    const clickUpVote = ({ discussionId }) => {
-        dispatch(asyncUpVote({ discussionId }));
-    };
 
     return (
         <Grid container spacing={0} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
@@ -43,7 +39,7 @@ const DiscussionPage = () => {
                     <Stack spacing={3}>
                         {discussions.map((discussion, index) => (
                             <DiscussionCard
-                                index={index}
+                                key={index}
                                 discussionId={discussion.id}
                                 photo={discussion.photo}
                                 name={discussion.name}
@@ -54,7 +50,6 @@ const DiscussionPage = () => {
                                 likes={discussion.upVotesBy.length}
                                 dislikes={discussion.downVotesBy.length}
                                 comments={discussion.comments}
-                                clickUpVote={clickUpVote}
                             />
                         ))}
                     </Stack>

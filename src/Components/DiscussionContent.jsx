@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Stack, Typography } from '@mui/material';
 import ReactButtonGroup from './ReactButtonGroup';
 
-const DiscussionContent = ({ discussionId, title, body, category, likes, dislikes, comments, clickUpVote }) => {
+const DiscussionContent = ({ discussionId, title, body, category, likes, dislikes, comments }) => {
     return (
         <Box sx={{ pt: 2 }}>
             <Stack spacing={2}>
@@ -20,7 +20,6 @@ const DiscussionContent = ({ discussionId, title, body, category, likes, dislike
                         likes={likes}
                         dislikes={dislikes}
                         comments={comments}
-                        clickUpVote={clickUpVote}
                     />
                 </>
             </Stack>
@@ -36,7 +35,6 @@ DiscussionContent.propTypes = {
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     comments: PropTypes.number.isRequired,
-    clickUpVote: PropTypes.func.isRequired,
 };
 
 export default DiscussionContent;

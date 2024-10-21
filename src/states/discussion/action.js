@@ -21,15 +21,19 @@ export const upVoteActionCreator = (upVote) => ({
     }
 });
 
-export const downVoteActionCreator = (payload) => ({
+export const downVoteActionCreator = (downVote) => ({
     type: ActionType.DOWN_VOTE,
-    payload
+    payload: {
+        downVote
+    }
 });
 
-export const netralActionCreator = (payload) => ({
+export const netralActionCreator = (netralVote) => ({
     type: ActionType.NETRAL_VOTE,
-    payload
-})
+    payload: {
+        netralVote
+    }
+});
 
 export function asyncReceiveDiscussions() {
     return async (dispatch) => {
@@ -38,9 +42,9 @@ export function asyncReceiveDiscussions() {
             dispatch(receiveDiscussionActionCreator(discussions));
         } catch (error) {
             console.log('Error fetching:', error)
-        }
+        };
     };
-}
+};
 
 export function asyncUpVote({ discussionId }) {
     return async (dispatch) => {
@@ -52,4 +56,15 @@ export function asyncUpVote({ discussionId }) {
             console.log('Error fetching:', error)
         }
     }
-}
+};
+
+export function asyncNetralVote({ discussionId }) {
+    return async (dispatch) => {
+        try {
+            const netralVote = await api.netralVoteDiscussion({ discussionId });
+            dispatch(netralActionCreator(netralVote));
+        } catch (error) {
+            console.log('Error fetching:', error);
+        };
+    };
+};

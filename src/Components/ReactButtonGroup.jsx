@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
+import { useDispatch } from 'react-redux';
+import { asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
-const ReactButtonGroup = ({ discussionId, likes, dislikes, comments, clickUpVote }) => {
+const ReactButtonGroup = ({ discussionId, likes, dislikes, comments }) => {
+    const [isLiked, setIsLiked] = useState(false);
+    const dispatch = useDispatch();
+
+    const clickUpVote = ({ discussionId }) => {
+        if (isLiked) {
+            dispatch(asyncNetralVote({ discussionId }));
+        } else {
+            dispatch(asyncUpVote({ discussionId }));
+        };
+        setIsLiked(!isLiked);
+    };
+
     return (
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='like' onClick={() => clickUpVote({ discussionId })}>
-                    <ThumbUpOutlinedIcon />
+                    {isLiked ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon /> }
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{likes}</Typography>
             </Box>
@@ -35,7 +50,6 @@ ReactButtonGroup.propTypes = {
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     comments: PropTypes.number.isRequired,
-    clickUpVote: PropTypes.func.isRequired,
 };
 
 export default ReactButtonGroup;
