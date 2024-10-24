@@ -58,6 +58,17 @@ export function asyncUpVote({ discussionId }) {
     }
 };
 
+export function asyncDownVote({ discussionId }) {
+    return async (dispatch) => {
+        try {
+            const downVote = await api.downVoteDiscussion({ discussionId });
+            dispatch(downVoteActionCreator({ downVote }));
+        } catch (error) {
+            console.log('Error fetching:', error);
+        }
+    }
+}
+
 export function asyncNetralVote({ discussionId }) {
     return async (dispatch) => {
         try {

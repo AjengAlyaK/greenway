@@ -14,13 +14,23 @@ export const discussionReducer = (discussions = [], action = {}) => {
                 }
                 return discussion;
             });
+        case ActionType.DOWN_VOTE:
+            return discussions.map(discussion => {
+                if(discussion.id === action.payload.downVote.id) {
+                    return {
+                        ...discussion,
+                        downVotesBy: action.payload.downVote.downVotesBy
+                    };
+                }
+                return discussion;
+            });
         case ActionType.NETRAL_VOTE:
             return discussions.map(discussion => {
                 if (discussion.id === action.payload.netralVote.id) {
                     return {
                         ...discussion,
-                        upVotesBy: discussion.upVotesBy.filter(userId => userId !== action.payload.netralVote.userId),
-                        downVotesBy: discussion.downVotesBy.filter(userId => userId !== action.payload.netralVote.userId)
+                        upVotesBy: discussion.upVotesBy.filter(idUser => idUser !== action.payload.netralVote.idUser),
+                        downVotesBy: discussion.downVotesBy.filter(idUser => idUser !== action.payload.netralVote.idUser)
                     };
                 }
                 return discussion;
