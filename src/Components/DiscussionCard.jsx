@@ -7,7 +7,7 @@ import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentPopover from './CommentPopover';
 import DiscussionContent from './DiscussionContent';
 
-const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, category, likes, dislikes, comments }) => {
+const DiscussionCard = ({ discussionId, userId, photo, name, timestamp, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -39,14 +39,16 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
                         </Box>
                     </Grid>
 
-                    {/* <CommentContent comment={comment} /> */}
                     <DiscussionContent
                         discussionId={discussionId}
+                        userId={userId}
                         title={title}
                         body={body}
                         category={category}
                         likes={likes}
                         dislikes={dislikes}
+                        upVotesBy={upVotesBy}
+                        downVotesBy={downVotesBy}
                         comments={comments}
                     />
                 </CardContent>
@@ -59,12 +61,15 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
 
 DiscussionCard.propTypes = {
     discussionId: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
+    upVotesBy: PropTypes.array.isRequired,
+    downVotesBy: PropTypes.array.isRequired,
     comments: PropTypes.number.isRequired,
 };
 

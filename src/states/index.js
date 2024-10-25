@@ -8,11 +8,13 @@ import authReducer from "./authUser/reducer";
 import registerReducer from "./register/reducer";
 import { destinationDetailReducer } from "./destinationDetail/Reducer";
 import { discussionReducer } from "./discussion/reducer";
+import { getOwnProfileReducer } from "./getOwnProfile/reducer";
 
 const store = configureStore({
     reducer: {
         authUser: authReducer,
         register: registerReducer,
+        profile: getOwnProfileReducer,
         campaigns: campaignsReducer,
         campaign: campaignDetailReducer,
         reviews: reviewsReducer,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Stack, Typography } from '@mui/material';
 import ReactButtonGroup from './ReactButtonGroup';
 
-const DiscussionContent = ({ discussionId, title, body, category, likes, dislikes, comments }) => {
+const DiscussionContent = ({ discussionId, userId, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments }) => {
     return (
         <Box sx={{ pt: 2 }}>
             <Stack spacing={2}>
@@ -17,8 +17,11 @@ const DiscussionContent = ({ discussionId, title, body, category, likes, dislike
                 <>
                     <ReactButtonGroup
                         discussionId={discussionId}
+                        userId={userId}
                         likes={likes}
                         dislikes={dislikes}
+                        upVotesBy={upVotesBy}
+                        downVotesBy={downVotesBy}
                         comments={comments}
                     />
                 </>
@@ -29,11 +32,14 @@ const DiscussionContent = ({ discussionId, title, body, category, likes, dislike
 
 DiscussionContent.propTypes = {
     discussionId: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
+    upVotesBy: PropTypes.array.isRequired,
+    downVotesBy: PropTypes.array.isRequired,
     comments: PropTypes.number.isRequired,
 };
 

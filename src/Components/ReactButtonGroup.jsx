@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
@@ -9,12 +9,21 @@ import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useDispatch } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
-const ReactButtonGroup = ({ discussionId, likes, dislikes, comments }) => {
+const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [localLikes, setLocalLikes] = useState(likes);
     const [isDisLiked, setIsDisLiked] = useState(false);
     const [localDisLikes, setLocalDisLikes] = useState(dislikes);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (upVotesBy.includes(userId)) {
+            setIsLiked(true);
+        }
+        if (downVotesBy.includes(userId)) {
+            setIsDisLiked(true); 
+        }
+    }, [upVotesBy, downVotesBy, userId]); 
 
     const clickUpVote = ({ discussionId }) => {
         if (isLiked) {
@@ -72,8 +81,11 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, comments }) => {
 
 ReactButtonGroup.propTypes = {
     discussionId: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
+    upVotesBy: PropTypes.array.isRequired,
+    downVotesBy: PropTypes.array.isRequired,
     comments: PropTypes.number.isRequired,
 };
 

@@ -18,8 +18,7 @@ const api = (() => {
     function putAccessToken(token) {
         localStorage.setItem('accessToken', token)
     }
-
-    // campaign
+    
     async function campaigns() {
         const response = await fetch(`${BASE_URL}/campaigns`);
         const responseJson = await response.json();
@@ -145,8 +144,8 @@ const api = (() => {
         if (status !== 'success') {
             throw new Error(message);
         }
-        const { data: { user } } = responseJson;
-        return user;
+        const { data } = responseJson;
+        return data;
     }
 
     async function register({ name, email, password }) {

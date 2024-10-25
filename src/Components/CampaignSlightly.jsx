@@ -31,7 +31,7 @@ const CampaignSlightly = () => {
                     </Box>
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>
                         {displayedCampaigns.map((campaign, index) => (
-                            <CardGeneral path="campaign" id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
+                            <CardGeneral key={index} path="campaign" id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
                         ))}
                     </Stack>
                 </Stack>

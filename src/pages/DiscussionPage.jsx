@@ -6,15 +6,16 @@ import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDiscussions } from '../states/discussion/action';
 import { formatDistanceToNow } from 'date-fns';
+import { asyncGetOwnProfile } from '../states/getOwnProfile/action';
 
 const DiscussionPage = () => {
-    const { discussions } = useSelector((states) => states);
-    console.log(discussions);
+    const { discussions, profile } = useSelector((states) => states);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(asyncReceiveDiscussions())
+        dispatch(asyncReceiveDiscussions());
+        dispatch(asyncGetOwnProfile())
     }, [dispatch]);
 
     return (
@@ -41,6 +42,7 @@ const DiscussionPage = () => {
                             <DiscussionCard
                                 key={index}
                                 discussionId={discussion.id}
+                                userId={profile.id}
                                 photo={discussion.photo}
                                 name={discussion.name}
                                 timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
@@ -49,6 +51,8 @@ const DiscussionPage = () => {
                                 category={discussion.category}
                                 likes={discussion.upVotesBy.length}
                                 dislikes={discussion.downVotesBy.length}
+                                upVotesBy={discussion.upVotesBy}
+                                downVotesBy={discussion.downVotesBy}
                                 comments={discussion.comments}
                             />
                         ))}
