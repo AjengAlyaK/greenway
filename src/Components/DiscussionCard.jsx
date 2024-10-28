@@ -61,11 +61,11 @@ const DiscussionCard = ({ discussionId, userId, photo, name, timestamp, title, b
 
 DiscussionCard.propTypes = {
     discussionId: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    userId: PropTypes.string,
     photo: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
+    comment: PropTypes.string,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     upVotesBy: PropTypes.array.isRequired,

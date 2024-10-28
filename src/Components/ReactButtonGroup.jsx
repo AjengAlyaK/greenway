@@ -8,6 +8,7 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useDispatch } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
+import { useNavigate } from 'react-router';
 
 const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments }) => {
     const [isLiked, setIsLiked] = useState(false);
@@ -15,17 +16,21 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
     const [isDisLiked, setIsDisLiked] = useState(false);
     const [localDisLikes, setLocalDisLikes] = useState(dislikes);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (upVotesBy.includes(userId)) {
-            setIsLiked(true);
+        if (userId) {
+            if (upVotesBy.includes(userId)) {
+                setIsLiked(true);
+            }
+            if (downVotesBy.includes(userId)) {
+                setIsDisLiked(true);
+            }
         }
-        if (downVotesBy.includes(userId)) {
-            setIsDisLiked(true); 
-        }
-    }, [upVotesBy, downVotesBy, userId]); 
+    }, [upVotesBy, downVotesBy, userId]);
 
     const clickUpVote = ({ discussionId }) => {
+        if (!userId) return alert('Login first to vote');
         if (isLiked) {
             dispatch(asyncNetralVote({ discussionId }));
             setLocalLikes(prevLikes => prevLikes - 1);
@@ -41,6 +46,7 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
     };
 
     const clickDownVote = ({ discussionId }) => {
+        if (!userId) return alert('Login first to vote');
         if (isDisLiked) {
             dispatch(asyncNetralVote({ discussionId }));
             setLocalDisLikes(prevDisLikes => prevDisLikes - 1);
@@ -54,6 +60,10 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
         };
         setIsDisLiked(!isDisLiked);
     };
+
+    const clickComment = ({ discussionId }) => {
+        navigate(`/discussion/${discussionId}`);
+    };    
 
     return (
         <Stack direction="row" spacing={2}>
@@ -70,7 +80,7 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
                 <Typography sx={{ mr: 1 }}>{localDisLikes}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton aria-label='comment'>
+                <IconButton aria-label='comment' onClick={() => clickComment({ discussionId })}>
                     <ModeCommentOutlinedIcon />
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{comments}</Typography>
@@ -81,12 +91,12 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
 
 ReactButtonGroup.propTypes = {
     discussionId: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    userId: PropTypes.string,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     upVotesBy: PropTypes.array.isRequired,
     downVotesBy: PropTypes.array.isRequired,
-    comments: PropTypes.number.isRequired,
+    comments: PropTypes.number,
 };
 
 export default ReactButtonGroup;

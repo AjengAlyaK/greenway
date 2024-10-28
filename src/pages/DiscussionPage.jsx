@@ -9,7 +9,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { asyncGetOwnProfile } from '../states/getOwnProfile/action';
 
 const DiscussionPage = () => {
-    const { discussions, profile } = useSelector((states) => states);
+    const { discussions, profile = { id: null } } = useSelector((states) => states);
 
     const dispatch = useDispatch();
 

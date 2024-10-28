@@ -143,7 +143,7 @@ const api = (() => {
         const { status, message } = responseJson;
         if (status !== 'success') {
             throw new Error(message);
-        }
+        };
         const { data } = responseJson;
         return data;
     }

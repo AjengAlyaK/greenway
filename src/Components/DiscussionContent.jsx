@@ -32,7 +32,7 @@ const DiscussionContent = ({ discussionId, userId, title, body, category, likes,
 
 DiscussionContent.propTypes = {
     discussionId: PropTypes.string.isRequired,
-    userId: PropTypes.string.isRequired,
+    userId: PropTypes.string,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
@@ -40,7 +40,7 @@ DiscussionContent.propTypes = {
     dislikes: PropTypes.number.isRequired,
     upVotesBy: PropTypes.array.isRequired,
     downVotesBy: PropTypes.array.isRequired,
-    comments: PropTypes.number.isRequired,
+    comments: PropTypes.number,
 };
 
 export default DiscussionContent;
