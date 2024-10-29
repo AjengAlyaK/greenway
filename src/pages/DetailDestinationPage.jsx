@@ -24,7 +24,7 @@ const DetailDestinationPage = () => {
 
     if (!destination) {
         return <p>Loading ...</p>
-    }
+    };
 
     const addComment = ({ comment, id }) => {
         dispatch(asyncAddCommentOnDestination({ text: comment, id }));

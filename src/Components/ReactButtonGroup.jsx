@@ -8,15 +8,13 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useDispatch } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
-import { useNavigate } from 'react-router';
 
-const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments }) => {
+const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments, clickDetailDiscussion }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [localLikes, setLocalLikes] = useState(likes);
     const [isDisLiked, setIsDisLiked] = useState(false);
     const [localDisLikes, setLocalDisLikes] = useState(dislikes);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (userId) {
@@ -61,10 +59,6 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
         setIsDisLiked(!isDisLiked);
     };
 
-    const clickComment = ({ discussionId }) => {
-        navigate(`/discussion/${discussionId}`);
-    };    
-
     return (
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -80,7 +74,7 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
                 <Typography sx={{ mr: 1 }}>{localDisLikes}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton aria-label='comment' onClick={() => clickComment({ discussionId })}>
+                <IconButton aria-label='comment' onClick={() => clickDetailDiscussion({ discussionId })}>
                     <ModeCommentOutlinedIcon />
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{comments}</Typography>
