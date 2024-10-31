@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Box, Stack, Typography } from '@mui/material';
 import ReactButtonGroup from './ReactButtonGroup';
 import { useNavigate } from 'react-router';
+import CategoryDiscussionTag from '../elements/sharing/CategoryDiscussionTag';
 
-const DiscussionContent = ({ discussionId, userId, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments }) => {
+const DiscussionContent = ({ discussionId, userId, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
     const navigate = useNavigate();
 
     const clickDetailDiscussion = ({ discussionId }) => {
@@ -18,9 +19,7 @@ const DiscussionContent = ({ discussionId, userId, title, body, category, likes,
                     <Typography onClick={() => clickDetailDiscussion({ discussionId })} component="span" variant="h6" sx={{ fontWeight: 'bold', cursor: 'pointer' }}>{title}</Typography>
                     <Typography variant="subtitle1">{body}</Typography>
                 </Stack>
-                <Box>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>#{category}</Typography>
-                </Box>
+                {category && <CategoryDiscussionTag category={category} />}
                 <>
                     <ReactButtonGroup
                         discussionId={discussionId}
@@ -31,6 +30,7 @@ const DiscussionContent = ({ discussionId, userId, title, body, category, likes,
                         downVotesBy={downVotesBy}
                         comments={comments}
                         clickDetailDiscussion={clickDetailDiscussion}
+                        createCommentIcon={createCommentIcon}
                     />
                 </>
             </Stack>
@@ -43,12 +43,13 @@ DiscussionContent.propTypes = {
     userId: PropTypes.string,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
+    category: PropTypes.string,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
     upVotesBy: PropTypes.array.isRequired,
     downVotesBy: PropTypes.array.isRequired,
     comments: PropTypes.number,
+    commentIcon: PropTypes.func,
 };
 
 export default DiscussionContent;

@@ -5,11 +5,10 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useDispatch } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
-const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments, clickDetailDiscussion }) => {
+const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [localLikes, setLocalLikes] = useState(likes);
     const [isDisLiked, setIsDisLiked] = useState(false);
@@ -73,12 +72,7 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{localDisLikes}</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton aria-label='comment' onClick={() => clickDetailDiscussion({ discussionId })}>
-                    <ModeCommentOutlinedIcon />
-                </IconButton>
-                <Typography sx={{ mr: 1 }}>{comments}</Typography>
-            </Box>
+            {createCommentIcon && createCommentIcon({ discussionId, comments })} 
         </Stack>
     );
 };
@@ -91,6 +85,7 @@ ReactButtonGroup.propTypes = {
     upVotesBy: PropTypes.array.isRequired,
     downVotesBy: PropTypes.array.isRequired,
     comments: PropTypes.number,
+    createCommentIcon: PropTypes.func,
 };
 
 export default ReactButtonGroup;

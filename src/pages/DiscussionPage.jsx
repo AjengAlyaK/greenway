@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Button, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Grid, IconButton, Stack, Typography } from '@mui/material';
 import OneLineTitle from '../elements/sharing/OneLineTitle';
 import DiscussionCard from '../Components/DiscussionCard';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,9 +7,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDiscussions } from '../states/discussion/action';
 import { formatDistanceToNow } from 'date-fns';
 import { asyncGetOwnProfile } from '../states/getOwnProfile/action';
+import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
+import { useNavigate } from 'react-router';
 
 const DiscussionPage = () => {
     const { discussions, profile = { id: null } } = useSelector((states) => states);
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
@@ -17,6 +20,21 @@ const DiscussionPage = () => {
         dispatch(asyncReceiveDiscussions());
         dispatch(asyncGetOwnProfile())
     }, [dispatch]);
+
+    const clickComment = ({ discussionId }) => {
+        navigate(`/discussion/${discussionId}`);
+    };
+
+    const createCommentIcon = ({ discussionId, comments }) => {
+        return (
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <IconButton aria-label='comment' onClick={() => clickComment({ discussionId })}>
+                    <ModeCommentOutlinedIcon />
+                </IconButton>
+                <Typography sx={{ mr: 1 }}>{comments}</Typography>
+            </Box>
+        );
+    };
 
     return (
         <Grid container spacing={0} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
@@ -54,6 +72,7 @@ const DiscussionPage = () => {
                                 upVotesBy={discussion.upVotesBy}
                                 downVotesBy={discussion.downVotesBy}
                                 comments={discussion.comments}
+                                createCommentIcon={({ discussionId, comments }) => createCommentIcon({ discussionId, comments })}
                             />
                         ))}
                     </Stack>

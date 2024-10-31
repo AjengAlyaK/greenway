@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 
 const Comments = ({ count }) => {
     return (
-        <Typography sx={{ typography: { xs: 'h6', md: 'h5' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F', py: 4 }}>
+        <Typography sx={{ typography: { xs: 'h6', md: 'h5' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F', py: 3 }}>
             Comments ({count})
         </Typography>
     );

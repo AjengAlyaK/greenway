@@ -50,7 +50,7 @@ const DetailDestinationPage = () => {
             >
                 <Stack
                     spacing={3}
-                    sx={{ width: '100%', py: 4 }}
+                    sx={{ width: '100%', py: 6 }}
                 >
                     {destination.comments
                         .slice()
