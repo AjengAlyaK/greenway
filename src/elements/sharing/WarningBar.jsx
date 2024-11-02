@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Paper, Stack, Typography } from '@mui/material';
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
-const WarningBar = ({ object }) => {
+const WarningBar = ({ color, iconBar, object }) => {
     return (
         <Grid
             container
@@ -11,20 +10,21 @@ const WarningBar = ({ object }) => {
             xs={12}
         >
             <Paper
-                sx={{ width: "100%", p: 1, bgcolor: "#FFF4E6" }}
+                sx={{ width: "100%", p: 1, bgcolor: color }}
                 elevation={0}
             >
                 <Grid
                     container
                     item
                 >
-                    <WarningAmberIcon color="warning" />
+                    {iconBar}
                     <Stack
                         spacing={1}
                         sx={{ pl: 1 }}
                     >
-                        <Typography sx={{fontWeight: 600}}>
-                                Permission Required
+                        {/* wording */}
+                        <Typography sx={{ fontWeight: 600 }}>
+                            Permission Required
                         </Typography>
                         <Typography variant="body2">
                             Please login or create an account to {object}!
@@ -37,6 +37,8 @@ const WarningBar = ({ object }) => {
 };
 
 WarningBar.propTypes = {
+    color: PropTypes.string.isRequired,
+    iconBar: PropTypes.element.isRequired,
     object: PropTypes.string.isRequired,
 };
 

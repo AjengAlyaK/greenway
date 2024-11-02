@@ -10,6 +10,7 @@ import CommentCard from '../Components/CommentCard';
 import { useParams } from 'react-router';
 import { asyncReceiveDestinationDetail, asyncAddCommentOnDestination } from '../states/destinationDetail/Action';
 import { formatDistanceToNow } from 'date-fns';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -42,7 +43,16 @@ const DetailDestinationPage = () => {
             <ImageInDetail picture={destination.photo} location={destination.location} title={destination.name} />
             <DetailInformation subtitle="Description" value={destination.description} />
             <Comments count={commentLength} />
-            {authUser ? <FormComment addComment={addComment} /> : <WarningBar object="start a new comment" />}
+            {authUser ?
+                <FormComment 
+                    addComment={addComment} 
+                /> :
+                <WarningBar 
+                    color="#FFF4E6" 
+                    iconBar={<WarningAmberIcon color="warning" />} 
+                    object="start a new comment" 
+                />
+            }
             <Grid
                 container
                 item
