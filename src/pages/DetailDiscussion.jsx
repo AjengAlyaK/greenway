@@ -25,6 +25,7 @@ const DetailDiscussion = () => {
                     <WarningBar 
                         color="#FFF4E6" 
                         iconBar={<WarningAmberIcon color="warning" />} 
+                        titleBar="Permission Required"
                         object="start a new comment" 
                     />
                 }

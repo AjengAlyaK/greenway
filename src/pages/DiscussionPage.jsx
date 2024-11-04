@@ -9,9 +9,11 @@ import { formatDistanceToNow } from 'date-fns';
 import { asyncGetOwnProfile } from '../states/getOwnProfile/action';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useNavigate } from 'react-router';
+import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
+import WarningBar from '../elements/sharing/WarningBar';
 
 const DiscussionPage = () => {
-    const { discussions, profile = { id: null } } = useSelector((states) => states);
+    const { discussions, profile = { id: null }, authUser = null } = useSelector((states) => states);
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
@@ -51,7 +53,16 @@ const DiscussionPage = () => {
                         <Stack spacing={2}>
                             <OneLineTitle title="Discussion Available" />
                             <Box>
-                                <Button variant="contained"><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
+                                {authUser ?
+                                    <Button variant="contained"><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
+                                    :
+                                    <WarningBar
+                                        color="#e5f6fd"
+                                        iconBar={<ErrorOutlineOutlinedIcon color="primary" />}
+                                        titleBar="Hold Up!"
+                                        object="start a discussion"
+                                    />
+                                }
                             </Box>
                         </Stack>
                     </Stack>

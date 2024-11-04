@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 
-const WarningBar = ({ color, iconBar, object }) => {
+const WarningBar = ({ color, iconBar, titleBar, object }) => {
     return (
         <Grid
             container
@@ -10,7 +10,7 @@ const WarningBar = ({ color, iconBar, object }) => {
             xs={12}
         >
             <Paper
-                sx={{ width: "100%", p: 1, bgcolor: color }}
+                sx={{ width: "100%", p: 2, bgcolor: color }}
                 elevation={0}
             >
                 <Grid
@@ -22,11 +22,10 @@ const WarningBar = ({ color, iconBar, object }) => {
                         spacing={1}
                         sx={{ pl: 1 }}
                     >
-                        {/* wording */}
-                        <Typography sx={{ fontWeight: 600 }}>
-                            Permission Required
+                        <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                            {titleBar}
                         </Typography>
-                        <Typography variant="body2">
+                        <Typography variant="body1">
                             Please login or create an account to {object}!
                         </Typography>
                     </Stack>
@@ -39,6 +38,7 @@ const WarningBar = ({ color, iconBar, object }) => {
 WarningBar.propTypes = {
     color: PropTypes.string.isRequired,
     iconBar: PropTypes.element.isRequired,
+    titleBar: PropTypes.string.isRequired,
     object: PropTypes.string.isRequired,
 };
 
