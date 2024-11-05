@@ -18,7 +18,7 @@ const api = (() => {
     function putAccessToken(token) {
         localStorage.setItem('accessToken', token)
     }
-    
+
     async function campaigns() {
         const response = await fetch(`${BASE_URL}/campaigns`);
         const responseJson = await response.json();
@@ -80,7 +80,7 @@ const api = (() => {
         const { status, message } = responseJson;
         if (status !== 'success') {
             throw new Error(message);
-        }
+        };
         const { data: { detailDestination } } = responseJson;
         return detailDestination;
     }
@@ -183,6 +183,17 @@ const api = (() => {
         return discussions;
     }
 
+    async function getDiscussionDetail(id) {
+        const response = await fetch(`${BASE_URL}/discussion/${id}`);
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { detailDiscussion } } = responseJson;
+        return detailDiscussion;
+    }
+
     async function upVoteDiscussion({ discussionId }) {
         const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/up-votes`, {
             method: 'POST',
@@ -243,6 +254,7 @@ const api = (() => {
         getDestinationDetail,
         commentOnDestination,
         discussions,
+        getDiscussionDetail,
         upVoteDiscussion,
         downVoteDiscussion,
         netralVoteDiscussion,
