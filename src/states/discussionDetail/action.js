@@ -2,7 +2,7 @@ import api from "../../utils/api";
 
 export const ActionType = {
     RECEIVE_DISCUSSION_DETAIL: 'RECEIVE_DISCUSSION_DETAIL',
-    CLEAR_DETAIL_DESTIATION: 'CLEAR_DETAIL_DESTIATION',
+    CLEAR_DISCUSSION_DETAIL: 'CLEAR_DISCUSSION_DETAIL',
 };
 
 export const receiveDiscussionDetailActionCreator = (discussion) => ({
@@ -13,7 +13,7 @@ export const receiveDiscussionDetailActionCreator = (discussion) => ({
 });
 
 export const clearDiscussionDetailActionCreator = () => ({
-    type: ActionType.CLEAR_DETAIL_DESTIATION,
+    type: ActionType.CLEAR_DISCUSSION_DETAIL,
 });
 
 export const asyncReceiveDiscussionDetail = (discussionId) => {

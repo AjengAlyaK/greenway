@@ -9,6 +9,7 @@ import registerReducer from "./register/reducer";
 import { destinationDetailReducer } from "./destinationDetail/Reducer";
 import { discussionReducer } from "./discussion/reducer";
 import { getOwnProfileReducer } from "./getOwnProfile/reducer";
+import { discussionDetailReducer } from "./discussionDetail/reducer";
 
 const store = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
         destinations: destinationsReducer,
         destination: destinationDetailReducer,
         discussions: discussionReducer,
+        discussion: discussionDetailReducer,
     }
 });
 

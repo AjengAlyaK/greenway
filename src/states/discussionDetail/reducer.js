@@ -1,24 +1,12 @@
-import { ActionType } from '../destinationDetail/Action';
+import { ActionType } from "./action";
 
-// const initialState = {
-//     discussion: null,
-// };
-
-export const discussionDetailReducer = (state = null, action = {}) => {
+export const discussionDetailReducer = (discussion = null, action = {}) => {
     switch (action.type) {
         case ActionType.RECEIVE_DISCUSSION_DETAIL:
-            return {
-                ...state,
-                discussion: action.payload.discussion,
-            };
-        case ActionType.CLEAR_DESTINATION_DETAIL:
-            return {
-                ...state,
-                discussion: null
-            };
+            return action.payload?.discussion || discussion;
+        case ActionType.CLEAR_DISCUSSION_DETAIL:
+            return null
         default:
-            return state
+            return discussion
     }
 }
-
-export default discussionDetailReducer;
