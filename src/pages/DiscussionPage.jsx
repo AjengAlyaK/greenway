@@ -27,6 +27,10 @@ const DiscussionPage = () => {
         navigate(`/discussion/${discussionId}`);
     };
 
+    const addDiscussion = () => {
+        navigate('/discussion/add')
+    }
+
     const createCommentIcon = ({ discussionId, comments }) => {
         return (
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -54,7 +58,7 @@ const DiscussionPage = () => {
                             <OneLineTitle title="Discussion Available" />
                             <Box>
                                 {authUser ?
-                                    <Button variant="contained"><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
+                                    <Button variant="contained" onClick={() => addDiscussion()}><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
                                     :
                                     <WarningBar
                                         color="#e5f6fd"

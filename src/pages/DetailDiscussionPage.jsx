@@ -31,12 +31,16 @@ const DetailDiscussionPage = () => {
                 <Stack spacing={3}>
                     <OneLineTitle title="Detail Discussion" />
                     <DiscussionCard
+                        photo={discussion.owner.photo}
                         name={discussion.owner.name}
                         timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
-                        title={discussion.title} body={discussion.body}
+                        title={discussion.title}
+                        body={discussion.body}
+                        likes={discussion.upVotesBy.length}
+                        dislikes={discussion.downVotesBy.length}
                     />
                 </Stack>
-                <Comments />
+                <Comments count={discussion.comments.length} />
                 {authUser ?
                     <FormComment /> :
                     <WarningBar
@@ -47,8 +51,17 @@ const DetailDiscussionPage = () => {
                     />
                 }
                 <Stack spacing={3} sx={{ py: 4 }}>
-                    <DiscussionCard />
-                    <DiscussionCard />
+                    {discussion.comments.map((comment, index) => (
+                        <DiscussionCard
+                            key={index}
+                            photo={comment.owner.photo}
+                            name={comment.owner.name}
+                            timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
+                            body={comment.comment}
+                            likes={comment.upVotesBy.length}
+                            dislikes={comment.downVotesBy.length}
+                        />
+                    ))}
                 </Stack>
             </Grid>
         </Grid>

@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage';
 import DetailDestinationPage from './pages/DetailDestinationPage';
 import DiscussionPage from './pages/DiscussionPage';
 import DetailDiscussionPage from './pages/DetailDiscussionPage';
+import AddDiscussionPage from './pages/AddDiscussionPage';
 
 const Router = () => {
     return (
@@ -24,6 +25,7 @@ const Router = () => {
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/discussion/:id" element={<DetailDiscussionPage />} />
+            <Route path="/discussion/add" element={<AddDiscussionPage />} />
         </Routes>
     );
 };
