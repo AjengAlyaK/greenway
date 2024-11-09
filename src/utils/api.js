@@ -183,6 +183,29 @@ const api = (() => {
         return discussions;
     }
 
+    async function addDiscussion({ title, body }) {
+        const request = await _fetchWithAuth(`${BASE_URL}/discussion`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title,
+                body
+            }),
+        });
+
+        const responseJson = request.json();
+        const { status, message } = responseJson;
+
+        if (status !== 'success') {
+            throw new Error(message);
+        }
+
+        const { data: { discussion } } = responseJson;
+        return discussion
+    }
+
     async function getDiscussionDetail(id) {
         const response = await fetch(`${BASE_URL}/discussion/${id}`);
         const responseJson = await response.json();
@@ -254,6 +277,7 @@ const api = (() => {
         getDestinationDetail,
         commentOnDestination,
         discussions,
+        addDiscussion,
         getDiscussionDetail,
         upVoteDiscussion,
         downVoteDiscussion,
