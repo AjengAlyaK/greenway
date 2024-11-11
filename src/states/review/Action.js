@@ -17,7 +17,6 @@ function asyncReceiveReviews() {
     return async (dispatch) => {
         try {
             const reviews = await api.reviews();
-            // console.log(reviews)
             dispatch(receiveReviewsActionCreator(reviews));
         } catch (error) {
             console.log('Error fetching:', error);

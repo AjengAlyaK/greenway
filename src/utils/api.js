@@ -200,10 +200,10 @@ const api = (() => {
 
         if (status !== 'success') {
             throw new Error(message);
-        }
+        };
 
         const { data: { discussion } } = responseJson;
-        return discussion
+        return discussion;
     }
 
     async function getDiscussionDetail(id) {
