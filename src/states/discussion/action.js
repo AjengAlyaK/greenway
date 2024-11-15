@@ -54,6 +54,18 @@ export function asyncReceiveDiscussions() {
     };
 };
 
+export function asyncAddDiscussion({ title, category, body }) {
+    return async (dispatch) => {
+        try {
+            const discussion = await api.addDiscussion({ title, category, body });
+            dispatch(addDiscussionActionCreator(discussion));
+            console.log("WTFFF", discussion);
+        } catch (error) {
+            console.log('Error fetching:', error);
+        };
+    };
+};
+
 export function asyncUpVote({ discussionId }) {
     return async (dispatch) => {
         try {
@@ -82,17 +94,6 @@ export function asyncNetralVote({ discussionId }) {
         try {
             const netralVote = await api.netralVoteDiscussion({ discussionId });
             dispatch(netralActionCreator(netralVote));
-        } catch (error) {
-            console.log('Error fetching:', error);
-        };
-    };
-};
-
-export function asyncAddDiscussion({ title, body }) {
-    return async (dispatch) => {
-        try {
-            const discussion = await api.addDiscussion({ title, body });
-            dispatch(addDiscussionActionCreator(discussion));
         } catch (error) {
             console.log('Error fetching:', error);
         };

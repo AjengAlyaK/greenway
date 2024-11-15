@@ -183,7 +183,7 @@ const api = (() => {
         return discussions;
     }
 
-    async function addDiscussion({ title, body }) {
+    async function addDiscussion({ title, category, body }) {
         const request = await _fetchWithAuth(`${BASE_URL}/discussion`, {
             method: 'POST',
             headers: {
@@ -191,6 +191,7 @@ const api = (() => {
             },
             body: JSON.stringify({
                 title,
+                category,
                 body
             }),
         });
