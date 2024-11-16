@@ -5,7 +5,7 @@ export const discussionReducer = (discussions = [], action = {}) => {
         case ActionType.RECEIVE_DISCUSSION:
             return [...action.payload.discussions];
         case ActionType.ADD_DISCUSSION:
-            return [action.payload.discussion, ...action.payload.discussions];
+            return [action.payload.discussion, ...discussions];
         case ActionType.UP_VOTE:
             return discussions.map(discussion => {
                 if (discussion.id === action.payload.upVote.id) {

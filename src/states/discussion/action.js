@@ -59,7 +59,6 @@ export function asyncAddDiscussion({ title, category, body }) {
         try {
             const discussion = await api.addDiscussion({ title, category, body });
             dispatch(addDiscussionActionCreator(discussion));
-            console.log("WTFFF", discussion);
         } catch (error) {
             console.log('Error fetching:', error);
         };

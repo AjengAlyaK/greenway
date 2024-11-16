@@ -15,13 +15,12 @@ import WarningBar from '../elements/sharing/WarningBar';
 const DiscussionPage = () => {
     const { discussions, profile = { id: null }, authUser = null } = useSelector((states) => states);
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(asyncReceiveDiscussions());
         dispatch(asyncGetOwnProfile())
-    }, [dispatch]);
+    }, [dispatch, discussions]);
 
     const clickComment = ({ discussionId }) => {
         navigate(`/discussion/${discussionId}`);
