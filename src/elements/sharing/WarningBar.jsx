@@ -17,7 +17,12 @@ const WarningBar = ({ color, iconBar, titleBar, object }) => {
                     container
                     item
                 >
-                    {iconBar}
+                    <Stack
+                        spacing={1}
+                        sx={{ display: { xs: 'none', md: 'inline' } }}
+                    >
+                        {iconBar}
+                    </Stack>
                     <Stack
                         spacing={1}
                         sx={{ pl: 1 }}

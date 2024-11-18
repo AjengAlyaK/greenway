@@ -266,6 +266,28 @@ const api = (() => {
         return vote;
     }
 
+    async function addCommentOnDiscussion({ discussionId, text }) {
+        const request = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/comment`, {
+            method: 'POST',
+            header: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                comment: text
+            }),
+        });
+
+        const responseJson = request.json();
+        const { status, message } = responseJson;
+
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+
+        const { data: { comment } } = responseJson;
+        return comment;
+    }
+
     return {
         getAccessToken,
         _fetchWithAuth,
@@ -283,6 +305,7 @@ const api = (() => {
         upVoteDiscussion,
         downVoteDiscussion,
         netralVoteDiscussion,
+        addCommentOnDiscussion,
         login,
         getOwnProfile,
         register
