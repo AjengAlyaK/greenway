@@ -86,8 +86,6 @@ const api = (() => {
     }
 
     async function commentOnDestination({ text, id }) {
-        console.log('Sending Comment:', { text });
-
         const response = await _fetchWithAuth(`${BASE_URL}/destination/${id}/comment`, {
             method: 'POST',
             headers: {
@@ -104,7 +102,6 @@ const api = (() => {
         }
 
         const responseJson = await response.json();
-        console.log('Parsed Response:', responseJson);
 
         const { status, message, data } = responseJson;
 
@@ -266,10 +263,10 @@ const api = (() => {
         return vote;
     }
 
-    async function addCommentOnDiscussion({ discussionId, text }) {
-        const request = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/comment`, {
+    async function addCommentOnDiscussion({ text, id }) {
+        const request = await _fetchWithAuth(`${BASE_URL}/discussion/${id}/comment`, {
             method: 'POST',
-            header: {
+            headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -277,7 +274,7 @@ const api = (() => {
             }),
         });
 
-        const responseJson = request.json();
+        const responseJson = await request.json();
         const { status, message } = responseJson;
 
         if (status !== 'success') {

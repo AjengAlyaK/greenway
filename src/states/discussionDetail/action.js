@@ -36,10 +36,10 @@ export const asyncReceiveDiscussionDetail = (discussionId) => {
     };
 };
 
-export const asyncAddCommentOnDiscussion = ({ discussionId, text }) => {
+export const asyncAddCommentOnDiscussion = ({ text, id }) => {
     return async (dispatch) => {
         try {
-            const comment = await api.addCommentOnDiscussion({ discussionId, text });
+            const comment = await api.addCommentOnDiscussion({ text, id });
             dispatch(addCommentOnDiscussionActionCreator(comment));
         } catch (error) {
             alert(error.message);

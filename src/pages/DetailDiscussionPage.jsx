@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import WarningBar from '../elements/sharing/WarningBar';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { useParams } from 'react-router';
-import { asyncReceiveDiscussionDetail } from '../states/discussionDetail/action';
+import { asyncAddCommentOnDiscussion, asyncReceiveDiscussionDetail } from '../states/discussionDetail/action';
 import { formatDistanceToNow } from 'date-fns';
 
 const DetailDiscussionPage = () => {
@@ -25,6 +25,10 @@ const DetailDiscussionPage = () => {
         return <p>Loading ...</p>
     };
 
+    const addComment = ({ comment, id }) => {
+        dispatch(asyncAddCommentOnDiscussion({ text: comment, id }));
+    };
+
     return (
         <Grid container spacing={0} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
             <Grid size={12} width="100%">
@@ -36,13 +40,14 @@ const DetailDiscussionPage = () => {
                         timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
                         title={discussion.title}
                         body={discussion.body}
+                        category={discussion.category}
                         likes={discussion.upVotesBy.length}
                         dislikes={discussion.downVotesBy.length}
                     />
                 </Stack>
                 <Comments count={discussion.comments.length} />
                 {authUser ?
-                    <FormComment /> :
+                    <FormComment addComment={addComment} /> :
                     <WarningBar
                         color="#FFF4E6"
                         iconBar={<WarningAmberIcon color="warning" />}
@@ -51,17 +56,21 @@ const DetailDiscussionPage = () => {
                     />
                 }
                 <Stack spacing={3} sx={{ py: 4 }}>
-                    {discussion.comments.map((comment, index) => (
-                        <DiscussionCard
-                            key={index}
-                            photo={comment.owner.photo}
-                            name={comment.owner.name}
-                            timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
-                            body={comment.comment}
-                            likes={comment.upVotesBy.length}
-                            dislikes={comment.downVotesBy.length}
-                        />
-                    ))}
+                    {discussion.comments
+                        .slice()
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                        .map((comment, index) => (
+                            <DiscussionCard
+                                key={index}
+                                name={comment.owner.name}
+                                photo={comment.owner.photo}
+                                comment={comment.comment}
+                                timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
+                                body={comment.comment}
+                                likes={comment.upVotesBy.length}
+                                dislikes={comment.downVotesBy.length}
+                            />
+                        ))}
                 </Stack>
             </Grid>
         </Grid>
