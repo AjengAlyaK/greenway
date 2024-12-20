@@ -26,7 +26,7 @@ const CampaignSlightly = () => {
                 <Stack spacing={2} sx={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography sx={{ typography: { xs: 'h4', sm: 'h3' }, fontWeight: { xs: 'bold', md: 'bold' }, textAlign: { xs: 'center', md: 'start' }, color: '#006E6F', pb: { xs: 1, md: 2 } }}>Campaign</Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
-                        <Button variant="contained" sx={{ bgcolor: "#006E6F" }} size="small" component={Link}
+                        <Button variant="contained" color="primary" size="small" component={Link}
                             to="/campaigns">See All</Button>
                     </Box>
                     <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>

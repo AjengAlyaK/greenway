@@ -71,12 +71,12 @@ function ResponsiveAppBar() {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
                             fontWeight: 700,
+                            fontSize: '30px',
                             color: '#006E6F',
                             textDecoration: 'none',
                         }}
@@ -138,7 +138,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        GreenWay
                     </Typography>
                     {/* pages */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
@@ -156,15 +156,15 @@ function ResponsiveAppBar() {
                     </Box>
                     {/* login */}
                     <Box sx={{ flexGrow: 0 }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Button
-                                    sx={{ bgcolor: "#006E6F" }}
-                                    variant="contained"
-                                    onClick={authUser ? onSignOut : onLogin}
-                                >
-                                    {authUser ? "Sign Out" : "Log In"}
-                                </Button>
-                            </Box>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={authUser ? onSignOut : onLogin}
+                            >
+                                {authUser ? "Sign Out" : "Log In"}
+                            </Button>
+                        </Box>
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"

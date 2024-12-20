@@ -35,7 +35,7 @@ const CommunityIsCalling = () => {
                                 Join our discussion community! Discover new ideas and exchange experience with thousands of members. Let's join now!
                             </Typography>
                             <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
-                                <Button variant="contained" sx={{ bgcolor: "#006E6F" }} onClick={handleClick}>Join Now</Button>
+                                <Button variant="contained" color="primary" onClick={handleClick}>Join Now</Button>
                             </Box>
                         </Stack>
                     </Stack>
