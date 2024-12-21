@@ -8,6 +8,7 @@ const CommunityIsCalling = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
+        alert("this fiture still in development");
         navigate("/discussion");
     }
 

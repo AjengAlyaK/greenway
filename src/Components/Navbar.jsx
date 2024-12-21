@@ -81,7 +81,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        GreenWay
+                        <Box sx={{ color: '#5AC9A2' }}>Green</Box>Way
                     </Typography>
                     {/* pages */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -93,7 +93,7 @@ function ResponsiveAppBar() {
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            <MenuIcon sx={{ color: '#006E6F' }} />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -114,7 +114,7 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page, index) => (
-                                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                                <MenuItem key={index} onClick={handleCloseNavMenu} component={Link} to={page.link}>
                                     <Typography textAlign="center" sx={{ color: '#006E6F' }}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
@@ -131,14 +131,12 @@ function ResponsiveAppBar() {
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
                             color: '#006E6F',
                             textDecoration: 'none',
                         }}
                     >
-                        GreenWay
+                        <Box sx={{ color: '#5AC9A2' }}>Green</Box>Way
                     </Typography>
                     {/* pages */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
@@ -146,7 +144,7 @@ function ResponsiveAppBar() {
                             <Button
                                 key={index}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: '#006E6F', display: 'block' }}
+                                sx={{ my: 2, mx: 1, color: '#006E6F', display: 'block' }}
                                 component={Link}
                                 to={page.link}
                             >
