@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import React from 'react';
 
 const RecordContents = [
@@ -26,38 +26,67 @@ const RecordContents = [
 
 const Record = () => {
     return (
-        <Grid
-            container
-            sx={{ px: { xs: 2, md: 13 } }}
+        <Box
+            sx={{
+                px: 13,
+            }}
         >
-            {RecordContents.map((content, index) => (
-                <Grid
-                    item
-                    key={index}
-                    xs={12}
-                    sm={6}
-                    md={3}
-                    sx={{ bgcolor: '#5AC9A2', py: 2, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                >
-                    <Paper
+            <Grid
+                container
+                sx={{
+                    bgcolor: '#5AC9A2',
+                    p: 3,
+                }}
+            >
+                {RecordContents.map((content, index) => (
+                    <Grid
+                        item
+                        key={index}
+                        xs={12}
+                        md={3}
                         sx={{
-                            width: 250,
-                            height: 160,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
                             p: 2
                         }}
                     >
-                        <Typography variant="h4" py={1} sx={{ fontWeight: 'bold' }}>{content.count}</Typography>
-                        <Typography variant="h6" sx={{ fontWeight: 549 }}>
-                            {content.title}
-                        </Typography>
-                    </Paper>
-                </Grid>
-            ))}
-        </Grid>
+                        <Paper
+                            sx={{
+                                borderRadius: 1
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    p: 5
+                                }}
+                            >
+                                <Stack
+                                    spacing={2}
+                                >
+                                    <Typography
+                                        sx={{
+                                            typography: "h4",
+                                            fontWeight: "bold",
+                                            color: "#006E6F",
+                                            textAlign: "center"
+                                        }}
+                                    >
+                                        {content.count}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            typography: "body",
+                                            fontWeight: "bold",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        {content.title}
+                                    </Typography>
+                                </Stack>
+                            </Box>
+                        </Paper>
+                    </Grid>
+                ))}
+            </Grid>
+        </Box >
     );
 };
 
