@@ -28,7 +28,7 @@ const Record = () => {
     return (
         <Box
             sx={{
-                px: 13,
+                px: { xs: 2, sm: 5, md: 13 },
             }}
         >
             <Grid
