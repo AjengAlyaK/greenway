@@ -16,16 +16,18 @@ const DestionationPage = () => {
     useEffect(() => {
         dispatch(asyncReceiveDestinations())
     }, [dispatch]);
-    
+
     return (
         <Grid container spacing={3} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
             <Grid item container spacing={3} justifyContent="center" xs={12} sx={{ mb: { md: 2 } }}>
-                <TitleContent title={title} subtitle={subtitle} />
+                <Grid item xs={12}>
+                    <TitleContent title={title} subtitle={subtitle} />
+                </Grid>
                 <Grid item xs={8} md={4}>
                     <Paper sx={{ p: 1, borderRadius: 3, border: '1.5px solid #006E6F' }}>
                         <Grid item container alignItems="center">
                             <SearchIcon />
-                            <InputBase placeholder="Search" sx={{px: 1, width: '90%'}}/>
+                            <InputBase placeholder="Search" sx={{ px: 1, width: {xs: '80%', sm: '90%'} }} />
                         </Grid>
                     </Paper>
                 </Grid>
