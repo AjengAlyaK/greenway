@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
 const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
-    const { authUser = null } = useSelector((states) => states)
+    const { authUser = null } = useSelector((states) => states);
     const dispatch = useDispatch();
     const upVote = ({ discussionId }) => {
         if (authUser) {
@@ -26,6 +26,18 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
             alert("login first!");
         }
     };
+
+    // case click like
+    // 1. when button already liked by logged user
+    // 2. yet liked
+    // 3. when button already unliked bu logged user
+    // 4. when logout the filled dissapear
+
+    // case click dislike
+    // 1. when button already disliked by logged user
+    // 2. yet disliked
+    // 3. when button already liked bu logged user
+    // 4. when logout the filled dissapear
 
     return (
         <Stack direction="row" spacing={2}>
