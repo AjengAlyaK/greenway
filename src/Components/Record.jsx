@@ -43,6 +43,7 @@ const Record = () => {
                         item
                         key={index}
                         xs={12}
+                        sm={6}
                         md={3}
                         sx={{
                             p: 2
@@ -59,7 +60,7 @@ const Record = () => {
                                 }}
                             >
                                 <Stack
-                                    spacing={2}
+                                    spacing={{ xs: 1, md: 2 }}
                                 >
                                     <Typography
                                         sx={{
