@@ -21,41 +21,61 @@ const ExploreContents = [
 
 const Explore = () => {
     return (
+
         <Grid
             container
-            spacing={2}
-            sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, sm: 5, md: 13 }, justifyContent: 'center', alignItems: 'center', }}
+            display="flex"
+            justifyContent="space-between"
+            spacing={{
+                xs: 3,
+                md: 4
+            }}
+            sx={{
+                px: { xs: 2, sm: 5, md: 13 },
+                py: { xs: 3, md: 5 }
+            }}
         >
-            <Grid
-                item
-                container
-                sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                xs={12}
-            >
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 4 }} justifyContent='center' alignItems='center' >
-                    {ExploreContents.map((content, index) => (
-                        <Paper
-                            key={index}
-                            sx={{
-                                width: { xs: '100%', md: 340 },
-                                height: { xs: 200, md: 250 },
-                                p: { xs: 2, md: 3 },
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignItems: 'flex-start',
-                                bgcolor: '#5AC9A2',
-                                color: '#ffffff',
-                                borderRadius: 4
-                            }}
+            {ExploreContents.map((content, index) => (
+                <Grid
+                    item
+                    xs={12}
+                    sm={4}
+                    md={4}
+                    key={index}
+                >
+                    <Paper
+                        sx={{
+                            bgcolor: '#5AC9A2',
+                            borderRadius: 3,
+                            px: 2,
+                            py: 4,
+                        }}
+                    >
+                        <Stack
+                            spacing={2}
                         >
-                            <Typography py={1} sx={{ typography: { xs: 'h5', sm: 'h4' }, fontWeight: { xs: 'bold' } }}>{content.title}</Typography>
-                            <Typography py={{ xs: 1, md: 2 }} sx={{ typography: { xs: 'body1' } }}>{content.subtitle}</Typography>
-                        </Paper>
-                    ))}
-                </Stack>
-            </Grid>
-        </Grid >
+                            <Typography
+                                sx={{
+                                    color: '#ffffff',
+                                    fontWeight: { xs: 'bold', sm: 'bold', md: 'bold' },
+                                    typography: { xs: 'h6', sm: 'h6', md: 'h4' }
+                                }}
+                            >
+                                {content.title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    color: '#ffffff',
+                                    typography: 'body'
+                                }}
+                            >
+                                {content.subtitle}
+                            </Typography>
+                        </Stack>
+                    </Paper>
+                </Grid>
+            ))}
+        </Grid>
     );
 };
 
