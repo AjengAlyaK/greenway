@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-// import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
-// import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
@@ -28,13 +28,13 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
     };
 
     // case click like
-    // 1. when button already liked by logged user
+    // 1. when button already liked by logged user (DONE)
     // 2. yet liked
     // 3. when button already unliked bu logged user
     // 4. when logout the filled dissapear
 
     // case click dislike
-    // 1. when button already disliked by logged user
+    // 1. when button already disliked by logged user (DONE)
     // 2. yet disliked
     // 3. when button already liked bu logged user
     // 4. when logout the filled dissapear
@@ -43,13 +43,13 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='like' onClick={() => upVote({ discussionId })}>
-                    <ThumbUpOutlinedIcon />
+                    {upVotesBy.includes(authUser?.id) || null ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon />}
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{likes}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='unlike' onClick={() => downVote({ discussionId })}>
-                    <ThumbDownOutlinedIcon />
+                    {downVotesBy.includes(authUser?.id) || null ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{dislikes}</Typography>
             </Box>
