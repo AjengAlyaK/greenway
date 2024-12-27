@@ -43,13 +43,13 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='like' onClick={() => upVote({ discussionId })}>
-                    {upVotesBy.includes(authUser?.id) || null ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon />}
+                    {upVotesBy.includes(authUser?.id) ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon />}
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{likes}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='unlike' onClick={() => downVote({ discussionId })}>
-                    {downVotesBy.includes(authUser?.id) || null ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
+                    {downVotesBy.includes(authUser?.id) ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{dislikes}</Typography>
             </Box>
