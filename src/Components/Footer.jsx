@@ -6,10 +6,12 @@ const Footer = () => {
         <Grid
             container
             spacing={5}
-            sx={{ flexGrow: 1, 
-                pb: 5, 
-                px: { xs: 2, md: 13 }, 
-            bgcolor: "#004847" }}
+            sx={{
+                flexGrow: 1,
+                pb: 5,
+                px: { xs: 2, sm: 5, md: 13 },
+                bgcolor: "#004847"
+            }}
         >
             <Grid
                 item
@@ -83,7 +85,7 @@ const Footer = () => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <Typography sx={{color: 'white'}}>© 2024 GreenWay. All rights reserved.</Typography>
+                <Typography sx={{ color: 'white' }}>© 2024 GreenWay. All rights reserved.</Typography>
             </Grid>
         </Grid>
     );

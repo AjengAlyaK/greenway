@@ -1,16 +1,19 @@
-import { Box, CardMedia, Grid, Typography } from '@mui/material';
+import { Box, CardMedia, Grid } from '@mui/material';
 import React from 'react';
+import TitleHomePage from '../elements/sharing/TitleHomePage';
+
+const title = "Nature of Indonesia";
 
 const Video = () => {
     return (
         <>
-            <Box sx={{ pt: { xs: 3, md: 5 }, pb: { xs: 1, md: 2 }, px: { xs: 2, md: 13 }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Typography variant="h3" sx={{ typography: { xs: 'h4', sm: 'h3' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F' }}>Nature of Indonesia</Typography>
+            <Box sx={{ pt: { xs: 3, md: 5 }, pb: { xs: 1, sm: 2 }, px: { xs: 2, md: 13 }, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <TitleHomePage text={title} />
             </Box>
             <Grid
                 container
                 space={2}
-                sx={{ px: { xs: 2, md: 13 }, py: { xs: 3, md: 5 }, justifyContent: 'center', alignItems: 'center' }}
+                sx={{ px: { xs: 2, sm: 5, md: 13 }, py: { xs: 3, sm: 2, md: 5 }, justifyContent: 'center', alignItems: 'center' }}
             >
                 <Grid
                     item

@@ -1,5 +1,4 @@
 import { Grid, Paper, Stack, Typography } from '@mui/material';
-import React from 'react';
 
 const ExploreContents = [
     {
@@ -17,7 +16,7 @@ const ExploreContents = [
         title: "Green Travel Actions",
         subtitle: "Learn about our initiatives for sustainable travel awareness."
     },
-]
+];
 
 const Explore = () => {
     return (
@@ -57,7 +56,7 @@ const Explore = () => {
                                 sx={{
                                     color: '#ffffff',
                                     fontWeight: { xs: 'bold', sm: 'bold', md: 'bold' },
-                                    typography: { xs: 'h6', sm: 'h6', md: 'h4' }
+                                    typography: { xs: 'h6', md: 'h4' }
                                 }}
                             >
                                 {content.title}
