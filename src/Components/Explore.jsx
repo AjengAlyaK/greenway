@@ -21,7 +21,6 @@ const ExploreContents = [
 
 const Explore = () => {
     return (
-
         <Grid
             container
             display="flex"
@@ -39,7 +38,7 @@ const Explore = () => {
                 <Grid
                     item
                     xs={12}
-                    sm={4}
+                    sm={6}
                     md={4}
                     key={index}
                 >

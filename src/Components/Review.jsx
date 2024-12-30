@@ -22,9 +22,8 @@ const Review = () => {
                 sx={{ py: { xs: 3, md: 5 }, px: { xs: 2, md: 13 }, justifyContent: 'center', alignItems: 'center' }}
             >
                 {reviews.map((content, index) => (
-                    <Grid item xs={12} md={4} key={content.id} spacing={2}>
-
-                        <Paper sx={{ p: 3, border: '1.5px solid #5AC9A2', borderRadius: 3 }}>
+                    <Grid item xs={12} sm={6} md={4} key={index} spacing={2}>
+                        <Paper sx={{ p: 2, border: '1.5px solid #5AC9A2', borderRadius: 3 }}>
                             <Box
                                 display="flex"
                                 flexDirection="column"
@@ -33,7 +32,7 @@ const Review = () => {
                             >
                                 {/* <Avatar src={content.photo} alt={`photo of ${content.name}`} sx={{ width: 54, height: 54 }} /> */}
                                 <AvatarGeneral source={content.photo} alternative={content.name} />
-                                <Typography sx={{ pt: 2 }}>{content.review}</Typography>
+                                <Typography sx={{ pt: 2,  }}>{content.review}</Typography>
                                 <Typography sx={{ fontWeight: 'bold', pt: 2 }}>{content.name}</Typography>
                                 <Typography sx={{ pb: 1 }}>{content.occupation}</Typography>
                             </Box>
