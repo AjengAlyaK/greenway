@@ -32,7 +32,7 @@ const CampaignSlightly = () => {
                         <Button variant="contained" color="primary" size="small" component={Link}
                             to="/campaigns">See All</Button>
                     </Box>
-                    <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>
+                    <Stack direction={{ xs: 'column', sm: 'column', md: 'row' }} spacing={2} sx={{ width: '100%', justifyContent: 'space-between', pt: 1, pb: 5 }}>
                         {displayedCampaigns.map((campaign, index) => (
                             <CardGeneral key={index} path="campaign" id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
                         ))}
