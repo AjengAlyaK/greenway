@@ -20,6 +20,7 @@ const pages = [
     { name: 'Destination', link: '/destinations' },
     { name: 'About Us', link: '#' }
 ];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Tak_berjudul63-hd__2_-removebg-preview.png?alt=media&token=eca5f180-7753-4567-94a5-6ed13f674861";
 
@@ -50,12 +51,11 @@ function ResponsiveAppBar() {
     const onSignOut = () => {
         dispatch(asyncUnsetAuthUser());
         navigate('/')
-        console.log('harusnya gaada', authUser);
     };
 
     return (
-        <AppBar elevation={0} position="fixed" sx={{ bgcolor: "#F8FFF8", px: { md: 13 } }}>
-            <Container maxWidth="xl" sx={{ px: { md: 0 } }}>
+        <AppBar elevation={0} position="sticky" sx={{ bgcolor: "#F8FFF8", px: { sm: 5, md: 13 } }}>
+            <Container maxWidth="xl" sx={{ px: { sm: 0 } }}>
                 <Toolbar disableGutters>
                     <Box
                         component="img"

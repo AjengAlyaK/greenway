@@ -22,11 +22,28 @@ const Review = () => {
             <Grid
                 container
                 spacing={3}
-                sx={{ py: { xs: 3, sm: 2, md: 5 }, px: { xs: 2, sm: 5, md: 13 }, justifyContent: 'center', alignItems: 'center' }}
+                sx={{ py: { xs: 3, sm: 2, md: 5 }, px: { xs: 2, sm: 5, md: 13 }, justifyContent: 'center', alignItems: 'strech' }}
             >
                 {reviews.map((content, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={index} spacing={2}>
-                        <Paper sx={{ p: 2, border: '1.5px solid #5AC9A2', borderRadius: 3 }}>
+                    <Grid
+                        item
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        key={index}
+                        display="flex"
+                    >
+                        <Paper
+                            sx={{
+                                p: 2,
+                                border: '1.5px solid #5AC9A2',
+                                borderRadius: 3,
+                                height: '100%',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                flexBasis: 'column'
+                            }}
+                        >
                             <Box
                                 display="flex"
                                 flexDirection="column"

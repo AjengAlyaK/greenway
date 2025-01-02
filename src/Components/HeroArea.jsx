@@ -10,17 +10,17 @@ const HeroArea = () => {
         >
             {/* Left Content */}
             <Grid
-                sx={{ flexGrow: 1 }}
+                // sx={{ flexGrow: 1 }}
                 item
-                container
                 md={6}
                 xs={12}
+                display="flex"
                 justifyContent="center"
                 alignItems="center"
             >
                 <Stack>
                     <Stack spacing={2}>
-                        <Typography sx={{ color: '#006E6F', typography: { xs: 'h4', sm: 'h3', md: 'h3', lg: 'h2' }, fontWeight: { xs: 'bold', sm: 'bold', md: 'bold', lg: 'bold' }, pt: { xs: 8, sm: 12 }, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'start' } }}>TRAVEL AND SAVE NATURE</Typography>
+                        <Typography sx={{ color: '#006E6F', typography: { xs: 'h4', sm: 'h3', md: 'h3', lg: 'h2' }, fontWeight: { xs: 'bold', sm: 'bold', md: 'bold', lg: 'bold' }, pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'start' } }}>TRAVEL AND SAVE NATURE</Typography>
                         <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>
                             <Typography variant="body1" sx={{ fontSize: 16, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'justify' } }}>
                                 Welcome to a new era of travel where adventure meets environmental stewardship. Your Gateway to Sustainable Exploration in Indonesia! Start your journey with us and traverse Indonesia in a more responsible, eco-conscious manner.

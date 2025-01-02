@@ -18,7 +18,7 @@ const DestionationPage = () => {
     }, [dispatch]);
 
     return (
-        <Grid container spacing={3} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
+        <Grid container spacing={3} sx={{ pt: { xs: 2, sm: 4 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
             <Grid item container spacing={3} justifyContent="center" xs={12} sx={{ mb: { md: 2 } }}>
                 <Grid item xs={12}>
                     <TitleContent title={title} subtitle={subtitle} />
@@ -27,7 +27,7 @@ const DestionationPage = () => {
                     <Paper sx={{ p: 1, borderRadius: 3, border: '1.5px solid #006E6F' }}>
                         <Grid item container alignItems="center">
                             <SearchIcon />
-                            <InputBase placeholder="Search" sx={{ px: 1, width: {xs: '80%', sm: '90%'} }} />
+                            <InputBase placeholder="Search" sx={{ px: 1, width: { xs: '80%', sm: '90%' } }} />
                         </Grid>
                     </Paper>
                 </Grid>

@@ -46,7 +46,8 @@ const Explore = () => {
                             bgcolor: '#5AC9A2',
                             borderRadius: 3,
                             px: 2,
-                            py: 4,
+                            py: 4, 
+                            height: '100%', 
                         }}
                     >
                         <Stack

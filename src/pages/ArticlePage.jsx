@@ -13,7 +13,7 @@ const ArticlePage = () => {
     }, [dispatch]);
 
     return (
-        <Grid container spacing={3} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>
+        <Grid container spacing={3} sx={{ pt: { xs: 2, sm: 4 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>
             <Grid item xs={12} sx={{ mb: { md: 2 } }}>
                 <Stack spacing={2}>
                     <TitleContent title="Read Insightful Articles In Your Free Time" subtitle="There are many choices of useful articles to read, let's make the best your free time to get inspired." />
