@@ -15,8 +15,8 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
     const isLike = upVotesBy.includes(authUser?.id);
     const isDislike = downVotesBy.includes(authUser?.id);
 
-    const { like, setLike } = useState(isLike);
-    const { dislike, setDislike } = useState(isDislike);
+    const [like, setLike] = useState(isLike);
+    const [dislike, setDislike] = useState(isDislike);
 
     const upVote = ({ discussionId }) => {
         if (authUser) {
@@ -38,7 +38,17 @@ const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, do
 
     const downVote = ({ discussionId }) => {
         if (authUser) {
-            dispatch(asyncDownVote({ discussionId }));
+            if (isDislike) {
+                dispatch(asyncNetralVote({ discussionId }));
+                setDislike(!isDislike);
+            } else if (!isDislike) {
+                dispatch(asyncDownVote({ discussionId }));
+                setDislike(!isDislike);
+            } else if (isLike) {
+                dispatch(asyncNetralVote({ discussionId }));
+                dispatch(asyncDownVote({ discussionId }));
+                setLike(!isLike);
+            }
         } else {
             alert("login first!");
         }
