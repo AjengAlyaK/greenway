@@ -5,7 +5,7 @@ import ReactButtonGroup from './ReactButtonGroup';
 import { useNavigate } from 'react-router';
 import CategoryDiscussionTag from '../elements/sharing/CategoryDiscussionTag';
 
-const DiscussionContent = ({ discussionId, userId, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
+const DiscussionContent = ({ discussionId, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
     const navigate = useNavigate();
 
     const clickDetailDiscussion = ({ discussionId }) => {
@@ -23,7 +23,6 @@ const DiscussionContent = ({ discussionId, userId, title, body, category, likes,
                 <>
                     <ReactButtonGroup
                         discussionId={discussionId}
-                        userId={userId}
                         likes={likes}
                         dislikes={dislikes}
                         upVotesBy={upVotesBy}
@@ -40,7 +39,6 @@ const DiscussionContent = ({ discussionId, userId, title, body, category, likes,
 
 DiscussionContent.propTypes = {
     discussionId: PropTypes.string.isRequired,
-    userId: PropTypes.string,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     category: PropTypes.string,
