@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
@@ -15,6 +15,8 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
     const isLike = upVotesBy.includes(authUser?.id);
     const isDislike = downVotesBy.includes(authUser?.id);
 
+    const [likeCount, setLikeCount] = useState(likes);
+    const [dislikeCount, setDislikeCount] = useState(dislikes);
     const [like, setLike] = useState(isLike);
     const [dislike, setDislike] = useState(isDislike);
 
@@ -22,13 +24,17 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (authUser) {
             if (isLike) {
                 dispatch(asyncNetralVote({ discussionId }));
+                setLikeCount((prev) => prev - 1);
                 setLike(!isLike);
             } else if (!isLike) {
                 dispatch(asyncUpVote({ discussionId }));
+                setLikeCount((prev) => prev + 1);
                 setLike(!isLike);
             } else if (isDislike) {
                 dispatch(asyncNetralVote({ discussionId }));
+                setDislikeCount((prev) => prev - 1);
                 dispatch(asyncUpVote({ discussionId }));
+                setLikeCount((prev) => prev + 1);
                 setDislike(!isDislike);
             }
         } else {
@@ -40,13 +46,17 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (authUser) {
             if (isDislike) {
                 dispatch(asyncNetralVote({ discussionId }));
+                setDislikeCount((prev) => prev - 1);
                 setDislike(!isDislike);
             } else if (!isDislike) {
                 dispatch(asyncDownVote({ discussionId }));
+                setDislikeCount((prev) => prev + 1);
                 setDislike(!isDislike);
             } else if (isLike) {
                 dispatch(asyncNetralVote({ discussionId }));
+                setLikeCount((prev) => prev - 1)
                 dispatch(asyncDownVote({ discussionId }));
+                setDislikeCount((prev) => prev + 1)
                 setLike(!isLike);
             }
         } else {
@@ -54,31 +64,19 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         }
     };
 
-    // case click like
-    // 1. when button already liked by logged user (DONE)
-    // 2. yet liked
-    // 3. when button already unliked by logged user
-    // 4. when logout the filled dissapear
-
-    // case click dislike
-    // 1. when button already disliked by logged user (DONE)
-    // 2. yet disliked
-    // 3. when button already liked by logged user
-    // 4. when logout the filled dissapear
-
     return (
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='like' onClick={() => upVote({ discussionId })}>
-                    {upVotesBy.includes(authUser?.id) ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
+                    {like ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
                 </IconButton>
-                <Typography sx={{ mr: 1 }}>{likes}</Typography>
+                <Typography sx={{ mr: 1 }}>{likeCount}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='unlike' onClick={() => downVote({ discussionId })}>
-                    {downVotesBy.includes(authUser?.id) ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
+                    {dislike ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
                 </IconButton>
-                <Typography sx={{ mr: 1 }}>{dislikes}</Typography>
+                <Typography sx={{ mr: 1 }}>{dislikeCount}</Typography>
             </Box>
             {createCommentIcon && createCommentIcon({ discussionId, comments })}
         </Stack>
