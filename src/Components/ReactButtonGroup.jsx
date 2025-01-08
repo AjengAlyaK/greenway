@@ -8,7 +8,7 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
-const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
+const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
     const dispatch = useDispatch();
     const { authUser = null } = useSelector((states) => states);
 
