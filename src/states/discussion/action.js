@@ -86,7 +86,7 @@ export function asyncDownVote({ discussionId }) {
             console.log('Error fetching:', error);
         }
     }
-}
+};
 
 export function asyncNetralVote({ discussionId }) {
     return async (dispatch) => {

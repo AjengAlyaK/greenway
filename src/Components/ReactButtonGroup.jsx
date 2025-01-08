@@ -1,78 +1,84 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
-const ReactButtonGroup = ({ discussionId, userId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
-    const [isLiked, setIsLiked] = useState(false);
-    const [localLikes, setLocalLikes] = useState(likes);
-    const [isDisLiked, setIsDisLiked] = useState(false);
-    const [localDisLikes, setLocalDisLikes] = useState(dislikes);
+const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
     const dispatch = useDispatch();
+    const { authUser = null } = useSelector((states) => states);
 
-    useEffect(() => {
-        if (userId) {
-            if (upVotesBy.includes(userId)) {
-                setIsLiked(true);
-            }
-            if (downVotesBy.includes(userId)) {
-                setIsDisLiked(true);
-            }
-        }
-    }, [upVotesBy, downVotesBy, userId]);
+    const isLike = upVotesBy.includes(authUser?.id);
+    const isDislike = downVotesBy.includes(authUser?.id);
 
-    const clickUpVote = ({ discussionId }) => {
-        if (!userId) return alert('Login first to vote');
-        if (isLiked) {
-            dispatch(asyncNetralVote({ discussionId }));
-            setLocalLikes(prevLikes => prevLikes - 1);
+    const [likeCount, setLikeCount] = useState(likes);
+    const [dislikeCount, setDislikeCount] = useState(dislikes);
+    const [like, setLike] = useState(isLike);
+    const [dislike, setDislike] = useState(isDislike);
+
+    const upVote = ({ discussionId }) => {
+        if (authUser) {
+            if (isLike) {
+                dispatch(asyncNetralVote({ discussionId }));
+                setLikeCount((prev) => prev - 1);
+                setLike(!isLike);
+            } else if (!isLike) {
+                dispatch(asyncUpVote({ discussionId }));
+                setLikeCount((prev) => prev + 1);
+                setLike(!isLike);
+            } else if (isDislike) {
+                dispatch(asyncNetralVote({ discussionId }));
+                setDislikeCount((prev) => prev - 1);
+                dispatch(asyncUpVote({ discussionId }));
+                setLikeCount((prev) => prev + 1);
+                setDislike(!isDislike);
+            }
         } else {
-            dispatch(asyncUpVote({ discussionId }));
-            if (isDisLiked) {
-                setLocalDisLikes(prevDisLikes => prevDisLikes - 1);
-                setIsDisLiked(false);
-            };
-            setLocalLikes(prevLikes => prevLikes + 1);
-        };
-        setIsLiked(!isLiked);
+            alert("login first!");
+        }
     };
 
-    const clickDownVote = ({ discussionId }) => {
-        if (!userId) return alert('Login first to vote');
-        if (isDisLiked) {
-            dispatch(asyncNetralVote({ discussionId }));
-            setLocalDisLikes(prevDisLikes => prevDisLikes - 1);
-        } else {
-            dispatch(asyncDownVote({ discussionId }));
-            if (isLiked) {
-                setLocalLikes(prevLikes => prevLikes - 1);
-                setIsLiked(false);
+    const downVote = ({ discussionId }) => {
+        if (authUser) {
+            if (isDislike) {
+                dispatch(asyncNetralVote({ discussionId }));
+                setDislikeCount((prev) => prev - 1);
+                setDislike(!isDislike);
+            } else if (!isDislike) {
+                dispatch(asyncDownVote({ discussionId }));
+                setDislikeCount((prev) => prev + 1);
+                setDislike(!isDislike);
+            } else if (isLike) {
+                dispatch(asyncNetralVote({ discussionId }));
+                setLikeCount((prev) => prev - 1)
+                dispatch(asyncDownVote({ discussionId }));
+                setDislikeCount((prev) => prev + 1)
+                setLike(!isLike);
             }
-            setLocalDisLikes(prevDisLikes => prevDisLikes + 1);
-        };
-        setIsDisLiked(!isDisLiked);
+        } else {
+            alert("login first!");
+        }
     };
 
     return (
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton aria-label='like' onClick={() => clickUpVote({ discussionId })}>
-                    {isLiked ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
+                <IconButton aria-label='like' onClick={() => upVote({ discussionId })}>
+                    {like ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
                 </IconButton>
-                <Typography sx={{ mr: 1 }}>{localLikes}</Typography>
+                <Typography sx={{ mr: 1 }}>{likeCount}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <IconButton aria-label='unlike' onClick={() => clickDownVote({ discussionId })}>
-                    {isDisLiked ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
+                <IconButton aria-label='unlike' onClick={() => downVote({ discussionId })}>
+                    {dislike ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
                 </IconButton>
-                <Typography sx={{ mr: 1 }}>{localDisLikes}</Typography>
+                <Typography sx={{ mr: 1 }}>{dislikeCount}</Typography>
             </Box>
-            {createCommentIcon && createCommentIcon({ discussionId, comments })} 
+            {createCommentIcon && createCommentIcon({ discussionId, comments })}
         </Stack>
     );
 };

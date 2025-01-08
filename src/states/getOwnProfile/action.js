@@ -16,7 +16,6 @@ export function asyncGetOwnProfile() {
         try {
             const profile = await api.getOwnProfile();
             dispatch(receiveProfileActionCreator(profile));
-            console.log('dari act', profile)
         } catch (error) {
             console.log('Error fetching:', error);
         };
