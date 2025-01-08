@@ -4,7 +4,7 @@ import { Paper, Stack, Typography } from '@mui/material';
 
 const DetailInformation = ({ subtitle, textAlign = "flex-start", value }) => {
     return (
-        <Paper elevation={0} sx={{ borderBottom: '1px solid #5AC9A2', py: 3, background: '#F8FFF8' }}>
+        <Paper elevation={0} sx={{ borderBottom: '1px solid #5AC9A2', py: 2, background: '#F8FFF8' }}>
             <Stack spacing={1}>
                 <Typography sx={{ typography: { xs: 'body1', md: 'h5' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F' }}>
                     {subtitle}

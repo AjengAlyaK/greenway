@@ -42,7 +42,7 @@ const DiscussionPage = () => {
     };
 
     return (
-        <Grid container spacing={0} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
+        <Grid container spacing={0} sx={{ pt: { xs: 2, sm: 3 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>
             <Grid size={12} width="100%">
                 <Stack spacing={4}>
                     <Stack spacing={3}>

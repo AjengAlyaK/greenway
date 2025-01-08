@@ -4,7 +4,7 @@ import { Typography, Card, CardContent, CardMedia, CardActionArea } from '@mui/m
 
 const CardArticle = ({ image, title, link }) => {
     return (
-        <Card sx={{ width: {xs:'100%', md:250}, borderRadius: 3 }}>
+        <Card sx={{ width: {xs:'100%'}, borderRadius: 3 }}>
             <CardActionArea
                 component="a"
                 href={link}

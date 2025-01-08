@@ -24,9 +24,9 @@ const AddDiscussionPage = () => {
     };
 
     return (
-        <Grid container spacing={0} sx={{ pt: { xs: 8, md: 13 }, pb: { xs: 10, md: 13 }, px: { xs: 2, md: 13 } }}>
+        <Grid container spacing={0} sx={{ pt: { xs: 2, sm: 3 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>
             <Grid size={12} width="100%">
-                <Stack spacing={5} sx={{ pt: { xs: 2, md: 0 } }}>
+                <Stack spacing={{ xs: 3, sm: 4 }}>
                     <OneLineTitle title="Create New Discussion" />
                     <Stack spacing={2}>
                         <TextField id="title" label="Title" variant="outlined" value={title} onChange={onChangeTitle} />

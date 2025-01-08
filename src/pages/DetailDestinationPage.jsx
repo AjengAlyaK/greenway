@@ -35,30 +35,29 @@ const DetailDestinationPage = () => {
         <Grid
             container
             sx={{
-                pt: { xs: 8, md: 13 },
-                pb: { xs: 8, md: 13 },
-                px: { xs: 2, md: 13 }
+                pt: 2,
+                pb: { xs: 5, md: 8 },
+                px: { xs: 2, sm: 5, md: 13 }
             }}
         >
-            <ImageInDetail picture={destination.photo} location={destination.location} title={destination.name} />
-            <DetailInformation subtitle="Description" value={destination.description} />
-            <Comments count={commentLength} />
-            {authUser ?
-                <FormComment 
-                    addComment={addComment} 
-                /> :
-                <WarningBar 
-                    color="#FFF4E6" 
-                    iconBar={<WarningAmberIcon color="warning" />} 
-                    titleBar="Permission Required"
-                    object="start a new comment" 
-                />
-            }
             <Grid
-                container
                 item
                 xs={12}
             >
+                <ImageInDetail picture={destination.photo} location={destination.location} title={destination.name} />
+                <DetailInformation subtitle="Description" value={destination.description} />
+                <Comments count={commentLength} />
+                {authUser ?
+                    <FormComment
+                        addComment={addComment}
+                    /> :
+                    <WarningBar
+                        color="#FFF4E6"
+                        iconBar={<WarningAmberIcon color="warning" />}
+                        titleBar="Permission Required"
+                        object="start a new comment"
+                    />
+                }
                 <Stack
                     spacing={3}
                     sx={{ width: '100%', py: 6 }}

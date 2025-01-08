@@ -23,7 +23,7 @@ const DiscussionCard = ({ discussionId, userId, photo, name, timestamp, title, b
 
     return (
         <>
-            <Card sx={{ width: '100%', p: 1.7, borderRadius: 4, border: '1px solid #5AC9A2' }}>
+            <Card sx={{ width: '100%', p: { xs: 1.2, sm: 1.7 }, borderRadius: 4, border: '1px solid #5AC9A2' }}>
                 <CardContent>
                     <Grid
                         container

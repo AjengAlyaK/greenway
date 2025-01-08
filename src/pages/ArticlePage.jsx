@@ -8,6 +8,7 @@ import TitleContent from '../elements/sharing/TitleContent';
 const ArticlePage = () => {
     const { articles } = useSelector((states) => states);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(asyncReceiveArticles());
     }, [dispatch]);

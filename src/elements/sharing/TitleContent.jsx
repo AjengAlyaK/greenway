@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
-const TitleContent = ({title, subtitle}) => {
+const TitleContent = ({ title, subtitle }) => {
     return (
-        <Stack spacing={{xs: 2, md: 3}}>
+        <Stack spacing={{ xs: 2, md: 3 }}>
             <Typography sx={{ color: '#006E6F', typography: { xs: 'h4', md: 'h3' }, textAlign: { xs: 'center', md: 'center' }, fontWeight: { xs: 'bold', md: 'bold' } }}>
                 {title}
             </Typography>
-            <Typography variant="body1" textAlign="center">
-                {subtitle}
-            </Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}
+            >
+                <Typography variant="body1" textAlign="center" sx={{ width: '80%' }}>
+                    {subtitle}
+                </Typography>
+            </Box>
         </Stack>
     );
 };
