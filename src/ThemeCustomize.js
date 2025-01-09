@@ -17,8 +17,8 @@ const theme = createTheme({
         }
     },
     typography: {
+        fontFamily: 'Poppins, Arial, sans-serif',
         button: {
-            fontStyle: 'Poppins, Arial, sans-serif',
             fontWeight: 'bold',
             textTransform: 'none',
         }

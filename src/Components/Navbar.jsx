@@ -144,7 +144,33 @@ function ResponsiveAppBar() {
                             <Button
                                 key={index}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, mx: 1, color: '#006E6F', display: 'block' }}
+                                sx={{
+                                    my: 2,
+                                    mx: 1,
+                                    color: '#006E6F',
+                                    display: 'block',
+                                    borderRadius: 0,
+                                    position: 'relative',
+                                    '&::after': {
+                                        content: '""',
+                                        position: 'absolute',
+                                        left: 0,
+                                        bottom: 0,
+                                        width: '100%',
+                                        height: '2px',
+                                        backgroundColor: '#006E6F',
+                                        transform: 'scaleX(0)',
+                                        transformOrigin: '0% 50%',
+                                        transition: 'transform 300ms ease-in-out',
+                                    },
+                                    '&:hover::after': {
+                                        content: '""',
+                                        position: 'absolute',
+                                        left: 0,
+                                        buttom: 0,
+                                        transform: 'scaleX(1)'
+                                    },
+                                }}
                                 component={Link}
                                 to={page.link}
                             >

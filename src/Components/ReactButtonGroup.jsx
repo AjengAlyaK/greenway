@@ -23,19 +23,19 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
     const upVote = ({ discussionId }) => {
         if (authUser) {
             if (isLike) {
-                dispatch(asyncNetralVote({ discussionId }));
+                setLike(!isLike);
                 setLikeCount((prev) => prev - 1);
-                setLike(!isLike);
-            } else if (!isLike) {
-                dispatch(asyncUpVote({ discussionId }));
-                setLikeCount((prev) => prev + 1);
-                setLike(!isLike);
-            } else if (isDislike) {
                 dispatch(asyncNetralVote({ discussionId }));
-                setDislikeCount((prev) => prev - 1);
-                dispatch(asyncUpVote({ discussionId }));
+            } else if (!isLike) {
+                setLike(!isLike);
                 setLikeCount((prev) => prev + 1);
+                dispatch(asyncUpVote({ discussionId }));
+            } else if (isDislike) {
                 setDislike(!isDislike);
+                setDislikeCount((prev) => prev - 1);
+                setLikeCount((prev) => prev + 1);
+                dispatch(asyncNetralVote({ discussionId }));
+                dispatch(asyncUpVote({ discussionId }));
             }
         } else {
             alert("login first!");
@@ -45,19 +45,19 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
     const downVote = ({ discussionId }) => {
         if (authUser) {
             if (isDislike) {
-                dispatch(asyncNetralVote({ discussionId }));
+                setDislike(!isDislike);
                 setDislikeCount((prev) => prev - 1);
-                setDislike(!isDislike);
-            } else if (!isDislike) {
-                dispatch(asyncDownVote({ discussionId }));
-                setDislikeCount((prev) => prev + 1);
-                setDislike(!isDislike);
-            } else if (isLike) {
                 dispatch(asyncNetralVote({ discussionId }));
-                setLikeCount((prev) => prev - 1)
+            } else if (!isDislike) {
+                setDislike(!isDislike);
+                setDislikeCount((prev) => prev + 1);
                 dispatch(asyncDownVote({ discussionId }));
-                setDislikeCount((prev) => prev + 1)
+            } else if (isLike) {
                 setLike(!isLike);
+                setLikeCount((prev) => prev - 1);
+                setDislikeCount((prev) => prev + 1);
+                dispatch(asyncNetralVote({ discussionId }));
+                dispatch(asyncDownVote({ discussionId }));
             }
         } else {
             alert("login first!");
@@ -68,13 +68,13 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='like' onClick={() => upVote({ discussionId })}>
-                    {like ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
+                    {isLike ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{likeCount}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='unlike' onClick={() => downVote({ discussionId })}>
-                    {dislike ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
+                    {isDislike ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
                 </IconButton>
                 <Typography sx={{ mr: 1 }}>{dislikeCount}</Typography>
             </Box>
