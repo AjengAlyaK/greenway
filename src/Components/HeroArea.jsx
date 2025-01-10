@@ -1,7 +1,11 @@
 import React from 'react';
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Typewriter } from 'react-simple-typewriter';
+import '@fontsource/inter';
 
 const HeroArea = () => {
+    const mainTitle = ['TRAVEL AND SAVE NATURE'];
+
     return (
         <Grid
             container
@@ -10,7 +14,6 @@ const HeroArea = () => {
         >
             {/* Left Content */}
             <Grid
-                // sx={{ flexGrow: 1 }}
                 item
                 md={6}
                 xs={12}
@@ -20,7 +23,16 @@ const HeroArea = () => {
             >
                 <Stack>
                     <Stack spacing={2}>
-                        <Typography sx={{ color: '#006E6F', typography: { xs: 'h4', sm: 'h3', md: 'h3', lg: 'h2' }, fontWeight: { xs: 'bold', sm: 'bold', md: 'bold', lg: 'bold' }, pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'start' } }}>TRAVEL AND SAVE NATURE</Typography>
+                        <Typography
+                            sx={{
+                                color: '#006E6F',
+                                typography: { xs: 'h4', sm: 'h3', md: 'h3', lg: 'h2' },
+                                fontWeight: { xs: 'bold', sm: 'bold', md: 'bold', lg: 'bold' },
+                                pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 },
+                                textAlign: { xs: 'center', md: 'start' }
+                            }}>
+                            <Typewriter words={mainTitle} typeSpeed={50} />
+                        </Typography>
                         <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>
                             <Typography variant="body1" sx={{ fontSize: 16, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'justify' } }}>
                                 Welcome to a new era of travel where adventure meets environmental stewardship. Your Gateway to Sustainable Exploration in Indonesia! Start your journey with us and traverse Indonesia in a more responsible, eco-conscious manner.

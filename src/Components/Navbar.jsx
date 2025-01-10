@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncUnsetAuthUser } from '../states/authUser/action';
 
@@ -26,9 +26,11 @@ const logo = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/
 
 function ResponsiveAppBar() {
     const { authUser = null } = useSelector((state) => state);
-    console.log('ini', authUser)
+
+    const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -159,7 +161,8 @@ function ResponsiveAppBar() {
                                         width: '100%',
                                         height: '2px',
                                         backgroundColor: '#006E6F',
-                                        transform: 'scaleX(0)',
+                                        borderRadius: 1,
+                                        transform: `scaleX(${page.link === location.pathname ? 1 : 0})`,
                                         transformOrigin: '0% 50%',
                                         transition: 'transform 300ms ease-in-out',
                                     },
