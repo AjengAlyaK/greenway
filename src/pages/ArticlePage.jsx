@@ -4,13 +4,17 @@ import CardArticle from '../elements/artikel/CardArticle';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveArticles } from '../states/article/action';
 import TitleContent from '../elements/sharing/TitleContent';
+// import Loading from '../elements/sharing/Loading';
 
 const ArticlePage = () => {
     const { articles } = useSelector((states) => states);
     const dispatch = useDispatch();
 
+    // const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         dispatch(asyncReceiveArticles());
+        // setLoading(false);
     }, [dispatch]);
 
     return (

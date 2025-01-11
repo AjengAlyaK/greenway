@@ -31,7 +31,7 @@ const HeroArea = () => {
                                 pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 },
                                 textAlign: { xs: 'center', md: 'start' }
                             }}>
-                            <Typewriter words={mainTitle} typeSpeed={50} />
+                            <Typewriter words={mainTitle} typeSpeed={120} />
                         </Typography>
                         <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>
                             <Typography variant="body1" sx={{ fontSize: 16, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'justify' } }}>
