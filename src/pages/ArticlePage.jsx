@@ -4,14 +4,15 @@ import CardArticle from '../elements/artikel/CardArticle';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveArticles } from '../states/article/action';
 import TitleContent from '../elements/sharing/TitleContent';
-import LoadingTitle from '../elements/artikel/LoadingTitle';
-import LoadingCard from '../elements/artikel/LoadingCard';
+import LoadingTitleContent from '../elements/sharing/skeleton/LoadingTitleContent';
+import LoadingCard from '../elements/sharing/skeleton/LoadingCard';
+
+const title = "Read Insightful Articles In Your Free Time";
+const subtitle = "There are many choices of useful articles to read, let's make the best your free time to get inspired.";
 
 const ArticlePage = () => {
     const { articles } = useSelector((states) => states);
     const dispatch = useDispatch();
-
-    console.log("banyaknya artikel: ", articles.length)
 
     const [loading, setLoading] = useState(true);
 
@@ -29,9 +30,9 @@ const ArticlePage = () => {
             <Grid item xs={12} sx={{ mb: { md: 2 } }}>
                 <Stack spacing={2}>
                     {loading ?
-                        <LoadingTitle />
+                        <LoadingTitleContent title={title} subtitle={subtitle} />
                         :
-                        <TitleContent title="Read Insightful Articles In Your Free Time" subtitle="There are many choices of useful articles to read, let's make the best your free time to get inspired." />
+                        <TitleContent title={title} subtitle={subtitle} />
                     }
                 </Stack>
             </Grid>

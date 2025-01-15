@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Stack, Typography } from '@mui/material';
+import { Typewriter } from 'react-simple-typewriter';
 
 const TitleContent = ({ title, subtitle }) => {
     return (
-        <Stack spacing={{ xs: 2, md: 3 }}>
+        <Stack spacing={{ xs: 2, md: 3 }} width="100%">
             <Typography sx={{ color: '#006E6F', typography: { xs: 'h4', md: 'h3' }, textAlign: { xs: 'center', md: 'center' }, fontWeight: { xs: 'bold', md: 'bold' } }}>
-                {title}
+                {/* {title} */}
+                <Typewriter words={title} typeSpeed={150} />
             </Typography>
             <Box
                 sx={{
