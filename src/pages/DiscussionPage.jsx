@@ -19,7 +19,7 @@ const DiscussionPage = () => {
 
     useEffect(() => {
         dispatch(asyncReceiveDiscussions());
-        dispatch(asyncGetOwnProfile())
+        dispatch(asyncGetOwnProfile());
     }, [dispatch, discussions]);
 
     const clickComment = ({ discussionId }) => {

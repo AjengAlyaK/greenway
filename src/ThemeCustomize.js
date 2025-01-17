@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 import '@fontsource/poppins';
-import '@fontsource/inter';
 
 const theme = createTheme({
     components: {

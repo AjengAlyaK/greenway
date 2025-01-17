@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { Typewriter } from 'react-simple-typewriter';
-import '@fontsource/inter';
 
 const HeroArea = () => {
     const mainTitle = ['TRAVEL AND SAVE NATURE'];

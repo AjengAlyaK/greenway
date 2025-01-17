@@ -130,7 +130,6 @@ const api = (() => {
             throw new Error(message);
         }
         const { data: { token } } = responseJson;
-        console.log(token);
         return token;
     }
 
