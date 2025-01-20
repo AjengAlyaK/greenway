@@ -6,6 +6,7 @@ import TitleContent from '../elements/sharing/TitleContent';
 import CardGeneral from '../elements/sharing/CardGeneral';
 import LoadingTitleContent from '../elements/sharing/skeleton/LoadingTitleContent';
 import LoadingCard from '../elements/sharing/skeleton/LoadingCard';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const title = "Join the Campaign for Protecting Nature, Preserving Beauty";
 const subtitle = "Join our efforts to safeguard the natural wonders of Indonesia. Explore our environmental initiatives and be part of the change for a sustainable future.";
@@ -18,6 +19,7 @@ const CampaignPage = () => {
 
     useEffect(() => {
         const fetchCampaign = async () => {
+            dispatch(asyncInitializeAuthUser());
             await dispatch(asyncReceiveCampaigns());
             setLoading(false);
         };

@@ -6,6 +6,7 @@ import { asyncReceiveArticles } from '../states/article/action';
 import TitleContent from '../elements/sharing/TitleContent';
 import LoadingTitleContent from '../elements/sharing/skeleton/LoadingTitleContent';
 import LoadingCard from '../elements/sharing/skeleton/LoadingCard';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const title = "Read Insightful Articles In Your Free Time";
 const subtitle = "There are many choices of useful articles to read, let's make the best your free time to get inspired.";
@@ -18,6 +19,7 @@ const ArticlePage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            dispatch(asyncInitializeAuthUser());
             await dispatch(asyncReceiveArticles());
             setLoading(false);
         };

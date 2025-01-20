@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Grid, Stack, TextField } from '@mui/material';
 import OneLineTitle from '../elements/sharing/OneLineTitle';
 import useInput from '../hooks/useInput';
 import { asyncAddDiscussion } from '../states/discussion/action';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const AddDiscussionPage = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,10 @@ const AddDiscussionPage = () => {
     const [title, onChangeTitle, setTitle] = useInput('');
     const [category, onChangeCategory, setCategory] = useInput('');
     const [body, onBodyChange, setBody] = useInput('');
+
+    useEffect(() => {
+        dispatch(asyncInitializeAuthUser());
+    }, [dispatch]);
 
     const handleSubmit = (event) => {
         event.preventDefault();

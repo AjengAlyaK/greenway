@@ -5,6 +5,7 @@ import ImageInDetail from '../elements/sharing/ImageInDetail';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDetailCampaign } from '../states/campaignDetail/action';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const DetailCampaignPage = () => {
     const { id } = useParams();
@@ -13,7 +14,8 @@ const DetailCampaignPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(asyncReceiveDetailCampaign(id))
+        dispatch(asyncReceiveDetailCampaign(id));
+        dispatch(asyncInitializeAuthUser());
     }, [id, dispatch]);
 
     if (!campaign) {

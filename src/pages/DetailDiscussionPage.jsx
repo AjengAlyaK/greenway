@@ -11,6 +11,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { useParams } from 'react-router';
 import { asyncAddCommentOnDiscussion, asyncReceiveDiscussionDetail } from '../states/discussionDetail/action';
 import { formatDistanceToNow } from 'date-fns';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const DetailDiscussionPage = () => {
     const { id } = useParams();
@@ -18,7 +19,8 @@ const DetailDiscussionPage = () => {
     const { authUser = null, discussion } = useSelector((state) => state);
 
     useEffect(() => {
-        dispatch(asyncReceiveDiscussionDetail(id))
+        dispatch(asyncReceiveDiscussionDetail(id));
+        dispatch(asyncInitializeAuthUser());
     }, [id, dispatch]);
 
     if (!discussion) {

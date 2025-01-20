@@ -11,6 +11,7 @@ import { useParams } from 'react-router';
 import { asyncReceiveDestinationDetail, asyncAddCommentOnDestination } from '../states/destinationDetail/Action';
 import { formatDistanceToNow } from 'date-fns';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -21,6 +22,7 @@ const DetailDestinationPage = () => {
 
     useEffect(() => {
         dispatch(asyncReceiveDestinationDetail(id));
+        dispatch(asyncInitializeAuthUser());
     }, [id, dispatch]);
 
     if (!destination) {

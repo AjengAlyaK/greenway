@@ -25,34 +25,32 @@ function unsetAuthUserActionCreator() {
 
 function asyncSetAuthUser({ email, password }) {
     return async (dispatch) => {
-        // two condition if there is already exist token and if not
         try {
-            const token = await api.login({email, password});
-            // console.log(token);
+            const token = await api.login({ email, password });
             api.putAccessToken(token);
             const authUser = await api.getOwnProfile();
             dispatch(setAuthUserActionCreator(authUser));
         } catch (error) {
             alert(error.message);
-            console.log(error.message)
+            console.log(error.message);
         }
-    };
+    }
 }
 
-// function asyncInitializeAuthUser() {
-//     return async (dispatch) => {
-//         const token = api.getAccessToken(); // Get token from localStorage
-//         if (token) {
-//             try {
-//                 const authUser = await api.getOwnProfile(); // Fetch user data
-//                 dispatch(setAuthUserActionCreator(authUser));
-//             } catch (error) {
-//                 console.error("Failed to fetch user:", error);
-//                 api.putAccessToken(''); // Clear invalid token
-//             }
-//         }
-//     };
-// }
+function asyncInitializeAuthUser() {
+    return async (dispatch) => {
+        const token = api.getAccessToken(); 
+        if (token) {
+            try {
+                const authUser = await api.getOwnProfile(); 
+                dispatch(setAuthUserActionCreator(authUser));
+            } catch (error) {
+                console.error("Failed to fetch user:", error);
+                api.putAccessToken(''); 
+            }
+        }
+    }
+}
 
 function asyncUnsetAuthUser() {
     return (dispatch) => {
@@ -66,6 +64,6 @@ export {
     setAuthUserActionCreator,
     unsetAuthUserActionCreator,
     asyncSetAuthUser,
-    // asyncInitializeAuthUser,
+    asyncInitializeAuthUser,
     asyncUnsetAuthUser
 }

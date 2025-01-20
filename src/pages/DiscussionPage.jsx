@@ -11,6 +11,7 @@ import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useNavigate } from 'react-router';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import WarningBar from '../elements/sharing/WarningBar';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const DiscussionPage = () => {
     const { discussions, profile = { id: null }, authUser = null } = useSelector((states) => states);
@@ -20,6 +21,7 @@ const DiscussionPage = () => {
     useEffect(() => {
         dispatch(asyncReceiveDiscussions());
         dispatch(asyncGetOwnProfile());
+        dispatch(asyncInitializeAuthUser());
     }, [dispatch, discussions]);
 
     const clickComment = ({ discussionId }) => {

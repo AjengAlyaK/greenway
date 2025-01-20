@@ -8,24 +8,46 @@ import SearchIcon from '@mui/icons-material/Search';
 import LoadingTitleContent from '../elements/sharing/skeleton/LoadingTitleContent';
 import LoadingCard from '../elements/sharing/skeleton/LoadingCard';
 import LoadingSearchArticle from '../elements/artikel/skeleton/LoadingSearchArticle';
+import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const title = "Find The Next Places to Explore The Beauty of The Indonesia";
 const subtitle = "Discover your dream adventure here. Every corner of Indonesia's beauty awaits you with unforgettable memories. With Greenway, explore it all now!";
+const noresultimg = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/no%20result%20found.png?alt=media&token=cfe58687-4512-47b9-a5eb-510978cbc855";
 
 const DestionationPage = () => {
     const { destinations } = useSelector((states) => states);
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(true);
+    const [searchItem, setSearchItem] = useState('');
+    const [filteredDestination, setFilteredDestination] = useState([]);
+
+    const handleInputChange = (e) => {
+        const searchTerm = e.target.value;
+        setSearchItem(searchTerm);
+
+        const filteredItems = destinations.filter((destination) =>
+            destination.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        setFilteredDestination(filteredItems);
+    };
 
     useEffect(() => {
         const fetchDestination = async () => {
+            dispatch(asyncInitializeAuthUser());
             await dispatch(asyncReceiveDestinations());
             setLoading(false);
         };
 
         fetchDestination();
     }, [dispatch]);
+
+    useEffect(() => {
+        if (destinations && destinations.length > 0) {
+            setFilteredDestination(destinations);
+        }
+    }, [destinations]);
 
     return (
         <Grid container spacing={3} sx={{ pt: { xs: 2, sm: 4 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>
@@ -50,7 +72,15 @@ const DestionationPage = () => {
                                 }}
                             >
                                 <SearchIcon />
-                                <InputBase placeholder="Search" sx={{ px: 1, width: { xs: '80%', sm: '100%' } }} />
+                                <InputBase
+                                    placeholder="Search"
+                                    value={searchItem}
+                                    onChange={handleInputChange}
+                                    sx={{
+                                        px: 1,
+                                        width: { xs: '80%', sm: '100%' }
+                                    }}
+                                />
                             </Box>
                         </Paper>
                     </Grid>
@@ -63,11 +93,32 @@ const DestionationPage = () => {
                     </Grid>
                 ))
                 :
-                destinations.map((destination, index) => (
-                    <Grid item xs={12} sm={6} md={3}>
-                        <CardGeneral path="destination" id={destination.id} index={index} picture={destination.photo} name={destination.name} location={destination.location} />
+                filteredDestination.map((destination, index) => (
+                    <Grid item xs={12} sm={6} md={3} key={index}>
+                        <CardGeneral path="destination" id={destination.id} picture={destination.photo} name={destination.name} location={destination.location} />
                     </Grid>
                 ))
+            }
+            {!loading && filteredDestination.length === 0 &&
+                (
+                    <Grid
+                        container
+                        item
+                        xs={12}
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <img
+                            component="img"
+                            alt="No Result"
+                            src={noresultimg}
+                            style={{
+                                width: '20%',
+                                height: 'auto',
+                            }}
+                        />
+                    </Grid>
+                )
             }
         </Grid>
     );
