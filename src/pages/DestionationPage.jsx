@@ -107,6 +107,9 @@ const DestionationPage = () => {
                         xs={12}
                         justifyContent="center"
                         alignItems="center"
+                        sx={{
+                            m: 5
+                        }}
                     >
                         <img
                             component="img"

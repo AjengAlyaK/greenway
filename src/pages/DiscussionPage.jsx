@@ -18,10 +18,17 @@ const DiscussionPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    // const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        dispatch(asyncReceiveDiscussions());
-        dispatch(asyncGetOwnProfile());
-        dispatch(asyncInitializeAuthUser());
+        const fetchData = async () => {
+            await dispatch(asyncReceiveDiscussions());
+            dispatch(asyncGetOwnProfile());
+            dispatch(asyncInitializeAuthUser());
+            // setLoading(false);
+        };
+
+        fetchData()
     }, [dispatch, discussions]);
 
     const clickComment = ({ discussionId }) => {
