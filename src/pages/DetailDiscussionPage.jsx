@@ -16,7 +16,7 @@ import { asyncInitializeAuthUser } from '../states/authUser/action';
 const DetailDiscussionPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { authUser = null, discussion } = useSelector((state) => state);
+    const { authUser = null, discussion = {} } = useSelector((state) => state);
 
     useEffect(() => {
         dispatch(asyncReceiveDiscussionDetail(id));

@@ -31,6 +31,7 @@ const HeroArea = () => {
                                 textAlign: { xs: 'center', md: 'start' }
                             }}>
                             <Typewriter words={mainTitle} typeSpeed={120} />
+                            {/* <Skeleton /> */}
                         </Typography>
                         <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>
                             <Typography variant="body1" sx={{ fontSize: 16, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'justify' } }}>
@@ -59,6 +60,11 @@ const HeroArea = () => {
                         alt="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/landing-1.png?alt=media&token=2ade045c-366c-4d8e-b44e-5951667d3fc1"
                         style={{ width: '100%', height: 'auto' }}
                     />
+                    {/* <Skeleton
+                        variant="rectangular"
+                        width="100%"
+                        height="100vh"
+                    /> */}
                 </Box>
             </Grid>
         </Grid>
