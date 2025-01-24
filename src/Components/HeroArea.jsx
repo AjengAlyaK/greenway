@@ -1,9 +1,21 @@
-import React from 'react';
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { Box, Button, Grid, Skeleton, Stack, Typography } from "@mui/material";
 import { Typewriter } from 'react-simple-typewriter';
+import LoadingHeroTitle from '../elements/sharing/skeleton/LoadingHeroTitle';
+import LoadingHeroText from '../elements/sharing/skeleton/LoadingHeroText';
+import LoadingButton from '../elements/sharing/skeleton/LoadingButton';
 
 const HeroArea = () => {
+    const [loading, setLoading] = useState(true);
+
     const mainTitle = ['TRAVEL AND SAVE NATURE'];
+    const heroTitle = "TRAVEL AND SAVE NATURE";
+    const heroText = "Welcome to a new era of travel where adventure meets environmental stewardship. Your Gateway to Sustainable Exploration in Indonesia! Start your journey with us and traverse Indonesia in a more responsible, eco-conscious manner.";
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <Grid
@@ -22,23 +34,34 @@ const HeroArea = () => {
             >
                 <Stack>
                     <Stack spacing={2}>
-                        <Typography
-                            sx={{
-                                color: '#006E6F',
-                                typography: { xs: 'h4', sm: 'h3', md: 'h3', lg: 'h2' },
-                                fontWeight: { xs: 'bold', sm: 'bold', md: 'bold', lg: 'bold' },
-                                pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 },
-                                textAlign: { xs: 'center', md: 'start' }
-                            }}>
-                            <Typewriter words={mainTitle} typeSpeed={120} />
-                            {/* <Skeleton /> */}
-                        </Typography>
-                        <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>
-                            <Typography variant="body1" sx={{ fontSize: 16, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'justify' } }}>
-                                Welcome to a new era of travel where adventure meets environmental stewardship. Your Gateway to Sustainable Exploration in Indonesia! Start your journey with us and traverse Indonesia in a more responsible, eco-conscious manner.
+                        {loading ?
+                            <LoadingHeroTitle text={heroTitle} />
+                            :
+                            <Typography
+                                sx={{
+                                    color: '#006E6F',
+                                    typography: { xs: 'h4', sm: 'h3', md: 'h3', lg: 'h2' },
+                                    fontWeight: { xs: 'bold', sm: 'bold', md: 'bold', lg: 'bold' },
+                                    pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 },
+                                    textAlign: { xs: 'center', md: 'start' }
+                                }}>
+                                <Typewriter words={mainTitle} typeSpeed={120} />
                             </Typography>
+                        }
+                        <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>
+                            {loading ?
+                                <LoadingHeroText text={heroText} />
+                                :
+                                <Typography variant="body1" sx={{ fontSize: 16, pr: { xs: 0, md: 3 }, textAlign: { xs: 'center', md: 'justify' } }}>
+                                    {heroText}
+                                </Typography>
+                            }
                             <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
-                                <Button variant="contained" color="primary">Go Travel</Button>
+                                {loading ?
+                                    <LoadingButton text="Go Travel" />
+                                    :
+                                    <Button variant="contained" color="primary">Go Travel</Button>
+                                }
                             </Box>
                         </Stack>
                     </Stack>
@@ -55,16 +78,18 @@ const HeroArea = () => {
                 alignItems="flex-start"
             >
                 <Box sx={{ pl: { xs: 0, md: 3 }, width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
-                    <img
-                        src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/landing-1.png?alt=media&token=2ade045c-366c-4d8e-b44e-5951667d3fc1"
-                        alt="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/landing-1.png?alt=media&token=2ade045c-366c-4d8e-b44e-5951667d3fc1"
-                        style={{ width: '100%', height: 'auto' }}
-                    />
-                    {/* <Skeleton
-                        variant="rectangular"
-                        width="100%"
-                        height="100vh"
-                    /> */}
+                    {loading ?
+                        <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height="100vh"
+                        />
+                        :
+                        <img
+                            src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/landing-1.png?alt=media&token=2ade045c-366c-4d8e-b44e-5951667d3fc1"
+                            alt="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/landing-1.png?alt=media&token=2ade045c-366c-4d8e-b44e-5951667d3fc1"
+                            style={{ width: '100%', height: 'auto' }} />
+                    }
                 </Box>
             </Grid>
         </Grid>
