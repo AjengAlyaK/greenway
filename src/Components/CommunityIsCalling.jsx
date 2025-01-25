@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Stack } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import TitleHomePage from '../elements/sharing/TitleHomePage';
 import WordingHomePage from '../elements/sharing/WordingHomePage';
@@ -11,15 +11,23 @@ const wording = "Join our discussion community! Discover new ideas and exchange 
 const CommunityIsCalling = () => {
     const navigate = useNavigate();
 
+    const [loading, setLoading] = useState(true);
+
     const handleClick = () => {
         alert("this fiture still in development");
         navigate("/discussion");
-    }
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <Grid
             container
             spacing={2}
+            display={loading ? "none" : "flex"}
             sx={{ flexGrow: 1, pt: { xs: 3, sm: 5 }, pb: 10, px: { xs: 2, sm: 5, md: 13 } }}
         >
             {/* left content */}

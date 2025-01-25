@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import HeroArea from "../Components/HeroArea"
+import HeroArea from "../Components/HeroArea";
 import Record from "../Components/Record";
 import BetterFuture from "../Components/BetterFuture";
 import Explore from "../Components/Explore";
@@ -26,15 +26,15 @@ const HomePage = () => {
             {/* better future */}
             <BetterFuture />
             {/* explore */}
-            <Explore />
+            < Explore />
             {/* little campaign */}
-            <CampaignSlightly />
+            < CampaignSlightly />
             {/* review */}
-            <Review />
+            < Review />
             {/* video */}
-            <Video />
+            < Video />
             {/* join community */}
-            <CommunityIsCalling />
+            < CommunityIsCalling />
         </>
     );
 };

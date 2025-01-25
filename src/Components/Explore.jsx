@@ -1,4 +1,5 @@
 import { Grid, Paper, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 const ExploreContents = [
     {
@@ -19,10 +20,17 @@ const ExploreContents = [
 ];
 
 const Explore = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <Grid
             container
-            display="flex"
+            display={loading ? "none" : "flex"}
             justifyContent="space-between"
             spacing={{
                 xs: 3,
@@ -30,7 +38,7 @@ const Explore = () => {
             }}
             sx={{
                 px: { xs: 2, sm: 5, md: 13 },
-                py: { xs: 3, md: 5 }
+                py: { xs: 3, md: 5 },
             }}
         >
             {ExploreContents.map((content, index) => (

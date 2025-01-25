@@ -1,5 +1,6 @@
-import { Box, Grid, Paper, Skeleton, Stack, Typography } from '@mui/material';
-import React from 'react';
+import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import LoadingRecord from '../elements/sharing/skeleton/LoadingRecord';
 
 const RecordContents = [
     {
@@ -25,76 +26,82 @@ const RecordContents = [
 ];
 
 const Record = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        <Box
-            sx={{
-                px: { xs: 2, sm: 5, md: 13 },
-            }}
-        >
-            <Grid
-                container
-                sx={{
-                    bgcolor: '#5AC9A2',
-                    p: 3,
-                }}
-            >
-                {RecordContents.map((content, index) => (
+        <>
+            {loading ?
+                <LoadingRecord />
+                :
+                <Box
+                    sx={{
+                        px: { xs: 2, sm: 5, md: 13 },
+                    }}
+                >
                     <Grid
-                        item
-                        key={index}
-                        xs={12}
-                        sm={6}
-                        md={3}
+                        container
                         sx={{
-                            p: 2
+                            bgcolor: '#5AC9A2',
+                            p: 3,
                         }}
                     >
-                        <Paper
-                            sx={{
-                                borderRadius: 1
-                            }}
-                        >
-                            <Box
+                        {RecordContents.map((content, index) => (
+                            <Grid
+                                item
+                                key={index}
+                                xs={12}
+                                sm={6}
+                                md={3}
                                 sx={{
-                                    p: 5
+                                    p: 2
                                 }}
                             >
-                                <Stack
-                                    spacing={{ xs: 1, md: 2 }}
+                                <Paper
+                                    sx={{
+                                        borderRadius: 1
+                                    }}
                                 >
-                                    <Typography
+                                    <Box
                                         sx={{
-                                            typography: "h4",
-                                            fontWeight: "bold",
-                                            color: "#006E6F",
-                                            textAlign: "center"
+                                            p: 5
                                         }}
                                     >
-                                        {content.count}
-                                    </Typography>
-                                    <Typography
-                                        sx={{
-                                            typography: "body",
-                                            fontWeight: "bold",
-                                            textAlign: "center",
-                                        }}
-                                    >
-                                        {content.title}
-                                    </Typography>
-                                </Stack>
-                            </Box>
-                        </Paper>
+                                        <Stack
+                                            spacing={{ xs: 1, md: 2 }}
+                                        >
+                                            <Typography
+                                                sx={{
+                                                    typography: "h4",
+                                                    fontWeight: "bold",
+                                                    color: "#006E6F",
+                                                    textAlign: "center"
+                                                }}
+                                            >
+                                                {content.count}
+                                            </Typography>
+                                            <Typography
+                                                sx={{
+                                                    typography: "body",
+                                                    fontWeight: "bold",
+                                                    textAlign: "center",
+                                                }}
+                                            >
+                                                {content.title}
+                                            </Typography>
+                                        </Stack>
+                                    </Box>
+                                </Paper>
+                            </Grid>
+                        ))}
                     </Grid>
-                ))}
-            </Grid>
-        </Box >
-        // <Box
-        //     sx={{
-        //         px: { xs: 2, sm: 5, md: 13 },
-        //     }}
-        // >
-        //     <Skeleton height={280}/>
-        // </Box>
+                </Box >
+            }
+        </>
     );
 };
 
