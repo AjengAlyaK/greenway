@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Button, Grid, Skeleton, Stack, Typography } from "@mui/material";
 import { Typewriter } from 'react-simple-typewriter';
 import LoadingHeroTitle from '../elements/sharing/skeleton/LoadingHeroTitle';
 import LoadingHeroText from '../elements/sharing/skeleton/LoadingHeroText';
 import LoadingButton from '../elements/sharing/skeleton/LoadingButton';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
 const HeroArea = () => {
     const [loading, setLoading] = useState(true);
+    const container = useRef();
 
     const mainTitle = ['TRAVEL AND SAVE NATURE'];
     const heroTitle = "TRAVEL AND SAVE NATURE";
@@ -16,6 +19,12 @@ const HeroArea = () => {
         const timer = setTimeout(() => setLoading(false), 2000);
         return () => clearTimeout(timer);
     }, []);
+
+    const { contextSafe } = useGSAP({ scope: container });
+
+    const onClickGood = contextSafe(() => {
+        gsap.to('.good', { rotation: 360 });
+    });
 
     return (
         <Grid
@@ -56,11 +65,11 @@ const HeroArea = () => {
                                     {heroText}
                                 </Typography>
                             }
-                            <Box sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
+                            <Box ref={container} sx={{ display: 'flex', width: '100%', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
                                 {loading ?
                                     <LoadingButton text="Go Travel" />
                                     :
-                                    <Button variant="contained" color="primary">Go Travel</Button>
+                                    <Button onClick={onClickGood} className="good" variant="contained" color="primary">Go Travel</Button>
                                 }
                             </Box>
                         </Stack>

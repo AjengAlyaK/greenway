@@ -17,15 +17,11 @@ const DetailDiscussionPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { authUser = null, discussion = {} } = useSelector((state) => state);
-
+    console.log(discussion)
     useEffect(() => {
         dispatch(asyncReceiveDiscussionDetail(id));
         dispatch(asyncInitializeAuthUser());
     }, [id, dispatch]);
-
-    if (!discussion) {
-        return <p>Loading ...</p>
-    };
 
     const addComment = ({ comment, id }) => {
         dispatch(asyncAddCommentOnDiscussion({ text: comment, id }));

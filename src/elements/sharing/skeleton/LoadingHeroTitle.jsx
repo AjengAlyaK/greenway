@@ -4,7 +4,7 @@ import { Skeleton, Typography } from '@mui/material';
 
 const LoadingHeroTitle = ({ text }) => {
     return (
-        <Skeleton>
+        <Skeleton variant="text" width="100%">
             <Typography
                 sx={{
                     color: '#006E6F',

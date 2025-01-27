@@ -22,7 +22,7 @@ const BetterFuture = () => {
         <Grid
             container
             spacing={{ xs: 0, md: 2 }}
-            sx={{ flexGrow: 1, pt: { xs: 6, md: 5 }, pb: { xs: 3, md: 5 }, px: { xs: 2, sm: 5, md: 13 } }}
+            sx={{ flexGrow: 1, pt: { xs: 6, md: 5 }, pb: { xs: loading ? 6 : 3, sm: loading ? 10 : 5 }, px: { xs: 2, sm: 5, md: 13 } }}
         >
             {/* Left Content */}
             <Grid

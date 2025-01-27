@@ -8,7 +8,7 @@ function LoadingRecord() {
                 py: 2
             }}
         >
-            <Skeleton variant="square" height={280} />
+            <Skeleton variant="rectangular" height={280} />
         </Box>
     )
 }

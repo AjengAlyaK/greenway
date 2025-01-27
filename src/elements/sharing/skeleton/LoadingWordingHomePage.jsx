@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 
 const LoadingWordingHomePage = ({ text }) => {
     return (
-        <Skeleton
-            sx={{
-                mb: 5
-            }}
-        >
+        <Skeleton>
             <Typography sx={{ textAlign: { xs: 'center', md: 'justify' }, typography: { xs: 'body1' } }}>{text}</Typography>
         </Skeleton>
     );

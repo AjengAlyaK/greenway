@@ -24,16 +24,16 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (authUser) {
             if (isLike) {
                 setLike(!isLike);
-                setLikeCount((prev) => prev - 1);
+                setLikeCount(likes - 1);
                 dispatch(asyncNetralVote({ discussionId }));
             } else if (!isLike) {
-                setLike(!isLike);
-                setLikeCount((prev) => prev + 1);
+                setLike(isLike);
+                setLikeCount(likes + 1);
                 dispatch(asyncUpVote({ discussionId }));
             } else if (isDislike) {
                 setDislike(!isDislike);
-                setDislikeCount((prev) => prev - 1);
-                setLikeCount((prev) => prev + 1);
+                setDislikeCount(dislikes - 1);
+                setLikeCount(likes + 1);
                 dispatch(asyncNetralVote({ discussionId }));
                 dispatch(asyncUpVote({ discussionId }));
             }
@@ -46,16 +46,16 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (authUser) {
             if (isDislike) {
                 setDislike(!isDislike);
-                setDislikeCount((prev) => prev - 1);
+                setDislikeCount(dislikes - 1);
                 dispatch(asyncNetralVote({ discussionId }));
             } else if (!isDislike) {
-                setDislike(!isDislike);
-                setDislikeCount((prev) => prev + 1);
+                setDislike(isDislike);
+                setDislikeCount(dislikes + 1);
                 dispatch(asyncDownVote({ discussionId }));
             } else if (isLike) {
                 setLike(!isLike);
-                setLikeCount((prev) => prev - 1);
-                setDislikeCount((prev) => prev + 1);
+                setLikeCount(likes - 1);
+                setDislikeCount(dislikes + 1);
                 dispatch(asyncNetralVote({ discussionId }));
                 dispatch(asyncDownVote({ discussionId }));
             }
