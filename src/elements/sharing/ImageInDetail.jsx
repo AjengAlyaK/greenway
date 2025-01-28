@@ -6,7 +6,12 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 const ImageInDetail = ({ picture, location, title }) => {
     return (
         <>
-            <Paper elevation={0}>
+            <Paper
+                elevation={0}
+                sx={{
+                    background: '#F8FFF8'
+                }}
+            >
                 <img style={{ width: '100%', height: 'auto', borderRadius: 15 }} src={picture} alt="img campaign" />
             </Paper>
             <Stack spacing={2} sx={{ py: 2 }}>
@@ -19,7 +24,7 @@ const ImageInDetail = ({ picture, location, title }) => {
                 <Typography sx={{ typography: { xs: 'h5', md: 'h4' }, fontWeight: { xs: 'bold', md: 'bold' }, color: '#006E6F' }}>
                     {title}
                 </Typography>
-            </Stack>
+            </Stack >
         </>
     );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid, InputBase, Paper } from '@mui/material';
+import { Box, Grid, InputBase, Paper, Typography } from '@mui/material';
 import TitleContent from '../elements/sharing/TitleContent';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDestinations } from '../states/destination/action';
@@ -104,6 +104,7 @@ const DestionationPage = () => {
                     <Grid
                         container
                         item
+                        direction="column"
                         xs={12}
                         justifyContent="center"
                         alignItems="center"
@@ -120,6 +121,16 @@ const DestionationPage = () => {
                                 height: 'auto',
                             }}
                         />
+                        <Typography
+                            variant="body1"
+                            sx={{
+                                py: 3, 
+                                color: '#006E6F',
+                                fontWeight: 'bold'
+                            }}
+                        >
+                            No Destination Found
+                        </Typography>
                     </Grid>
                 )
             }

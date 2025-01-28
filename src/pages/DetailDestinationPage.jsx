@@ -1,5 +1,5 @@
 import { Grid, Stack } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageInDetail from '../elements/sharing/ImageInDetail';
 import DetailInformation from '../elements/sharing/DetailInformation';
 import Comments from '../elements/sharing/Comments';
@@ -12,6 +12,8 @@ import { asyncReceiveDestinationDetail, asyncAddCommentOnDestination } from '../
 import { formatDistanceToNow } from 'date-fns';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
+import LoadingImageInDetail from '../elements/sharing/skeleton/LoadingImageInDetail';
+import LoadingDetailInformation from '../elements/sharing/skeleton/LoadingDetailInformation';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -20,14 +22,17 @@ const DetailDestinationPage = () => {
 
     const commentLength = destination?.comments?.length || 0;
 
-    useEffect(() => {
-        dispatch(asyncReceiveDestinationDetail(id));
-        dispatch(asyncInitializeAuthUser());
-    }, [id, dispatch]);
+    const [loading, setLoading] = useState(true);
 
-    if (!destination) {
-        return <p>Loading ...</p>
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            dispatch(asyncInitializeAuthUser());
+            await dispatch(asyncReceiveDestinationDetail(id));
+            setLoading(false);
+        };
+
+        fetchData()
+    }, [id, dispatch]);
 
     const addComment = ({ comment, id }) => {
         dispatch(asyncAddCommentOnDestination({ text: comment, id }));
@@ -46,13 +51,23 @@ const DetailDestinationPage = () => {
                 item
                 xs={12}
             >
-                <ImageInDetail picture={destination.photo} location={destination.location} title={destination.name} />
-                <DetailInformation subtitle="Description" value={destination.description} />
-                <Comments count={commentLength} />
+                {loading ?
+                    <>
+                        <LoadingImageInDetail />
+                        <LoadingDetailInformation />
+                    </>
+                    :
+                    <>
+                        <ImageInDetail picture={destination.photo} location={destination.location} title={destination.name} />
+                        <DetailInformation subtitle="Description" value={destination.description} />
+                    </>
+                }
+                <Comments visibility={loading ? "none" : "flex"} count={commentLength} />
                 {authUser ?
                     <FormComment
                         addComment={addComment}
-                    /> :
+                    />
+                    :
                     <WarningBar
                         color="#FFF4E6"
                         iconBar={<WarningAmberIcon color="warning" />}
@@ -63,6 +78,7 @@ const DetailDestinationPage = () => {
                 <Stack
                     spacing={3}
                     sx={{ width: '100%', py: 6 }}
+                    display={loading ? "none" : "flex"}
                 >
                     {destination.comments
                         .slice()
