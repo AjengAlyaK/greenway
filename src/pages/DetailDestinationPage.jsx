@@ -65,10 +65,12 @@ const DetailDestinationPage = () => {
                 <Comments visibility={loading ? "none" : "flex"} count={commentLength} />
                 {authUser ?
                     <FormComment
+                        visibility={loading ? "none" : "flex"}
                         addComment={addComment}
                     />
                     :
                     <WarningBar
+                        visibility={loading ? "none" : "flex"}
                         color="#FFF4E6"
                         iconBar={<WarningAmberIcon color="warning" />}
                         titleBar="Permission Required"

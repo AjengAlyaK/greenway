@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Paper, Stack, Typography } from '@mui/material';
 
-const WarningBar = ({ color, iconBar, titleBar, object }) => {
+const WarningBar = ({ visibility, color, iconBar, titleBar, object }) => {
     return (
         <Grid
             container
             item
             xs={12}
+            display={visibility}
         >
             <Paper
                 sx={{ width: "100%", p: 2, bgcolor: color }}
@@ -45,6 +46,10 @@ WarningBar.propTypes = {
     iconBar: PropTypes.element.isRequired,
     titleBar: PropTypes.string.isRequired,
     object: PropTypes.string.isRequired,
+};
+
+WarningBar.defaultProps = {
+    visibility: 'flex',
 };
 
 export default WarningBar;

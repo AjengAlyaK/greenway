@@ -7,7 +7,11 @@ const LoadingImageInDetail = () => {
                 <Skeleton
                     variant="rectangular"
                     sx={{
-                        height: {xs: 230, md: 500},
+                        height: {
+                            xs: 230, 
+                            sm: 450,
+                            md: 500
+                        },
                         borderRadius: 5,
                     }}
                 />

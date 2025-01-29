@@ -16,15 +16,15 @@ import { asyncInitializeAuthUser } from '../states/authUser/action';
 const DetailDiscussionPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { authUser = null, discussion = {} } = useSelector((state) => state);
-    console.log(discussion)
+    const { authUser = null, discussion } = useSelector((state) => state);
+
     useEffect(() => {
         dispatch(asyncReceiveDiscussionDetail(id));
         dispatch(asyncInitializeAuthUser());
     }, [id, dispatch]);
 
-    const addComment = ({ comment, id }) => {
-        dispatch(asyncAddCommentOnDiscussion({ text: comment, id }));
+    const addComment = ({ comment }) => {
+        dispatch(asyncAddCommentOnDiscussion({ text: comment, id: discussion.id}));
     };
 
     return (
@@ -35,15 +35,15 @@ const DetailDiscussionPage = () => {
                     <DiscussionCard
                         photo={discussion.owner.photo}
                         name={discussion.owner.name}
-                        timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
+                        timestamp={`Posted ${discussion.createdAt ? formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true }) : "Unknown time"}`}
                         title={discussion.title}
                         body={discussion.body}
                         category={discussion.category}
-                        likes={discussion.upVotesBy.length}
-                        dislikes={discussion.downVotesBy.length}
+                        likes={discussion.upVotesBy?.length || 0}
+                        dislikes={discussion.downVotesBy?.length || 0}
                     />
                 </Stack>
-                <Comments count={discussion.comments.length} />
+                <Comments count={discussion.comments?.length} />
                 {authUser ?
                     <FormComment addComment={addComment} /> :
                     <WarningBar
@@ -59,14 +59,13 @@ const DetailDiscussionPage = () => {
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                         .map((comment, index) => (
                             <DiscussionCard
-                                key={index}
+                                key={comment.id}
                                 name={comment.owner.name}
                                 photo={comment.owner.photo}
-                                comment={comment.comment}
-                                timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
+                                timestamp={`Posted ${comment.createdAt ? formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true }) : "Unknown time"}`}
                                 body={comment.comment}
-                                likes={comment.upVotesBy.length}
-                                dislikes={comment.downVotesBy.length}
+                                likes={comment.upVotesBy?.length || 0}
+                                dislikes={comment.downVotesBy?.length || 0}
                             />
                         ))}
                 </Stack>

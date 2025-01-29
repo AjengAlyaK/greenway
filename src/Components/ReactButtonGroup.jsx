@@ -12,8 +12,8 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
     const dispatch = useDispatch();
     const { authUser = null } = useSelector((states) => states);
 
-    const isLike = upVotesBy.includes(authUser?.id);
-    const isDislike = downVotesBy.includes(authUser?.id);
+    const isLike = upVotesBy?.includes(authUser?.id);
+    const isDislike = downVotesBy?.includes(authUser?.id);
 
     const [likeCount, setLikeCount] = useState(likes);
     const [dislikeCount, setDislikeCount] = useState(dislikes);

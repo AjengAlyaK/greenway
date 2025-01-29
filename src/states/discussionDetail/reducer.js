@@ -1,11 +1,27 @@
 import { ActionType } from "./action";
 
-export const discussionDetailReducer = (discussion = null, action = {}) => {
+const initialState = {
+    id: "",
+    owner: {
+        id: "",
+        name: "",
+        photo: "",
+    },
+    createdAt: "",
+    title: "",
+    body: "",
+    category: "",
+    upVotesBy: [],
+    downVotesBy: [],
+    comments: [],
+};
+
+export const discussionDetailReducer = (discussion = initialState, action = {}) => {
     switch (action.type) {
         case ActionType.RECEIVE_DISCUSSION_DETAIL:
-            return action.payload?.discussion || discussion;
+            return {...discussion, ...action.payload.discussion};
         case ActionType.CLEAR_DISCUSSION_DETAIL:
-            return null;
+            return initialState;
         case ActionType.ADD_COMMENT_ON_DISCUSSION:
             return {
                 ...discussion,

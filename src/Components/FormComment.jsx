@@ -4,10 +4,9 @@ import { Button, Grid, Stack, TextField } from '@mui/material';
 import useInput from '../hooks/useInput';
 import { useParams } from 'react-router';
 
-const FormComment = ({ addComment }) => {
+const FormComment = ({ visibility, addComment }) => {
     const [comment, onCommentChange, setComment] = useInput('');
     const { id } = useParams();
-    // console.log(id);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,6 +19,7 @@ const FormComment = ({ addComment }) => {
             container
             item
             direction="column"
+            display={visibility}
         >
             <Stack spacing={2}>
                 <TextField
@@ -40,6 +40,10 @@ const FormComment = ({ addComment }) => {
 
 FormComment.propTypes = {
     addComment: PropTypes.func.isRequired,
+};
+
+FormComment.defaultProps = {
+    visibility: 'flex',
 };
 
 export default FormComment;
