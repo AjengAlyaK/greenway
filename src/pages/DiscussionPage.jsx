@@ -6,7 +6,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDiscussions } from '../states/discussion/action';
 import { formatDistanceToNow } from 'date-fns';
-import { asyncGetOwnProfile } from '../states/getOwnProfile/action';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { useNavigate } from 'react-router';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
@@ -14,22 +13,24 @@ import WarningBar from '../elements/sharing/WarningBar';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
 
 const DiscussionPage = () => {
-    const { discussions, profile = { id: null }, authUser = null } = useSelector((states) => states);
+    const { discussions, authUser = null } = useSelector((states) => states);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            await dispatch(asyncReceiveDiscussions());
-            dispatch(asyncGetOwnProfile());
-            dispatch(asyncInitializeAuthUser());
+        dispatch(asyncInitializeAuthUser());
+    }, [dispatch]);
+
+    useEffect(() => {
+        const fetchDiscussion = async () => {
+            dispatch(asyncReceiveDiscussions());
             // setLoading(false);
         };
 
-        fetchData()
-    }, [dispatch, discussions]);
+        fetchDiscussion();
+    }, [dispatch]);
 
     const clickComment = ({ discussionId }) => {
         navigate(`/discussion/${discussionId}`);
@@ -83,7 +84,6 @@ const DiscussionPage = () => {
                             <DiscussionCard
                                 key={index}
                                 discussionId={discussion.id}
-                                userId={profile.id}
                                 photo={discussion.photo}
                                 name={discussion.name}
                                 timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}

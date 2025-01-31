@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Button, Grid, Skeleton, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { Typewriter } from 'react-simple-typewriter';
 import LoadingHeroTitle from '../elements/sharing/skeleton/LoadingHeroTitle';
 import LoadingHeroText from '../elements/sharing/skeleton/LoadingHeroText';
 import LoadingButton from '../elements/sharing/skeleton/LoadingButton';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import LoadingImageHero from '../elements/sharing/skeleton/LoadingImageHero';
 
 const HeroArea = () => {
     const [loading, setLoading] = useState(true);
@@ -88,11 +89,7 @@ const HeroArea = () => {
             >
                 <Box sx={{ pl: { xs: 0, md: 3 }, width: '100%', display: 'flex', justifyContent: 'flex-end' }}>
                     {loading ?
-                        <Skeleton
-                            variant="rectangular"
-                            width="100%"
-                            height="100vh"
-                        />
+                        <LoadingImageHero />
                         :
                         <img
                             src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/landing-1.png?alt=media&token=2ade045c-366c-4d8e-b44e-5951667d3fc1"

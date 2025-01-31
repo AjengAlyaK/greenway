@@ -15,8 +15,6 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
     const isLike = upVotesBy?.includes(authUser?.id);
     const isDislike = downVotesBy?.includes(authUser?.id);
 
-    const [likeCount, setLikeCount] = useState(likes);
-    const [dislikeCount, setDislikeCount] = useState(dislikes);
     const [like, setLike] = useState(isLike);
     const [dislike, setDislike] = useState(isDislike);
 
@@ -24,16 +22,12 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (authUser) {
             if (isLike) {
                 setLike(!isLike);
-                setLikeCount(likes - 1);
                 dispatch(asyncNetralVote({ discussionId }));
             } else if (!isLike) {
                 setLike(isLike);
-                setLikeCount(likes + 1);
                 dispatch(asyncUpVote({ discussionId }));
             } else if (isDislike) {
                 setDislike(!isDislike);
-                setDislikeCount(dislikes - 1);
-                setLikeCount(likes + 1);
                 dispatch(asyncNetralVote({ discussionId }));
                 dispatch(asyncUpVote({ discussionId }));
             }
@@ -46,16 +40,12 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (authUser) {
             if (isDislike) {
                 setDislike(!isDislike);
-                setDislikeCount(dislikes - 1);
                 dispatch(asyncNetralVote({ discussionId }));
             } else if (!isDislike) {
                 setDislike(isDislike);
-                setDislikeCount(dislikes + 1);
                 dispatch(asyncDownVote({ discussionId }));
             } else if (isLike) {
                 setLike(!isLike);
-                setLikeCount(likes - 1);
-                setDislikeCount(dislikes + 1);
                 dispatch(asyncNetralVote({ discussionId }));
                 dispatch(asyncDownVote({ discussionId }));
             }
@@ -68,15 +58,15 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         <Stack direction="row" spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='like' onClick={() => upVote({ discussionId })}>
-                    {like ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
+                    {isLike ? <ThumbUpIcon /> : <ThumbUpOutlinedIcon />}
                 </IconButton>
-                <Typography sx={{ mr: 1 }}>{likeCount}</Typography>
+                <Typography sx={{ mr: 1 }}>{likes}</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton aria-label='unlike' onClick={() => downVote({ discussionId })}>
-                    {dislike ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
+                    {isDislike ? <ThumbDownIcon /> : <ThumbDownOutlinedIcon />}
                 </IconButton>
-                <Typography sx={{ mr: 1 }}>{dislikeCount}</Typography>
+                <Typography sx={{ mr: 1 }}>{dislikes}</Typography>
             </Box>
             {createCommentIcon && createCommentIcon({ discussionId, comments })}
         </Stack>
