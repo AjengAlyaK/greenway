@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid, InputBase, Paper, Typography } from '@mui/material';
+import { Box, Grid, InputBase, Paper } from '@mui/material';
 import TitleContent from '../elements/sharing/TitleContent';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDestinations } from '../states/destination/action';
@@ -9,10 +9,12 @@ import LoadingTitleContent from '../elements/sharing/skeleton/LoadingTitleConten
 import LoadingCard from '../elements/sharing/skeleton/LoadingCard';
 import LoadingSearchArticle from '../elements/artikel/skeleton/LoadingSearchArticle';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
+import DisplayNoResult from '../elements/sharing/DisplayNoResult';
 
 const title = "Find The Next Places to Explore The Beauty of The Indonesia";
 const subtitle = "Discover your dream adventure here. Every corner of Indonesia's beauty awaits you with unforgettable memories. With Greenway, explore it all now!";
 const noresultimg = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/no%20result%20found.png?alt=media&token=cfe58687-4512-47b9-a5eb-510978cbc855";
+const textNoResult = "No Destination Found";
 
 const DestionationPage = () => {
     const { destinations } = useSelector((states) => states);
@@ -112,25 +114,7 @@ const DestionationPage = () => {
                             m: 5
                         }}
                     >
-                        <img
-                            component="img"
-                            alt="No Result"
-                            src={noresultimg}
-                            style={{
-                                width: '20%',
-                                height: 'auto',
-                            }}
-                        />
-                        <Typography
-                            variant="body1"
-                            sx={{
-                                py: 3, 
-                                color: '#006E6F',
-                                fontWeight: 'bold'
-                            }}
-                        >
-                            No Destination Found
-                        </Typography>
+                        <DisplayNoResult image={noresultimg} text={textNoResult} />
                     </Grid>
                 )
             }

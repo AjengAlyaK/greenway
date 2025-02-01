@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Button, Grid, IconButton, Stack, Typography } from '@mui/material';
 import OneLineTitle from '../elements/sharing/OneLineTitle';
 import DiscussionCard from '../Components/DiscussionCard';
@@ -17,7 +17,29 @@ const DiscussionPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // const [loading, setLoading] = useState(true);
+    const [filteredDiscussions, setFilteredDiscussions] = useState([]);
+
+    let categories = ["All", ...new Set(discussions.map(discussion => discussion.category))];
+
+    const clickComment = ({ discussionId }) => {
+        navigate(`/discussion/${discussionId}`);
+    };
+
+    const addDiscussion = () => {
+        navigate('/discussion/add')
+    };
+
+    const handleCategoryFilter = (category) => {
+        const filteredByCategory = discussions.filter((discussion) =>
+            discussion.category.match(category)
+        );
+
+        setFilteredDiscussions(filteredByCategory);
+    };
+
+    const allCategory = () => {
+        setFilteredDiscussions(discussions);
+    }
 
     useEffect(() => {
         dispatch(asyncInitializeAuthUser());
@@ -32,13 +54,11 @@ const DiscussionPage = () => {
         fetchDiscussion();
     }, [dispatch]);
 
-    const clickComment = ({ discussionId }) => {
-        navigate(`/discussion/${discussionId}`);
-    };
-
-    const addDiscussion = () => {
-        navigate('/discussion/add')
-    }
+    useEffect(() => {
+        if (discussions && discussions.length > 0) {
+            setFilteredDiscussions(discussions);
+        }
+    }, [discussions]);
 
     const createCommentIcon = ({ discussionId, comments }) => {
         return (
@@ -58,10 +78,21 @@ const DiscussionPage = () => {
                     <Stack spacing={3}>
                         <Stack spacing={2}>
                             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Popular Category</Typography>
-                            <Stack direction="row" spacing={2}>
-                                <Button variant="outlined"># Contoh</Button>
-                                <Button variant="outlined"># Contoh</Button>
-                            </Stack>
+                            <Box>
+                                {categories.map((category) => (
+                                    <Button
+                                        key={category}
+                                        variant="outlined"
+                                        onClick={category === 'All' ? allCategory : () => handleCategoryFilter(category)}
+                                        sx={{
+                                            mr: 1,
+                                            mb: 1,
+                                        }}
+                                    >
+                                        # {category}
+                                    </Button>
+                                ))}
+                            </Box>
                         </Stack>
                         <Stack spacing={2}>
                             <OneLineTitle title="Discussion Available" />
@@ -80,7 +111,7 @@ const DiscussionPage = () => {
                         </Stack>
                     </Stack>
                     <Stack spacing={3}>
-                        {discussions.map((discussion, index) => (
+                        {filteredDiscussions.map((discussion, index) => (
                             <DiscussionCard
                                 key={index}
                                 discussionId={discussion.id}
