@@ -17,48 +17,25 @@ const DiscussionPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const [filteredDiscussions, setFilteredDiscussions] = useState([]);
+    const [activeCategory, setActiveCategory] = useState('all');
 
-    let categories = ["All", ...new Set(discussions.map(discussion => discussion.category))];
+    const categories = ["all", ...new Set(discussions.map(discussion => discussion.category.toLowerCase()))];
 
-    const clickComment = ({ discussionId }) => {
-        navigate(`/discussion/${discussionId}`);
-    };
-
-    const addDiscussion = () => {
-        navigate('/discussion/add')
-    };
+    const clickComment = ({ discussionId }) => navigate(`/discussion/${discussionId}`);
+    const addDiscussion = () => navigate('/discussion/add');
 
     const handleCategoryFilter = (category) => {
-        const filteredByCategory = discussions.filter((discussion) =>
-            discussion.category.match(category)
-        );
-
-        setFilteredDiscussions(filteredByCategory);
+        setActiveCategory(category);
     };
 
-    const allCategory = () => {
-        setFilteredDiscussions(discussions);
-    }
+    const filteredDiscussions = activeCategory === 'all'
+        ? discussions
+        : discussions.filter(discussion => discussion.category.toLowerCase() === activeCategory);
 
     useEffect(() => {
         dispatch(asyncInitializeAuthUser());
+        dispatch(asyncReceiveDiscussions());
     }, [dispatch]);
-
-    useEffect(() => {
-        const fetchDiscussion = async () => {
-            dispatch(asyncReceiveDiscussions());
-            // setLoading(false);
-        };
-
-        fetchDiscussion();
-    }, [dispatch]);
-
-    useEffect(() => {
-        if (discussions && discussions.length > 0) {
-            setFilteredDiscussions(discussions);
-        }
-    }, [discussions]);
 
     const createCommentIcon = ({ discussionId, comments }) => {
         return (
@@ -82,8 +59,8 @@ const DiscussionPage = () => {
                                 {categories.map((category) => (
                                     <Button
                                         key={category}
-                                        variant="outlined"
-                                        onClick={category === 'All' ? allCategory : () => handleCategoryFilter(category)}
+                                        variant={activeCategory === category ? "contained" : "outlined"}
+                                        onClick={() => handleCategoryFilter(category)}
                                         sx={{
                                             mr: 1,
                                             mb: 1,
@@ -111,9 +88,9 @@ const DiscussionPage = () => {
                         </Stack>
                     </Stack>
                     <Stack spacing={3}>
-                        {filteredDiscussions.map((discussion, index) => (
+                        {filteredDiscussions.map((discussion) => (
                             <DiscussionCard
-                                key={index}
+                                key={discussion.id}
                                 discussionId={discussion.id}
                                 photo={discussion.photo}
                                 name={discussion.name}

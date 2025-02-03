@@ -7,6 +7,17 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: '12px',
+                    variants: [
+                        {
+                            props: { variant: 'outlined' },
+                            style: {
+                                '&:hover': {
+                                    backgroundColor: '#006E6F',
+                                    color: '#FFFFFF',
+                                }
+                            },
+                        }
+                    ]
                 }
             }
         }
