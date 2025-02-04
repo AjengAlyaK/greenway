@@ -1,6 +1,7 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import LoadingRecord from '../elements/sharing/skeleton/LoadingRecord';
+import CountUp from 'react-countup';
 
 const RecordContents = [
     {
@@ -82,7 +83,7 @@ const Record = () => {
                                                     textAlign: "center"
                                                 }}
                                             >
-                                                {content.count}
+                                                <CountUp end={content.count} duration={3} />
                                             </Typography>
                                             <Typography
                                                 sx={{

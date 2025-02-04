@@ -1,16 +1,16 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import { Skeleton } from '@mui/material';
 
-const LoadingDiscussionCard = props => {
+const LoadingDiscussionCard = () => {
     return (
-        <div>
-            
-        </div>
+        <Skeleton
+            variant="rectangular"
+            height={300}
+            sx={{
+                borderRadius: 4
+            }}
+        />
     );
-};
-
-LoadingDiscussionCard.propTypes = {
-    
 };
 
 export default LoadingDiscussionCard;

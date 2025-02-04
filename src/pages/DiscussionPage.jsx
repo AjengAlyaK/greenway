@@ -11,6 +11,12 @@ import { useNavigate } from 'react-router';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
 import WarningBar from '../elements/sharing/WarningBar';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
+import LoadingOneLineTitle from '../elements/sharing/skeleton/LoadingOneLineTitle';
+import LoadingDiscussionCard from '../elements/sharing/skeleton/LoadingDiscussionCard';
+import LoadingHeaderCategory from '../elements/sharing/skeleton/LoadingHeaderCategory';
+import LoadingButtonCategory from '../elements/sharing/skeleton/LoadingButtonCategory';
+
+const title = "Discussion Available";
 
 const DiscussionPage = () => {
     const { discussions, authUser = null } = useSelector((states) => states);
@@ -18,6 +24,7 @@ const DiscussionPage = () => {
     const dispatch = useDispatch();
 
     const [activeCategory, setActiveCategory] = useState('all');
+    const [loading, setLoading] = useState(true);
 
     const categories = ["all", ...new Set(discussions.map(discussion => discussion.category.toLowerCase()))];
 
@@ -33,8 +40,13 @@ const DiscussionPage = () => {
         : discussions.filter(discussion => discussion.category.toLowerCase() === activeCategory);
 
     useEffect(() => {
-        dispatch(asyncInitializeAuthUser());
-        dispatch(asyncReceiveDiscussions());
+        const fetchDiscussion = async () => {
+            await dispatch(asyncInitializeAuthUser());
+            await dispatch(asyncReceiveDiscussions());
+            setLoading(false);
+        };
+
+        fetchDiscussion();
     }, [dispatch]);
 
     const createCommentIcon = ({ discussionId, comments }) => {
@@ -54,25 +66,47 @@ const DiscussionPage = () => {
                 <Stack spacing={4}>
                     <Stack spacing={3}>
                         <Stack spacing={2}>
-                            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Popular Category</Typography>
-                            <Box>
-                                {categories.map((category) => (
-                                    <Button
-                                        key={category}
-                                        variant={activeCategory === category ? "contained" : "outlined"}
-                                        onClick={() => handleCategoryFilter(category)}
-                                        sx={{
-                                            mr: 1,
-                                            mb: 1,
-                                        }}
-                                    >
-                                        # {category}
-                                    </Button>
-                                ))}
+                            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                                {loading ?
+                                    <LoadingHeaderCategory />
+                                    :
+                                    "Popular Category"
+                                }
+                            </Typography>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap'
+                                }}
+                            >
+                                {
+                                    loading ?
+                                        Array.from({ length: 6 }).map((_, index) => (
+                                            <LoadingButtonCategory key={index} />
+                                        ))
+                                        :
+                                        categories.map((category) => (
+                                            <Button
+                                                key={category}
+                                                variant={activeCategory === category ? "contained" : "outlined"}
+                                                onClick={() => handleCategoryFilter(category)}
+                                                sx={{
+                                                    mr: 1,
+                                                    mb: 1,
+                                                }}
+                                            >
+                                                # {category}
+                                            </Button>
+                                        ))
+                                }
                             </Box>
                         </Stack>
                         <Stack spacing={2}>
-                            <OneLineTitle title="Discussion Available" />
+                            {loading ?
+                                <LoadingOneLineTitle text={title} />
+                                :
+                                <OneLineTitle title={title} />
+                            }
                             <Box>
                                 {authUser ?
                                     <Button variant="contained" onClick={() => addDiscussion()}><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
@@ -88,24 +122,30 @@ const DiscussionPage = () => {
                         </Stack>
                     </Stack>
                     <Stack spacing={3}>
-                        {filteredDiscussions.map((discussion) => (
-                            <DiscussionCard
-                                key={discussion.id}
-                                discussionId={discussion.id}
-                                photo={discussion.photo}
-                                name={discussion.name}
-                                timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
-                                title={discussion.title}
-                                body={discussion.body}
-                                category={discussion.category}
-                                likes={discussion.upVotesBy.length}
-                                dislikes={discussion.downVotesBy.length}
-                                upVotesBy={discussion.upVotesBy}
-                                downVotesBy={discussion.downVotesBy}
-                                comments={discussion.comments}
-                                createCommentIcon={({ discussionId, comments }) => createCommentIcon({ discussionId, comments })}
-                            />
-                        ))}
+                        {
+                            loading ?
+                                Array.from({ length: 6 }).map((_, index) => (
+                                    <LoadingDiscussionCard key={index} />
+                                ))
+                                :
+                                filteredDiscussions.map((discussion) => (
+                                    <DiscussionCard
+                                        key={discussion.id}
+                                        discussionId={discussion.id}
+                                        photo={discussion.photo}
+                                        name={discussion.name}
+                                        timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
+                                        title={discussion.title}
+                                        body={discussion.body}
+                                        category={discussion.category}
+                                        likes={discussion.upVotesBy.length}
+                                        dislikes={discussion.downVotesBy.length}
+                                        upVotesBy={discussion.upVotesBy}
+                                        downVotesBy={discussion.downVotesBy}
+                                        comments={discussion.comments}
+                                        createCommentIcon={({ discussionId, comments }) => createCommentIcon({ discussionId, comments })}
+                                    />
+                                ))}
                     </Stack>
                 </Stack>
             </Grid>
