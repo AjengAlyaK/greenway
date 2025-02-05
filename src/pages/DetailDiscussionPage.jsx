@@ -15,6 +15,7 @@ import LoadingOneLineTitle from '../elements/sharing/skeleton/LoadingOneLineTitl
 import LoadingDiscussionCard from '../elements/sharing/skeleton/LoadingDiscussionCard';
 import LoadingWarningBar from '../elements/sharing/skeleton/LoaingWarningBar';
 import LoadingComments from '../elements/sharing/skeleton/LoadingComments';
+import LoadingFormComment from '../elements/sharing/skeleton/LoadingFormComment';
 
 const title = "Detail Discussion";
 
@@ -69,7 +70,13 @@ const DetailDiscussionPage = () => {
                     :
                     <Comments count={discussion.comments?.length} />}
                 {authUser ?
-                    <FormComment addComment={addComment} /> :
+                    (
+                        loading ?
+                            <LoadingFormComment />
+                            :
+                            <FormComment addComment={addComment} />
+                    )
+                    :
                     (
                         loading ?
                             <LoadingWarningBar />
