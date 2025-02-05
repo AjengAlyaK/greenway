@@ -15,6 +15,8 @@ import LoadingOneLineTitle from '../elements/sharing/skeleton/LoadingOneLineTitl
 import LoadingDiscussionCard from '../elements/sharing/skeleton/LoadingDiscussionCard';
 import LoadingHeaderCategory from '../elements/sharing/skeleton/LoadingHeaderCategory';
 import LoadingButtonCategory from '../elements/sharing/skeleton/LoadingButtonCategory';
+import LoadingWarningBar from '../elements/sharing/skeleton/LoaingWarningBar';
+import LoadingButton from '../elements/sharing/skeleton/LoadingButton';
 
 const title = "Discussion Available";
 
@@ -109,14 +111,24 @@ const DiscussionPage = () => {
                             }
                             <Box>
                                 {authUser ?
-                                    <Button variant="contained" onClick={() => addDiscussion()}><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
+                                    (
+                                        loading ?
+                                            <LoadingButton text="New Discussion" />
+                                            :
+                                            <Button variant="contained" onClick={addDiscussion}><AddIcon sx={{ mr: 1 }} /> New Discussion</Button>
+                                    )
                                     :
-                                    <WarningBar
-                                        color="#e5f6fd"
-                                        iconBar={<ErrorOutlineOutlinedIcon color="primary" />}
-                                        titleBar="Hold Up!"
-                                        object="start a discussion"
-                                    />
+                                    (
+                                        loading ?
+                                            <LoadingWarningBar />
+                                            :
+                                            <WarningBar
+                                                color="#e5f6fd"
+                                                iconBar={<ErrorOutlineOutlinedIcon color="primary" />}
+                                                titleBar="Hold Up!"
+                                                object="start a discussion"
+                                            />
+                                    )
                                 }
                             </Box>
                         </Stack>
