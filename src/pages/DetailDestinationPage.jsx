@@ -14,6 +14,10 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
 import LoadingImageInDetail from '../elements/sharing/skeleton/LoadingImageInDetail';
 import LoadingDetailInformation from '../elements/sharing/skeleton/LoadingDetailInformation';
+import LoadingComments from '../elements/sharing/skeleton/LoadingComments';
+import LoadingWarningBar from '../elements/sharing/skeleton/LoaingWarningBar';
+import LoadingFormComment from '../elements/sharing/skeleton/LoadingFormComment';
+import LoadingDiscussionCard from '../elements/sharing/skeleton/LoadingDiscussionCard';
 
 const DetailDestinationPage = () => {
     const { id } = useParams();
@@ -62,38 +66,55 @@ const DetailDestinationPage = () => {
                         <DetailInformation subtitle="Description" value={destination.description} />
                     </>
                 }
-                <Comments visibility={loading ? "none" : "flex"} count={commentLength} />
-                {authUser ?
-                    <FormComment
-                        visibility={loading ? "none" : "flex"}
-                        addComment={addComment}
-                    />
+                {loading ?
+                    <LoadingComments />
                     :
-                    <WarningBar
-                        visibility={loading ? "none" : "flex"}
-                        color="#FFF4E6"
-                        iconBar={<WarningAmberIcon color="warning" />}
-                        titleBar="Permission Required"
-                        object="start a new comment"
-                    />
+                    <Comments count={commentLength} />
+                }
+                {authUser ?
+                    (loading ?
+                        <LoadingFormComment />
+                        :
+                        <FormComment
+                            visibility={loading ? "none" : "flex"}
+                            addComment={addComment}
+                        />)
+                    :
+                    (loading ?
+                        <LoadingWarningBar />
+                        :
+                        <WarningBar
+                            visibility={loading ? "none" : "flex"}
+                            color="#FFF4E6"
+                            iconBar={<WarningAmberIcon color="warning" />}
+                            titleBar="Permission Required"
+                            object="start a new comment"
+                        />
+                    )
                 }
                 <Stack
                     spacing={3}
                     sx={{ width: '100%', py: 6 }}
-                    display={loading ? "none" : "flex"}
                 >
-                    {destination.comments
-                        .slice()
-                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                        .map((comment, index) => (
-                            <CommentCard
-                                key={index}
-                                name={comment.owner.name}
-                                photo={comment.owner.photo}
-                                comment={comment.comment}
-                                timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
-                            />
-                        ))}
+                    {
+                        loading ?
+                            Array.from({ length: 2 }).map((_, index) => (
+                                <LoadingDiscussionCard key={index} />
+                            ))
+                            :
+                            destination.comments
+                                .slice()
+                                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                                .map((comment, index) => (
+                                    <CommentCard
+                                        key={index}
+                                        name={comment.owner.name}
+                                        photo={comment.owner.photo}
+                                        comment={comment.comment}
+                                        timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}
+                                    />
+                                ))
+                    }
                 </Stack>
             </Grid>
         </Grid>
