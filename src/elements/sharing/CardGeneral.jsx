@@ -31,7 +31,7 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            backgroundColor: 'rgba(0, 0, 0, 0.3)', // Dark overlay with 50% opacity
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)', 
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'flex-start',
@@ -41,7 +41,6 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                             fontSize: '1.5rem',
                             fontWeight: 'bold',
                             opacity: 1,
-                            transition: 'opacity 0.3s ease',
                         }}
                     >
                         <Typography sx={{ fontWeight: 'bold' }}>

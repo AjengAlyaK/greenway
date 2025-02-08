@@ -46,8 +46,15 @@ const CampaignSlightly = () => {
                     sm={6}
                     md={3}
                 >
-
-                    <CardGeneral key={index} path="campaign" id={campaign.id} index={index} picture={campaign.picture} name={campaign.name} location={campaign.location} />
+                    <CardGeneral
+                        key={index}
+                        path="campaign"
+                        id={campaign.id}
+                        index={index}
+                        picture={campaign.picture}
+                        name={campaign.name}
+                        location={campaign.location} 
+                    />
                 </Grid>
             ))}
         </Grid>

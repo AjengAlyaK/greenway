@@ -23,7 +23,14 @@ const CommentCard = ({ name, photo, comment, timestamp }) => {
 
     return (
         <>
-            <Card sx={{ width: '100%', p: 1.7, borderRadius: 4, border: '1px solid #5AC9A2' }}>
+            <Card
+                sx={{
+                    width: '100%',
+                    p: 1.7,
+                    borderRadius: 4,
+                    border: '1px solid #5AC9A2',
+                }}
+            >
                 <CardContent>
                     <Grid
                         container

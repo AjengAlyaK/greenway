@@ -1,5 +1,6 @@
-import { Grid, Paper, Stack, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
+import CardExplore from '../elements/entrance/CardExplore';
 
 const ExploreContents = [
     {
@@ -41,45 +42,15 @@ const Explore = () => {
                 py: { xs: 3, md: 5 },
             }}
         >
-            {ExploreContents.map((content, index) => (
+            {ExploreContents.map((content) => (
                 <Grid
                     item
                     xs={12}
                     sm={6}
                     md={4}
-                    key={index}
+                    key={content.id}
                 >
-                    <Paper
-                        sx={{
-                            bgcolor: '#5AC9A2',
-                            borderRadius: 3,
-                            px: 2,
-                            py: 4, 
-                            height: '100%', 
-                        }}
-                    >
-                        <Stack
-                            spacing={2}
-                        >
-                            <Typography
-                                sx={{
-                                    color: '#ffffff',
-                                    fontWeight: { xs: 'bold', sm: 'bold', md: 'bold' },
-                                    typography: { xs: 'h6', md: 'h4' }
-                                }}
-                            >
-                                {content.title}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    color: '#ffffff',
-                                    typography: 'body'
-                                }}
-                            >
-                                {content.subtitle}
-                            </Typography>
-                        </Stack>
-                    </Paper>
+                    <CardExplore title={content.title} subtitle={content.subtitle} />
                 </Grid>
             ))}
         </Grid>
