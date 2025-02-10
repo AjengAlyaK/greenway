@@ -30,7 +30,7 @@ const DetailDestinationPage = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            dispatch(asyncInitializeAuthUser());
+            await dispatch(asyncInitializeAuthUser());
             await dispatch(asyncReceiveDestinationDetail(id));
             setLoading(false);
         };
