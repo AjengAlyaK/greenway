@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDetailCampaign } from '../states/campaignDetail/action';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
 import LoadingImageInDetail from '../elements/sharing/skeleton/LoadingImageInDetail';
+import LoadingDetailInformation from '../elements/sharing/skeleton/LoadingDetailInformation';
 
 const DetailCampaignPage = () => {
     const { id } = useParams();
@@ -25,10 +26,6 @@ const DetailCampaignPage = () => {
         fetchData();
     }, [id, dispatch]);
 
-    // if (!campaign) {
-    //     return <p>Loading...</p>;
-    // }
-
     return (
         <Grid
             container
@@ -43,7 +40,10 @@ const DetailCampaignPage = () => {
                 {loading ?
                     <>
                         <LoadingImageInDetail />
-                        
+                        <LoadingDetailInformation value="lorem" />
+                        <LoadingDetailInformation value="lorem2" />
+                        <LoadingDetailInformation value="lorem3" />
+                        <LoadingDetailInformation />
                     </>
                     :
                     <>

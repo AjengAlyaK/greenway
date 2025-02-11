@@ -1,9 +1,9 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveReviews } from '../states/review/Action';
-import AvatarGeneral from '../elements/sharing/AvatarGeneral';
 import TitleHomePage from '../elements/sharing/TitleHomePage';
+import CardReview from '../elements/entrance/CardReview';
 
 const title = "People are Talking ...";
 
@@ -42,30 +42,12 @@ const Review = () => {
                         key={index}
                         display="flex"
                     >
-                        <Paper
-                            sx={{
-                                p: 2,
-                                border: '1.5px solid #5AC9A2',
-                                borderRadius: 3,
-                                height: '100%',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                flexBasis: 'column'
-                            }}
-                        >
-                            <Box
-                                display="flex"
-                                flexDirection="column"
-                                justifyContent="flex-start"
-                                alignItems="flex-start"
-                            >
-                                {/* <Avatar src={content.photo} alt={`photo of ${content.name}`} sx={{ width: 54, height: 54 }} /> */}
-                                <AvatarGeneral source={content.photo} alternative={content.name} />
-                                <Typography sx={{ pt: 2, }}>{content.review}</Typography>
-                                <Typography sx={{ fontWeight: 'bold', pt: 2 }}>{content.name}</Typography>
-                                <Typography sx={{ pb: 1 }}>{content.occupation}</Typography>
-                            </Box>
-                        </Paper>
+                        <CardReview
+                            name={content.name}
+                            photo={content.photo}
+                            review={content.review}
+                            occupation={content.occupation}
+                        />
                     </Grid>
                 ))}
             </Grid>

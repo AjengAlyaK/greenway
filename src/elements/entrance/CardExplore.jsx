@@ -11,11 +11,10 @@ const CardExplore = ({ title, subtitle }) => {
                 px: 2,
                 py: 4,
                 height: '100%',
-                transition: theme.transitions.create(['background-color', 'transform'], {
+                transition: theme.transitions.create(['transform'], {
                     duration: theme.transitions.duration.standard,
                 }),
                 '&:hover': {
-                    backgroundColor: '#5AC9A2',
                     transform: 'scale(1.05)',
                 }
             })}
