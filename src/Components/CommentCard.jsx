@@ -29,6 +29,10 @@ const CommentCard = ({ name, photo, comment, timestamp }) => {
                     p: 1.7,
                     borderRadius: 4,
                     border: '1px solid #5AC9A2',
+                    transition: 'box-shadow 0.3s ease-in-out',
+                    '&:hover': {
+                        boxShadow: '0px 4px 10px 1px rgba(90, 201, 162, 0.5)',
+                    },
                 }}
             >
                 <CardContent>

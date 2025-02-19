@@ -14,7 +14,10 @@ const CardReview = ({ name, photo, review, occupation }) => {
                 display: 'flex',
                 justifyContent: 'space-between',
                 flexBasis: 'column',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2), 0px 3px 4px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);'
+                transition: 'box-shadow 0.3s ease-in-out',
+                '&:hover': {
+                    boxShadow: '0px 4px 10px 1px rgba(90, 201, 162, 0.5)',
+                },
             }}
         >
             <Box

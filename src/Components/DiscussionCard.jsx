@@ -23,7 +23,18 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
 
     return (
         <>
-            <Card sx={{ width: '100%', p: { xs: 1.2, sm: 1.7 }, borderRadius: 4, border: '1px solid #5AC9A2' }}>
+            <Card
+                sx={{
+                    width: '100%',
+                    p: { xs: 1.2, sm: 1.7 },
+                    borderRadius: 4,
+                    border: '1px solid #5AC9A2',
+                    transition: 'box-shadow 0.3s ease-in-out',
+                    '&:hover': {
+                        boxShadow: '0px 4px 10px 1px rgba(90, 201, 162, 0.5)',
+                    },
+                }}
+            >
                 <CardContent>
                     <Grid
                         container
