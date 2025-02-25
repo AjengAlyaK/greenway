@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, Card, CardContent, CardMedia, CardActionArea } from '@mui/material';
 
-const CardArticle = ({ image, title, link}) => {
+const CardArticle = ({ image, title, link }) => {
     return (
         <Card sx={{ width: { xs: '100%' }, borderRadius: 3 }}>
             <CardActionArea
@@ -17,6 +17,12 @@ const CardArticle = ({ image, title, link}) => {
                     height="160"
                     image={image}
                     alt={title}
+                    sx={{
+                        transition: 'transform 0.3s ease-in-out',
+                        '&:hover': {
+                            transform: 'scale(1.1)',
+                        },
+                    }}
                 />
                 <CardContent sx={{ py: 1.5 }}>
                     <Typography variant="body1"
