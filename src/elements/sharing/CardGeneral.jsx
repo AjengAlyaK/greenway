@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // card
@@ -10,8 +10,21 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import { Box, Typography } from '@mui/material';
 
 const CardGeneral = ({ path, id, index, picture, name, location }) => {
+    // revise
+    const [hover, setHover] = useState(false);
+
     return (
-        <Card key={index} sx={{ width: {xs: '100%'}, borderRadius: 3, margin: 'auto' }}>
+        <Card
+            key={index}
+            sx={{
+                width: { xs: '100%' },
+                borderRadius: 3,
+                margin: 'auto'
+            }}
+            // revise
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+        >
             <CardActionArea
                 component={Link}
                 to={`/${path}/${id}`}
@@ -22,7 +35,7 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                         component="img"
                         height="200"
                         image={picture}
-                        alt={picture}
+                        alt={name}
                     />
                     <Box
                         sx={{
@@ -31,7 +44,7 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            backgroundColor: 'rgba(0, 0, 0, 0.3)', 
+                            backgroundColor: 'rgba(0, 0, 0, 0.3)',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'flex-start',
@@ -46,7 +59,17 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                         <Typography sx={{ fontWeight: 'bold' }}>
                             {name}
                         </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                // revise
+                                transform: hover ? 'translateY(0)' : 'translateY(100%)',
+                                opacity: hover ? 1 : 0,
+                                transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
+                            }}
+                        >
                             <FmdGoodIcon sx={{ mr: 1 }} />
                             <Typography>
                                 {location}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Typography, Card, CardContent, CardMedia, CardActionArea } from '@mui/material';
+import { Typography, Card, CardContent, CardMedia, CardActionArea, Box } from '@mui/material';
 
 const CardArticle = ({ image, title, link }) => {
     return (
@@ -12,18 +12,21 @@ const CardArticle = ({ image, title, link }) => {
                 rel="noopener noreferrer"
                 sx={{ textDecoration: 'none' }}
             >
-                <CardMedia
-                    component="img"
-                    height="160"
-                    image={image}
-                    alt={title}
-                    sx={{
-                        transition: 'transform 0.3s ease-in-out',
-                        '&:hover': {
-                            transform: 'scale(1.1)',
-                        },
-                    }}
-                />
+                <Box sx={{ overflow: 'hidden', height: '160px' }}>
+                    <CardMedia
+                        component="img"
+                        height="160px"
+                        image={image}
+                        alt={title}
+                        sx={{
+                            transition: 'transform 0.3s ease-in-out',
+                            transformOrigin: 'center center',
+                            '&:hover': {
+                                transform: 'scale(1.1)',
+                            },
+                        }}
+                    />
+                </Box>
                 <CardContent sx={{ py: 1.5 }}>
                     <Typography variant="body1"
                         sx={{
