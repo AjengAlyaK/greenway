@@ -10,7 +10,6 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import { Box, Typography } from '@mui/material';
 
 const CardGeneral = ({ path, id, index, picture, name, location }) => {
-    // revise
     const [hover, setHover] = useState(false);
 
     return (
@@ -21,7 +20,6 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                 borderRadius: 3,
                 margin: 'auto'
             }}
-            // revise
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
@@ -44,7 +42,8 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                             left: 0,
                             right: 0,
                             bottom: 0,
-                            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                            backgroundColor: hover ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.3)',
+                            transition: 'background-color 0.3s ease-in-out',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'flex-start',
@@ -56,17 +55,21 @@ const CardGeneral = ({ path, id, index, picture, name, location }) => {
                             opacity: 1,
                         }}
                     >
-                        <Typography sx={{ fontWeight: 'bold' }}>
-                            {name}
-                        </Typography>
+                        <Box
+                            sx={{
+                                transform: hover ? 'translateY(0)' : 'translateY(20px)',
+                                transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
+                            }}
+                        >
+                            <Typography sx={{ fontWeight: 'bold' }}>{name}</Typography>
+                        </Box>
                         <Box
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'row',
                                 alignItems: 'center',
-                                // revise
-                                transform: hover ? 'translateY(0)' : 'translateY(100%)',
                                 opacity: hover ? 1 : 0,
+                                transform: hover ? 'translateY(0)' : 'translateY(100%)',
                                 transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out',
                             }}
                         >

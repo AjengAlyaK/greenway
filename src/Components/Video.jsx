@@ -19,13 +19,13 @@ const Video = () => {
             </Box>
             <Grid
                 container
-                space={2}
+                spacing={2}
                 display={loading ? "none" : "flex"}
                 sx={{ px: { xs: 2, sm: 5, md: 13 }, py: { xs: 3, sm: 2, md: 5 }, justifyContent: 'center', alignItems: 'center' }}
             >
                 <Grid
                     item
-                    space={2}
+                    spacing={2}
                     xs={12}
                 >
                     <CardMedia
@@ -33,6 +33,7 @@ const Video = () => {
                         title="test"
                         src="https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/Wonderful%20Indonesia%20-%20Nature.mp4?alt=media&token=bc06930b-651f-4a8e-8c6f-66b274c921ef"
                         sx={{ width: '100%', height: 'auto', borderRadius: 3 }}
+                        controls
                     />
                 </Grid>
             </Grid>
