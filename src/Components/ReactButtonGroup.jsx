@@ -18,8 +18,8 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
     const [dislikeCount, setDislikeCount] = useState(dislikes);
 
     useEffect(() => {
-        setLike(upVotesBy.includes(authUser?.id));
-        setDislike(downVotesBy.includes(authUser?.id));
+        setLike(upVotesBy?.includes(authUser?.id));
+        setDislike(downVotesBy?.includes(authUser?.id));
         setLikeCount(likes);
         setDislikeCount(dislikes);
     }, [authUser, upVotesBy, downVotesBy, likes, dislikes]);

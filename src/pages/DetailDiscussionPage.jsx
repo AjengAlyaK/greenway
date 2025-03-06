@@ -22,7 +22,7 @@ const title = "Detail Discussion";
 const DetailDiscussionPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { authUser = null, discussion } = useSelector((state) => state);
+    const { authUser = null, discussion = {} } = useSelector((state) => state);
 
     const [loading, setLoading] = useState(true);
 
@@ -37,7 +37,7 @@ const DetailDiscussionPage = () => {
     }, [id, dispatch]);
 
     const addComment = ({ comment }) => {
-        dispatch(asyncAddCommentOnDiscussion({ text: comment, id: discussion.id }));
+        dispatch(asyncAddCommentOnDiscussion({ text: comment, id: id }));
     };
 
     return (
