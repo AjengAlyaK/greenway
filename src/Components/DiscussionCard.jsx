@@ -7,7 +7,7 @@ import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentPopover from './CommentPopover';
 import DiscussionContent from './DiscussionContent';
 
-const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
+const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon, commentId }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -61,6 +61,7 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
                         downVotesBy={downVotesBy}
                         comments={comments}
                         createCommentIcon={createCommentIcon}
+                        commentId={commentId}
                     />
                 </CardContent>
             </Card>
@@ -82,6 +83,7 @@ DiscussionCard.propTypes = {
     downVotesBy: PropTypes.array.isRequired,
     comments: PropTypes.number.isRequired,
     createCommentIcon: PropTypes.func,
+    commentId: PropTypes.string,
 };
 
 export default DiscussionCard;

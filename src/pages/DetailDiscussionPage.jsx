@@ -61,6 +61,8 @@ const DetailDiscussionPage = () => {
                                 category={discussion.category}
                                 likes={discussion.upVotesBy?.length || 0}
                                 dislikes={discussion.downVotesBy?.length || 0}
+                                upVotesBy={discussion.upVotesBy}
+                                downVotesBy={discussion.downVotesBy}
                             />
                         </>
                     }
@@ -107,6 +109,8 @@ const DetailDiscussionPage = () => {
                                         body={comment.comment}
                                         likes={comment.upVotesBy?.length || 0}
                                         dislikes={comment.downVotesBy?.length || 0}
+                                        upVotesBy={comment.upVotesBy}
+                                        downVotesBy={comment.downVotesBy}
                                     />
                                 ))
                     }

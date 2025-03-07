@@ -284,6 +284,53 @@ const api = (() => {
         return comment;
     }
 
+    async function upVoteCommentOnDiscussion({ discussionId, commentId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/comment/${commentId}/up-votes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { vote } } = responseJson;
+        return vote;
+    }
+
+    async function downVoteCommentOnDiscussion({ discussionId, commentId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/comment/${commentId}/down-votes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { vote } } = responseJson;
+        return vote;
+    }
+
+    async function netralVoteCommentOnDiscussion({ discussionId, commentId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/comment/${commentId}/netral-votes`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        const { data: { vote } } = responseJson;
+        return vote;
+    }
     return {
         getAccessToken,
         _fetchWithAuth,
@@ -304,7 +351,10 @@ const api = (() => {
         addCommentOnDiscussion,
         login,
         getOwnProfile,
-        register
+        register,
+        upVoteCommentOnDiscussion,
+        downVoteCommentOnDiscussion,
+        netralVoteCommentOnDiscussion
     };
 })();
 

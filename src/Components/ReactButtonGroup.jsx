@@ -6,9 +6,10 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
+import { asyncNetralVoteCommentOnDiscussion, asyncUpVoteCommentOnDiscussion } from '../states/discussionDetail/action';
+// import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
-const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon }) => {
+const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon, commentId }) => {
     const dispatch = useDispatch();
     const { authUser = null } = useSelector((states) => states);
 
@@ -33,13 +34,15 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (like) {
             setLike(false);
             setLikeCount(likeCount - 1);
-            dispatch(asyncNetralVote({ discussionId }));
+            // dispatch(asyncNetralVote({ discussionId }));
+            dispatch(asyncNetralVoteCommentOnDiscussion({ discussionId, commentId }))
         } else {
             setLike(true);
             setDislike(false);
             setLikeCount(likeCount + 1);
             if (dislike) setDislikeCount(dislikeCount - 1);
-            dispatch(asyncUpVote({ discussionId }));
+            // dispatch(asyncUpVote({ discussionId }));
+            dispatch(asyncUpVoteCommentOnDiscussion({ discussionId, commentId }))
         }
     };
 
@@ -52,13 +55,13 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
         if (dislike) {
             setDislike(false);
             setDislikeCount(dislikeCount - 1);
-            dispatch(asyncNetralVote({ discussionId }));
+            // dispatch(asyncNetralVote({ discussionId }));
         } else {
             setDislike(true);
             setLike(false);
             setDislikeCount(dislikeCount + 1);
             if (like) setLikeCount(likeCount - 1);
-            dispatch(asyncDownVote({ discussionId }));
+            // dispatch(asyncDownVote({ discussionId }));
         }
     };
 
