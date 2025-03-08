@@ -27,9 +27,45 @@ export const discussionDetailReducer = (discussion = initialState, action = {}) 
                 ...discussion,
                 comments: [...(discussion?.comments || []), action.payload.comment],
             };
-        case ActionType.UP_VOTE_COMMENT_ON_DISCUSSION:
+        case ActionType.UP_VOTE:
             return {
-                
+                ...discussion,
+                comments: discussion.comments.map(comment => {
+                    if (comment.discussionId === action.payload.upVote.discussionId) {
+                        return {
+                            ...comment,
+                            upVotesBy: [...comment.upVotesBy, action.payload.upVote.userId],
+                        }
+                    }
+                    return comment
+                })
+            };
+        case ActionType.DOWN_VOTE:
+            return {
+                ...discussion,
+                comments: discussion.comments.map(comment => {
+                    if (comment.discussionId === action.payload.downVote.discussionId) {
+                        return {
+                            ...comment,
+                            downVotesBy: [...comment.downVotesBy, action.payload.downVote.userId]
+                        }
+                    }
+                    return comment;
+                })
+            }
+        case ActionType.NETRAL_VOTE:
+            return {
+                ...discussion,
+                comments: discussion.comments.map(comment => {
+                    if (comment.discussionId === action.payload.netralVote.discussionId) {
+                        return {
+                            ...comment,
+                            upVotesBy: comment.upVotesBy.filter(idUser => idUser !== action.payload.netralVote.idUser),
+                            downVotesBy: comment.downVotesBy.filter(idUser => idUser !== action.payload.netralVote.idUser),
+                        }
+                    }
+                    return comment;
+                })
             }
         default:
             return discussion

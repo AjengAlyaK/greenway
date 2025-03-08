@@ -6,7 +6,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncNetralVoteCommentOnDiscussion, asyncUpVoteCommentOnDiscussion } from '../states/discussionDetail/action';
+import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussionDetail/action';
 // import { asyncDownVote, asyncNetralVote, asyncUpVote } from '../states/discussion/action';
 
 const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon, commentId }) => {
@@ -35,14 +35,14 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
             setLike(false);
             setLikeCount(likeCount - 1);
             // dispatch(asyncNetralVote({ discussionId }));
-            dispatch(asyncNetralVoteCommentOnDiscussion({ discussionId, commentId }))
+            dispatch(asyncNetralVote({ discussionId, commentId }))
         } else {
             setLike(true);
             setDislike(false);
             setLikeCount(likeCount + 1);
             if (dislike) setDislikeCount(dislikeCount - 1);
             // dispatch(asyncUpVote({ discussionId }));
-            dispatch(asyncUpVoteCommentOnDiscussion({ discussionId, commentId }))
+            dispatch(asyncUpVote({ discussionId, commentId }))
         }
     };
 
@@ -56,12 +56,14 @@ const ReactButtonGroup = ({ discussionId, likes, dislikes, upVotesBy, downVotesB
             setDislike(false);
             setDislikeCount(dislikeCount - 1);
             // dispatch(asyncNetralVote({ discussionId }));
+            dispatch(asyncNetralVote({ discussionId, commentId }));
         } else {
             setDislike(true);
             setLike(false);
             setDislikeCount(dislikeCount + 1);
             if (like) setLikeCount(likeCount - 1);
             // dispatch(asyncDownVote({ discussionId }));
+            dispatch(asyncDownVote({ discussionId, commentId }));
         }
     };
 

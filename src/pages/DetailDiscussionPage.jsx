@@ -111,6 +111,7 @@ const DetailDiscussionPage = () => {
                                         dislikes={comment.downVotesBy?.length || 0}
                                         upVotesBy={comment.upVotesBy}
                                         downVotesBy={comment.downVotesBy}
+                                        commentId={comment.id}
                                     />
                                 ))
                     }

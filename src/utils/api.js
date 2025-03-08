@@ -331,6 +331,7 @@ const api = (() => {
         const { data: { vote } } = responseJson;
         return vote;
     }
+    
     return {
         getAccessToken,
         _fetchWithAuth,

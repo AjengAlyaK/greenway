@@ -40,7 +40,7 @@ const DiscussionContent = ({ discussionId, title, body, category, likes, dislike
 
 DiscussionContent.propTypes = {
     discussionId: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     body: PropTypes.string.isRequired,
     category: PropTypes.string,
     likes: PropTypes.number.isRequired,

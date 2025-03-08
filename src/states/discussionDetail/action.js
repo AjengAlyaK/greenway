@@ -4,9 +4,9 @@ export const ActionType = {
     RECEIVE_DISCUSSION_DETAIL: 'RECEIVE_DISCUSSION_DETAIL',
     CLEAR_DISCUSSION_DETAIL: 'CLEAR_DISCUSSION_DETAIL',
     ADD_COMMENT_ON_DISCUSSION: 'ADD_COMMENT_ON_DISCUSSION',
-    UP_VOTE_COMMENT_ON_DISCUSSION: 'UP_VOTE_COMMENT_ON_DISCUSSION',
-    DOWN_VOTE_COMMENT_ON_DISCUSSION: 'DOWN_VOTE_COMMENT_ON_DISCUSSION',
-    NETRAL_VOTE_COMMENT_ON_DISCUSSION: 'NETRAL_VOTE_COMMENT_ON_DISCUSSION',
+    UP_VOTE: 'UP_VOTE',
+    DOWN_VOTE: 'DOWN_VOTE',
+    NETRAL_VOTE: 'NETRAL_VOTE',
 };
 
 export const receiveDiscussionDetailActionCreator = (discussion) => ({
@@ -27,22 +27,22 @@ export const addCommentOnDiscussionActionCreator = (comment) => ({
     }
 });
 
-export const UpVoteCommentOnDiscussionActionCreator = (upVote) => ({
-    type: ActionType.UP_VOTE_COMMENT_ON_DISCUSSION,
+export const UpVoteActionCreator = (upVote) => ({
+    type: ActionType.UP_VOTE,
     payload: {
         upVote
     }
 });
 
-export const DownVoteCommentOnDiscussionActionCreator = (downVote) => ({
-    type: ActionType.DOWN_VOTE_COMMENT_ON_DISCUSSION,
+export const DownVoteActionCreator = (downVote) => ({
+    type: ActionType.DOWN_VOTE,
     payload: {
         downVote
     }
 });
 
-export const NetralVoteCommentOnDiscussionActionCreator = (netralVote) => ({
-    type: ActionType.NETRAL_VOTE_COMMENT_ON_DISCUSSION,
+export const NetralVoteActionCreator = (netralVote) => ({
+    type: ActionType.NETRAL_VOTE,
     payload: {
         netralVote
     }
@@ -71,33 +71,33 @@ export const asyncAddCommentOnDiscussion = ({ text, id }) => {
     }
 };
 
-export function asyncUpVoteCommentOnDiscussion({ discussionId, commentId }) {
+export function asyncUpVote({ discussionId, commentId }) {
     return async (dispatch) => {
         try {
             const upVote = await api.upVoteCommentOnDiscussion({ discussionId, commentId });
-            dispatch(UpVoteCommentOnDiscussionActionCreator(upVote))
+            dispatch(UpVoteActionCreator(upVote))
         } catch (error) {
             console.log('Error fetching:', error)
         };
     };
 };
 
-export function asyncDownVoteCommentOnDiscussion({ discussionId, commentId }) {
+export function asyncDownVote({ discussionId, commentId }) {
     return async (dispatch) => {
         try {
             const downVote = await api.downVoteCommentOnDiscussion({ discussionId, commentId });
-            dispatch(DownVoteCommentOnDiscussionActionCreator({ downVote }));
+            dispatch(DownVoteActionCreator({ downVote }));
         } catch (error) {
             console.log('Error fetching:', error);
         }
     }
 };
 
-export function asyncNetralVoteCommentOnDiscussion({ discussionId, commentId }) {
+export function asyncNetralVote({ discussionId, commentId }) {
     return async (dispatch) => {
         try {
             const netralVote = await api.netralVoteCommentOnDiscussion({ discussionId, commentId });
-            dispatch(NetralVoteCommentOnDiscussionActionCreator(netralVote));
+            dispatch(NetralVoteActionCreator(netralVote));
         } catch (error) {
             console.log('Error fetching:', error);
         };
