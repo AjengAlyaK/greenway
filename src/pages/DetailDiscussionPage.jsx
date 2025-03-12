@@ -40,6 +40,8 @@ const DetailDiscussionPage = () => {
         dispatch(asyncAddCommentOnDiscussion({ text: comment, id: id }));
     };
 
+    
+
     return (
         <Grid container spacing={0} sx={{ pt: { xs: 2, sm: 3 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>
             <Grid size={12} width="100%">
@@ -53,6 +55,7 @@ const DetailDiscussionPage = () => {
                         <>
                             <OneLineTitle title={title} />
                             <DiscussionCard
+                                discussionId={discussion.id}
                                 photo={discussion.owner.photo}
                                 name={discussion.owner.name}
                                 timestamp={`Posted ${discussion.createdAt ? formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true }) : "Unknown time"}`}
@@ -102,6 +105,7 @@ const DetailDiscussionPage = () => {
                                 .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                                 .map((comment) => (
                                     <DiscussionCard
+                                        discussionId={comment.discussionId}
                                         key={comment.id}
                                         name={comment.owner.name}
                                         photo={comment.owner.photo}
