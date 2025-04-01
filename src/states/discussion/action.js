@@ -6,6 +6,7 @@ export const ActionType = {
     DOWN_VOTE: 'DOWN_VOTE',
     NETRAL_VOTE: 'NETRAL_VOTE',
     ADD_DISCUSSION: 'ADD_DISCUSSION',
+    DELETE_DISCUSSION: 'DELETE_DISCUSSION',
 };
 
 export const receiveDiscussionActionCreator = (discussions) => ({
@@ -40,6 +41,13 @@ export const netralActionCreator = (netralVote) => ({
     type: ActionType.NETRAL_VOTE,
     payload: {
         netralVote
+    },
+});
+
+export const deleteDiscussionActionCreator = (discussionId) => ({
+    type: ActionType.DELETE_DISCUSSION,
+    payload: {
+        discussionId
     },
 });
 
@@ -92,6 +100,17 @@ export function asyncNetralVote({ discussionId }) {
         try {
             const netralVote = await api.netralVoteDiscussion({ discussionId });
             dispatch(netralActionCreator(netralVote));
+        } catch (error) {
+            console.log('Error fetching:', error);
+        };
+    };
+};
+
+export function asyncDeleteDiscussion({ discussionId }) {
+    return async (dispatch) => {
+        try {
+            const deleteDiscussion = await api.deleteDiscussion({ discussionId });
+            dispatch(deleteDiscussionActionCreator(deleteDiscussion));
         } catch (error) {
             console.log('Error fetching:', error);
         };

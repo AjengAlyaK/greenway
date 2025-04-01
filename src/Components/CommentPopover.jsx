@@ -3,10 +3,17 @@ import { Popover, MenuItem, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { asyncDeleteDiscussion } from '../states/discussion/action';
+import { useDispatch } from 'react-redux';
 
-const CommentPopover = ({ anchorEl, handleClose }) => {
+const CommentPopover = ({ anchorEl, handleClose, discussionId }) => {
+    const dispatch = useDispatch();
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
+
+    const deleteDiscussion = (discussionId) => {
+        dispatch(asyncDeleteDiscussion({ discussionId }));
+    };
 
     return (
         <Popover
@@ -24,7 +31,7 @@ const CommentPopover = ({ anchorEl, handleClose }) => {
                 <EditIcon sx={{ fontSize: '20px', mr: 1 }} />
                 <Typography>Edit</Typography>
             </MenuItem>
-            <MenuItem onClick={() => alert('coming soon feature')} sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+            <MenuItem onClick={() => deleteDiscussion(discussionId)} sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
                 <DeleteIcon sx={{ fontSize: '20px', mr: 1 }} />
                 <Typography>Delete</Typography>
             </MenuItem>
@@ -35,6 +42,7 @@ const CommentPopover = ({ anchorEl, handleClose }) => {
 CommentPopover.propTypes = {
     anchorEl: PropTypes.object,
     handleClose: PropTypes.func.isRequired,
+    discussionId: PropTypes.string.isRequired,
 };
 
 export default CommentPopover;

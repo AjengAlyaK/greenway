@@ -37,6 +37,8 @@ export const discussionReducer = (discussions = [], action = {}) => {
                 }
                 return discussion;
             });
+        case ActionType.DELETE_DISCUSSION:
+            return discussions.filter(discussion => discussion.id !== action.payload.discussionId);
         default:
             return discussions;
     }

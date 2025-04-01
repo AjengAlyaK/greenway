@@ -66,7 +66,7 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
                 </CardContent>
             </Card>
 
-            <CommentPopover anchorEl={anchorEl} handleClose={handleClose} />
+            <CommentPopover anchorEl={anchorEl} handleClose={handleClose} discussionId={discussionId}/>
         </>
     );
 };

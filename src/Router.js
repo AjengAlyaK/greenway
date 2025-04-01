@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router';
+import { Routes, Route, Navigate } from 'react-router';
 import HomePage from './pages/HomePage';
 import CampaignPage from './pages/CampaignPage';
 import DetailCampaignPage from './pages/DetailCampaignPage';
@@ -26,6 +26,7 @@ const Router = () => {
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/discussion/:id" element={<DetailDiscussionPage />} />
             <Route path="/discussion/add" element={<AddDiscussionPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
     );
 };
