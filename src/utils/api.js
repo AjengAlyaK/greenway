@@ -347,6 +347,21 @@ const api = (() => {
         return discussionId;
     }
 
+    async function deleteCommentOnDiscussion({ discussionId, commentId }) {
+        const response = await _fetchWithAuth(`${BASE_URL}/discussion/${discussionId}/comment/${commentId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const responseJson = await response.json();
+        const { status, message } = responseJson;
+        if (status !== 'success') {
+            throw new Error(message);
+        };
+        return { discussionId, commentId };
+    }
+
     return {
         getAccessToken,
         _fetchWithAuth,
@@ -371,7 +386,8 @@ const api = (() => {
         upVoteCommentOnDiscussion,
         downVoteCommentOnDiscussion,
         netralVoteCommentOnDiscussion,
-        deleteDiscussion
+        deleteDiscussion,
+        deleteCommentOnDiscussion
     };
 })();
 

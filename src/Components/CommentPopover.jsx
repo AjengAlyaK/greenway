@@ -6,13 +6,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { asyncDeleteDiscussion } from '../states/discussion/action';
 import { useDispatch } from 'react-redux';
 
-const CommentPopover = ({ anchorEl, handleClose, discussionId }) => {
+const CommentPopover = ({ anchorEl, handleClose, discussionId, commentId }) => {
     const dispatch = useDispatch();
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    const deleteDiscussion = (discussionId) => {
-        dispatch(asyncDeleteDiscussion({ discussionId }));
+    const deleteDiscussion = (discussionId, commentId=null) => {
+        if (window.confirm('Are you sure ?')) {
+            dispatch(asyncDeleteDiscussion({ discussionId }));
+            handleClose();
+        }
     };
 
     return (
@@ -42,7 +45,8 @@ const CommentPopover = ({ anchorEl, handleClose, discussionId }) => {
 CommentPopover.propTypes = {
     anchorEl: PropTypes.object,
     handleClose: PropTypes.func.isRequired,
-    discussionId: PropTypes.string.isRequired,
+    discussionId: PropTypes.string,
+    commentId: PropTypes.string,
 };
 
 export default CommentPopover;

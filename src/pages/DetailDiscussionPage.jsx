@@ -36,11 +36,9 @@ const DetailDiscussionPage = () => {
         fetchDetailDiscussion();
     }, [id, dispatch]);
 
-    const addComment = ({ comment }) => {
+    const addComment = (comment, id) => {
         dispatch(asyncAddCommentOnDiscussion({ text: comment, id: id }));
     };
-
-    
 
     return (
         <Grid container spacing={0} sx={{ pt: { xs: 2, sm: 3 }, pb: { xs: 10, md: 13 }, px: { xs: 2, sm: 5, md: 13 } }}>

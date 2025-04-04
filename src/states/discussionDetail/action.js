@@ -1,9 +1,11 @@
 import api from "../../utils/api";
+import { deleteDiscussionActionCreator } from "../discussion/action";
 
 export const ActionType = {
     RECEIVE_DISCUSSION_DETAIL: 'RECEIVE_DISCUSSION_DETAIL',
     CLEAR_DISCUSSION_DETAIL: 'CLEAR_DISCUSSION_DETAIL',
     ADD_COMMENT_ON_DISCUSSION: 'ADD_COMMENT_ON_DISCUSSION',
+    DELETE_COMMENT_ON_DISCUSSION: 'DELETE_COMMENT_ON_DISCUSSION',
     UP_VOTE: 'UP_VOTE',
     DOWN_VOTE: 'DOWN_VOTE',
     NETRAL_VOTE: 'NETRAL_VOTE',
@@ -48,6 +50,14 @@ export const NetralVoteActionCreator = (netralVote) => ({
     }
 });
 
+export const deleteCommentOnDiscussionActionCreator = ({ discussionId, commentId }) => ({
+    type: ActionType.DELETE_COMMENT_ON_DISCUSSION,
+    payload: {
+        discussionId,
+        commentId
+    }
+})
+
 export const asyncReceiveDiscussionDetail = (discussionId) => {
     return async (dispatch) => {
         dispatch(clearDiscussionDetailActionCreator());
@@ -63,7 +73,7 @@ export const asyncReceiveDiscussionDetail = (discussionId) => {
 export const asyncAddCommentOnDiscussion = ({ text, id }) => {
     return async (dispatch) => {
         try {
-            const comment = await api.addCommentOnDiscussion({ comment: text, discussionId: id });
+            const comment = await api.addCommentOnDiscussion({ text, id });
             dispatch(addCommentOnDiscussionActionCreator(comment));
         } catch (error) {
             alert(error.message);
@@ -71,6 +81,16 @@ export const asyncAddCommentOnDiscussion = ({ text, id }) => {
     }
 };
 
+// export const asyncDeleteCommentOnDiscussion = ({ discussionId, commentId }) => {
+//     return async (dispatch) => {
+//         try {
+//             const { discussionId, commentId } = await api.deleteCommentOnDiscussion({ discussionId, commentId });
+//             dispatch(deleteDiscussionActionCreator({ discussionId, commentId }));
+//         } catch (error) {
+//             alert(error.message);
+//         }
+//     }
+// }
 export function asyncUpVote({ discussionId, commentId }) {
     return async (dispatch) => {
         try {

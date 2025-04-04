@@ -10,7 +10,7 @@ const FormComment = ({ visibility, addComment }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addComment({ comment, id });
+        addComment(comment, id);
         setComment('');
     };
 
