@@ -5,16 +5,24 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { asyncDeleteDiscussion } from '../states/discussion/action';
 import { useDispatch } from 'react-redux';
+import { asyncDeleteCommentOnDiscussion } from '../states/discussionDetail/action';
 
 const CommentPopover = ({ anchorEl, handleClose, discussionId, commentId }) => {
     const dispatch = useDispatch();
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    const deleteDiscussion = (discussionId, commentId=null) => {
-        if (window.confirm('Are you sure ?')) {
-            dispatch(asyncDeleteDiscussion({ discussionId }));
-            handleClose();
+    const deleteDiscussion = (discussionId, commentId) => {
+        if (discussionId && commentId) {
+            if (window.confirm('Are you sure ?')) {
+                dispatch(asyncDeleteCommentOnDiscussion({ discussionId, commentId }));
+                handleClose();
+            }
+        } else if (discussionId && !commentId) {
+            if (window.confirm('Are you sure ?')) {
+                dispatch(asyncDeleteDiscussion({ discussionId }));
+                handleClose();
+            }
         }
     };
 
@@ -34,7 +42,7 @@ const CommentPopover = ({ anchorEl, handleClose, discussionId, commentId }) => {
                 <EditIcon sx={{ fontSize: '20px', mr: 1 }} />
                 <Typography>Edit</Typography>
             </MenuItem>
-            <MenuItem onClick={() => deleteDiscussion(discussionId)} sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+            <MenuItem onClick={() => deleteDiscussion(discussionId, commentId)} sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
                 <DeleteIcon sx={{ fontSize: '20px', mr: 1 }} />
                 <Typography>Delete</Typography>
             </MenuItem>

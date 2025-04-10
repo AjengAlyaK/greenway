@@ -1,5 +1,4 @@
 import api from "../../utils/api";
-import { deleteDiscussionActionCreator } from "../discussion/action";
 
 export const ActionType = {
     RECEIVE_DISCUSSION_DETAIL: 'RECEIVE_DISCUSSION_DETAIL',
@@ -50,13 +49,13 @@ export const NetralVoteActionCreator = (netralVote) => ({
     }
 });
 
-export const deleteCommentOnDiscussionActionCreator = ({ discussionId, commentId }) => ({
+export const deleteCommentOnDiscussionActionCreator = (discussionId, commentId) => ({
     type: ActionType.DELETE_COMMENT_ON_DISCUSSION,
     payload: {
         discussionId,
         commentId
     }
-})
+});
 
 export const asyncReceiveDiscussionDetail = (discussionId) => {
     return async (dispatch) => {
@@ -81,16 +80,17 @@ export const asyncAddCommentOnDiscussion = ({ text, id }) => {
     }
 };
 
-// export const asyncDeleteCommentOnDiscussion = ({ discussionId, commentId }) => {
-//     return async (dispatch) => {
-//         try {
-//             const { discussionId, commentId } = await api.deleteCommentOnDiscussion({ discussionId, commentId });
-//             dispatch(deleteDiscussionActionCreator({ discussionId, commentId }));
-//         } catch (error) {
-//             alert(error.message);
-//         }
-//     }
-// }
+export const asyncDeleteCommentOnDiscussion = ({ discussionId, commentId }) => {
+    return async (dispatch) => {
+        try {
+            const result = await api.deleteCommentOnDiscussion({discussionId, commentId});
+            dispatch(deleteCommentOnDiscussionActionCreator(result));
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+};
+
 export function asyncUpVote({ discussionId, commentId }) {
     return async (dispatch) => {
         try {
