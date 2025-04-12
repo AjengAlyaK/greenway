@@ -20,6 +20,11 @@ export const destinationDetailReducer = (destination = initialState, action = {}
                 ...destination,
                 comments: [...(destination?.comments || []), action.payload.comment],
             };
+        case ActionType.DELETE_COMMENT:
+            return {
+                ...destination,
+                comments: destination.comments.filter(comment => comment.id !== action.payload.commentId && comment.IdDestination !== action.payload.destinationId)
+            }
         default:
             return destination;
     }

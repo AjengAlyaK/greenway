@@ -4,6 +4,7 @@ export const ActionType = {
     RECEIVE_DESTINATION_DETAIL: 'RECEIVE_DESTINATION_DETAIL',
     CLEAR_DESTINATION_DETAIL: 'CLEAR_DESTINATION_DETAIL',
     ADD_COMMENT: 'ADD_COMMENT',
+    DELETE_COMMENT: 'DELETE_COMMENT'
 };
 
 export const receiveDestinationDetailActionCreator = (destination) => ({
@@ -23,6 +24,14 @@ export const addCommentOnDestination = (comment) => ({
         comment
     }
 });
+
+export const deleteCommentOnDestinationActionCreator = (destinationId, commentId) => ({
+    type: ActionType.DELETE_COMMENT,
+    payload: {
+        destinationId,
+        commentId
+    }
+})
 
 export const asyncReceiveDestinationDetail = (destinationId) => {
     return async (dispatch) => {
@@ -45,4 +54,15 @@ export const asyncAddCommentOnDestination = ({ text, id }) => {
             alert(error.message);
         }
     };
+};
+
+export const asyncDeleteCommentOnDestination = ({ destinationId, commentId }) => {
+    return async (dispatch) => {
+        try {
+            const result = await api.deleteCommentOnDestination({destinationId, commentId});
+            dispatch(deleteCommentOnDestinationActionCreator(result.destinationId, result.commentId))
+        } catch (error) {
+            alert(error.message)
+        }
+    }
 };

@@ -108,6 +108,8 @@ const DetailDestinationPage = () => {
                                 .map((comment, index) => (
                                     <CommentCard
                                         key={index}
+                                        commentId={comment.id}
+                                        destinationId={comment.idDestination}
                                         name={comment.owner.name}
                                         photo={comment.owner.photo}
                                         comment={comment.comment}

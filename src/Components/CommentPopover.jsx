@@ -6,13 +6,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { asyncDeleteDiscussion } from '../states/discussion/action';
 import { useDispatch } from 'react-redux';
 import { asyncDeleteCommentOnDiscussion } from '../states/discussionDetail/action';
+import { asyncDeleteCommentOnDestination } from '../states/destinationDetail/Action';
 
-const CommentPopover = ({ anchorEl, handleClose, discussionId, commentId }) => {
+const CommentPopover = ({ anchorEl, handleClose, discussionId, destinationId, commentId }) => {
     const dispatch = useDispatch();
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
-    const deleteDiscussion = (discussionId, commentId) => {
+    const deleteDiscussion = (discussionId, destinationId, commentId) => {
         if (discussionId && commentId) {
             if (window.confirm('Are you sure ?')) {
                 dispatch(asyncDeleteCommentOnDiscussion({ discussionId, commentId }));
@@ -21,6 +22,11 @@ const CommentPopover = ({ anchorEl, handleClose, discussionId, commentId }) => {
         } else if (discussionId && !commentId) {
             if (window.confirm('Are you sure ?')) {
                 dispatch(asyncDeleteDiscussion({ discussionId }));
+                handleClose();
+            }
+        } else if (destinationId && commentId) {
+            if (window.confirm('Are you sure ?')) {
+                dispatch(asyncDeleteCommentOnDestination({ destinationId, commentId }));
                 handleClose();
             }
         }
@@ -42,7 +48,7 @@ const CommentPopover = ({ anchorEl, handleClose, discussionId, commentId }) => {
                 <EditIcon sx={{ fontSize: '20px', mr: 1 }} />
                 <Typography>Edit</Typography>
             </MenuItem>
-            <MenuItem onClick={() => deleteDiscussion(discussionId, commentId)} sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+            <MenuItem onClick={() => deleteDiscussion(discussionId, destinationId, commentId)} sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
                 <DeleteIcon sx={{ fontSize: '20px', mr: 1 }} />
                 <Typography>Delete</Typography>
             </MenuItem>
@@ -54,6 +60,7 @@ CommentPopover.propTypes = {
     anchorEl: PropTypes.object,
     handleClose: PropTypes.func.isRequired,
     discussionId: PropTypes.string,
+    destinationId: PropTypes.string,
     commentId: PropTypes.string,
 };
 

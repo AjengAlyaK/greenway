@@ -7,7 +7,7 @@ import CommentPopover from './CommentPopover';
 import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentContent from '../elements/sharing/CommentContent';
 
-const CommentCard = ({ name, photo, comment, timestamp }) => {
+const CommentCard = ({ commentId, destinationId, name, photo, comment, timestamp }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -53,12 +53,14 @@ const CommentCard = ({ name, photo, comment, timestamp }) => {
                 </CardContent>
             </Card>
 
-            <CommentPopover anchorEl={anchorEl} handleClose={handleClose} />
+            <CommentPopover anchorEl={anchorEl} handleClose={handleClose} commentId={commentId} destinationId={destinationId} />
         </>
     );
 };
 
 CommentCard.propTypes = {
+    commentId: PropTypes.string.isRequired,
+    destinationId: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,

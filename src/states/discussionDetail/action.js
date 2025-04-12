@@ -84,7 +84,7 @@ export const asyncDeleteCommentOnDiscussion = ({ discussionId, commentId }) => {
     return async (dispatch) => {
         try {
             const result = await api.deleteCommentOnDiscussion({discussionId, commentId});
-            dispatch(deleteCommentOnDiscussionActionCreator(result));
+            dispatch(deleteCommentOnDiscussionActionCreator(result.discussionId, result.commentId));
         } catch (error) {
             alert(error.message);
         }
