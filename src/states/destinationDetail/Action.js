@@ -40,7 +40,8 @@ export const asyncReceiveDestinationDetail = (destinationId) => {
             const destination = await api.getDestinationDetail(destinationId);
             dispatch(receiveDestinationDetailActionCreator(destination));
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
+            return null;
         }
     }
 };

@@ -7,7 +7,7 @@ import FormComment from '../Components/FormComment';
 import { useDispatch, useSelector } from 'react-redux';
 import WarningBar from '../elements/sharing/WarningBar';
 import CommentCard from '../Components/CommentCard';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { asyncReceiveDestinationDetail, asyncAddCommentOnDestination } from '../states/destinationDetail/Action';
 import { formatDistanceToNow } from 'date-fns';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
@@ -22,6 +22,7 @@ import LoadingDiscussionCard from '../elements/sharing/skeleton/LoadingDiscussio
 const DetailDestinationPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { authUser = null, destination } = useSelector((state) => state);
 
     const commentLength = destination?.comments?.length || 0;
@@ -31,12 +32,18 @@ const DetailDestinationPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(asyncInitializeAuthUser());
-            await dispatch(asyncReceiveDestinationDetail(id));
+            const result = await dispatch(asyncReceiveDestinationDetail(id));
+
+            if (result === null) {
+                navigate('/destinations');
+                return;
+            }
+
             setLoading(false);
         };
 
         fetchData()
-    }, [id, dispatch]);
+    }, [id, dispatch, navigate]);
 
     const addComment = ({ comment, id }) => {
         dispatch(asyncAddCommentOnDestination({ text: comment, id }));

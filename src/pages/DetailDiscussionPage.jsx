@@ -7,7 +7,7 @@ import FormComment from '../Components/FormComment';
 import { useDispatch, useSelector } from 'react-redux';
 import WarningBar from '../elements/sharing/WarningBar';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { asyncAddCommentOnDiscussion, asyncReceiveDiscussionDetail } from '../states/discussionDetail/action';
 import { formatDistanceToNow } from 'date-fns';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
@@ -22,6 +22,7 @@ const title = "Detail Discussion";
 const DetailDiscussionPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { authUser = null, discussion = {} } = useSelector((state) => state);
 
     const [loading, setLoading] = useState(true);
@@ -29,12 +30,18 @@ const DetailDiscussionPage = () => {
     useEffect(() => {
         const fetchDetailDiscussion = async () => {
             await dispatch(asyncInitializeAuthUser());
-            await dispatch(asyncReceiveDiscussionDetail(id));
+            const result = await dispatch(asyncReceiveDiscussionDetail(id));
+
+            if (result === null) {
+                navigate('/discussion');
+                return;
+            }
+
             setLoading(false);
         };
 
         fetchDetailDiscussion();
-    }, [id, dispatch]);
+    }, [id, dispatch, navigate]);
 
     const addComment = (comment, id) => {
         dispatch(asyncAddCommentOnDiscussion({ text: comment, id: id }));

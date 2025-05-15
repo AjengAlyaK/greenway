@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import DetailInformation from '../elements/sharing/DetailInformation';
 import ImageInDetail from '../elements/sharing/ImageInDetail';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncReceiveDetailCampaign } from '../states/campaignDetail/action';
 import { asyncInitializeAuthUser } from '../states/authUser/action';
@@ -13,18 +13,25 @@ const DetailCampaignPage = () => {
     const { id } = useParams();
     const campaign = useSelector((state) => state.campaign);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(asyncInitializeAuthUser());
-            await dispatch(asyncReceiveDetailCampaign(id));
+            const result = await dispatch(asyncReceiveDetailCampaign(id));
+
+            if (result === null) {
+                navigate('/campaigns');
+                return;
+            }
+
             setLoading(false);
         };
 
         fetchData();
-    }, [id, dispatch]);
+    }, [id, dispatch, navigate]);
 
     return (
         <Grid

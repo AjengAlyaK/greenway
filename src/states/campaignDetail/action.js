@@ -27,7 +27,8 @@ function asyncReceiveDetailCampaign(campaignId) {
             const campaign = await api.getCampaignDetail(campaignId);
             dispatch(receiveCampaignDetailActionCreator(campaign));
         } catch (error) {
-            alert(error.message);
+            console.log(error);
+            return null;
         }
     }
 }

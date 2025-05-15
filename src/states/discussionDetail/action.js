@@ -64,7 +64,8 @@ export const asyncReceiveDiscussionDetail = (discussionId) => {
             const discussion = await api.getDiscussionDetail(discussionId);
             dispatch(receiveDiscussionDetailActionCreator(discussion));
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
+            return null;
         };
     };
 };
