@@ -29,6 +29,8 @@ const DiscussionPage = () => {
     const [loading, setLoading] = useState(true);
 
     const categories = ["all", ...new Set(discussions.map(discussion => discussion.category.toLowerCase()))];
+    const authenticated = authUser?.id || false;
+    console.log("ini", authenticated)
 
     const clickComment = ({ discussionId }) => navigate(`/discussion/${discussionId}`);
     const addDiscussion = () => navigate('/discussion/add');
@@ -144,8 +146,10 @@ const DiscussionPage = () => {
                                     <DiscussionCard
                                         key={discussion.id}
                                         discussionId={discussion.id}
+                                        authenticated={authenticated}
                                         photo={discussion.photo}
                                         name={discussion.name}
+                                        ownerId={discussion.idUser}
                                         timestamp={`Posted ${formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true })}`}
                                         title={discussion.title}
                                         body={discussion.body}

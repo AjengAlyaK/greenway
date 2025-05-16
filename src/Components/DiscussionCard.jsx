@@ -7,7 +7,7 @@ import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentPopover from './CommentPopover';
 import DiscussionContent from './DiscussionContent';
 
-const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon, commentId }) => {
+const DiscussionCard = ({ discussionId, authenticated, photo, name, ownerId, timestamp, title, body, category, likes, dislikes, upVotesBy, downVotesBy, comments, createCommentIcon, commentId }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -44,9 +44,11 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
                         <AvatarGeneral source={photo} alternative="image" />
                         <AuthorAndTimestamp name={name} timestamp={timestamp} />
                         <Box sx={{ ml: 'auto' }} >
-                            <IconButton aria-describedby={id} onClick={handleClick}>
-                                <MoreVertIcon />
-                            </IconButton>
+                            {authenticated === ownerId ? (
+                                <IconButton aria-describedby={id} onClick={handleClick}>
+                                    <MoreVertIcon />
+                                </IconButton>
+                            ) : null}
                         </Box>
                     </Grid>
 
@@ -66,7 +68,7 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
                 </CardContent>
             </Card>
 
-            <CommentPopover anchorEl={anchorEl} handleClose={handleClose} discussionId={discussionId} commentId={commentId}/>
+            <CommentPopover anchorEl={anchorEl} handleClose={handleClose} discussionId={discussionId} commentId={commentId} />
         </>
     );
 };
@@ -74,7 +76,9 @@ const DiscussionCard = ({ discussionId, photo, name, timestamp, title, body, cat
 DiscussionCard.propTypes = {
     discussionId: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
+    authenticated: PropTypes.any,
     name: PropTypes.string.isRequired,
+    ownerId: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
     comment: PropTypes.string,
     likes: PropTypes.number.isRequired,

@@ -12,8 +12,8 @@ const LoginInput = ({ login }) => {
         <Stack spacing={4}>
             <TitleEntrance />
             <Stack spacing={2}>
-                <TextField id="email" label="Email" value={email} onChange={onEmailChange} variant="outlined" />
-                <TextField id="password" label="Password" value={password} onChange={onPasswordChange} variant="outlined" />
+                <TextField id="email" label="Email" value={email} onChange={onEmailChange} variant="outlined" autoComplete="off"/>
+                <TextField id="password" label="Password" value={password} onChange={onPasswordChange} variant="outlined" autoComplete="off"/>
                 <Button variant="contained" sx={{ bgcolor: "#006E6F" }} onClick={() => {
                     login({ email, password });
                 }}>Log In</Button>

@@ -30,7 +30,7 @@ export const discussionDetailReducer = (discussion = initialState, action = {}) 
         case ActionType.DELETE_COMMENT_ON_DISCUSSION:
             return {
                 ...discussion,
-                comments: discussion.comments.filter(comment => comment.id !== action.payload.commentId && comment.discussionId !== action.payload.discussionId)
+                comments: discussion.comments.filter(comment => comment.id !== action.payload.commentId)
             }
         case ActionType.UP_VOTE:
             return {

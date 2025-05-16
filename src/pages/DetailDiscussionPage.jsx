@@ -26,6 +26,7 @@ const DetailDiscussionPage = () => {
     const { authUser = null, discussion = {} } = useSelector((state) => state);
 
     const [loading, setLoading] = useState(true);
+    const authenticated = authUser?.id || false;
 
     useEffect(() => {
         const fetchDetailDiscussion = async () => {
@@ -111,8 +112,10 @@ const DetailDiscussionPage = () => {
                                 .map((comment) => (
                                     <DiscussionCard
                                         discussionId={comment.discussionId}
+                                        authenticated={authenticated}
                                         key={comment.id}
                                         name={comment.owner.name}
+                                        ownerId={comment.owner.idUser}
                                         photo={comment.owner.photo}
                                         timestamp={`Posted ${comment.createdAt ? formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true }) : "Unknown time"}`}
                                         body={comment.comment}

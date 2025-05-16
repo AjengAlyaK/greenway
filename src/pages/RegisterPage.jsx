@@ -10,6 +10,7 @@ const picture = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.c
 const greeting = "Welcome!";
 const words = "As long as you don't have the subtle feeling of seeing nature, your soul is not alive.";
 const author = "- Prof. Dr. Hamka";
+
 const RegisterPage = () => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
