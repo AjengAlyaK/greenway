@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, CssBaseline, ThemeProvider } from "@mui/material";
 import ResponsiveAppBar from "./Components/Navbar";
 import theme from "./ThemeCustomize";

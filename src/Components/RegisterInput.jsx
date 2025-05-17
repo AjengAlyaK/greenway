@@ -21,7 +21,7 @@ const RegisterInput = ({ register }) => {
                         register({ name, email, password });
                     }}
                 >Sign In</Button>
-                <Typography variant="body1">Don't have an account? <Link to="/login">Register</Link></Typography>
+                <Typography variant="body1">Already have an account? <Link to="/login">Login</Link></Typography>
             </Stack>
         </Stack>
     );

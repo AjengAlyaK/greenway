@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Grid, Stack, TextField } from '@mui/material';
 import useInput from '../hooks/useInput';
@@ -10,7 +9,7 @@ const FormComment = ({ visibility, addComment }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addComment(comment, id);
+        addComment({ comment, id });
         setComment('');
     };
 

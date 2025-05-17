@@ -18,7 +18,7 @@ export const clearDestinationDetailActionCreator = () => ({
     type: ActionType.CLEAR_DESTINATION_DETAIL
 });
 
-export const addCommentOnDestination = (comment) => ({
+export const addCommentOnDestinationActionCreator = (comment) => ({
     type: ActionType.ADD_COMMENT,
     payload: {
         comment
@@ -50,9 +50,9 @@ export const asyncAddCommentOnDestination = ({ text, id }) => {
     return async (dispatch) => {
         try {
             const newComment = await api.commentOnDestination({ text, id });
-            dispatch(addCommentOnDestination(newComment));
+            dispatch(addCommentOnDestinationActionCreator(newComment));
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
         }
     };
 };

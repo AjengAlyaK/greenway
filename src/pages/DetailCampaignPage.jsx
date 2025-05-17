@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import DetailInformation from '../elements/sharing/DetailInformation';
 import ImageInDetail from '../elements/sharing/ImageInDetail';

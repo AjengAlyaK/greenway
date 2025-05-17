@@ -7,7 +7,7 @@ import CommentPopover from './CommentPopover';
 import AuthorAndTimestamp from '../elements/sharing/AuthorAndTimestamp';
 import CommentContent from '../elements/sharing/CommentContent';
 
-const CommentCard = ({ commentId, destinationId, name, photo, comment, timestamp }) => {
+const CommentCard = ({ commentId, destinationId, authenticated, name, ownerId, photo, comment, timestamp }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -44,9 +44,11 @@ const CommentCard = ({ commentId, destinationId, name, photo, comment, timestamp
                         <AvatarGeneral source={photo} alternative="image" />
                         <AuthorAndTimestamp name={name} timestamp={timestamp} />
                         <Box sx={{ ml: 'auto' }} >
-                            <IconButton aria-describedby={id} onClick={handleClick}>
-                                <MoreVertIcon />
-                            </IconButton>
+                            {authenticated === ownerId ? (
+                                <IconButton aria-describedby={id} onClick={handleClick}>
+                                    <MoreVertIcon />
+                                </IconButton>
+                            ) : null}
                         </Box>
                     </Grid>
                     <CommentContent comment={comment} />
@@ -61,7 +63,9 @@ const CommentCard = ({ commentId, destinationId, name, photo, comment, timestamp
 CommentCard.propTypes = {
     commentId: PropTypes.string.isRequired,
     destinationId: PropTypes.string.isRequired,
+    authenticated: PropTypes.any.isRequired,
     name: PropTypes.string.isRequired,
+    ownerId: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,

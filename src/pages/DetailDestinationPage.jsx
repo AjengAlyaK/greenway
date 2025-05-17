@@ -26,6 +26,7 @@ const DetailDestinationPage = () => {
     const { authUser = null, destination } = useSelector((state) => state);
 
     const commentLength = destination?.comments?.length || 0;
+    const authenticated = authUser?.id || false;
 
     const [loading, setLoading] = useState(true);
 
@@ -117,7 +118,9 @@ const DetailDestinationPage = () => {
                                         key={index}
                                         commentId={comment.id}
                                         destinationId={comment.idDestination}
+                                        authenticated={authenticated}
                                         name={comment.owner.name}
+                                        ownerId={comment.owner.idUser}
                                         photo={comment.owner.photo}
                                         comment={comment.comment}
                                         timestamp={`Posted ${formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}`}

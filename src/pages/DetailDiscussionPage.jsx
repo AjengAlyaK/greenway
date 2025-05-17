@@ -62,8 +62,10 @@ const DetailDiscussionPage = () => {
                             <OneLineTitle title={title} />
                             <DiscussionCard
                                 discussionId={discussion.id}
+                                authenticated={authenticated}
                                 photo={discussion.owner.photo}
                                 name={discussion.owner.name}
+                                ownerId={discussion.owner.idUser}
                                 timestamp={`Posted ${discussion.createdAt ? formatDistanceToNow(new Date(discussion.createdAt), { addSuffix: true }) : "Unknown time"}`}
                                 title={discussion.title}
                                 body={discussion.body}
