@@ -18,7 +18,7 @@ const pages = [
     { name: 'Home', link: '/' },
     { name: 'Artikel', link: '/articles' },
     { name: 'Destination', link: '/destinations' },
-    { name: 'About Us', link: '#' }
+    { name: 'About Us', link: '/about-us' }
 ];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];

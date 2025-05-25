@@ -11,6 +11,7 @@ import DetailDestinationPage from './pages/DetailDestinationPage';
 import DiscussionPage from './pages/DiscussionPage';
 import DetailDiscussionPage from './pages/DetailDiscussionPage';
 import AddDiscussionPage from './pages/AddDiscussionPage';
+import AboutUsPage from './pages/AboutUsPage';
 
 const Router = () => {
     return (
@@ -21,6 +22,7 @@ const Router = () => {
             <Route path="/articles" element={<ArticlePage />} />
             <Route path="/destinations" element={<DestionationPage />} />
             <Route path="/destination/:id" element={<DetailDestinationPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<RegisterPage />} />
             <Route path="/discussion" element={<DiscussionPage />} />
