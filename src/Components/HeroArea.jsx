@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import { Typewriter } from 'react-simple-typewriter';
 import LoadingHeroTitle from '../elements/sharing/skeleton/LoadingHeroTitle';
