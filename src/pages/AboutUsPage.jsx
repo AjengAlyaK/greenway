@@ -1,8 +1,18 @@
-import { Grid, Stack, Typography } from '@mui/material';
+import { Grid, Skeleton, Stack, Typography } from '@mui/material';
+import { useState, useEffect } from 'react';
+import LoadingAboutUs from '../elements/sharing/skeleton/LoadingAboutUs';
+import LoadingWordingAboutUs from '../elements/sharing/skeleton/LoadingWordingAboutUs';
 
 const illustration = "https://firebasestorage.googleapis.com/v0/b/mostgreen.appspot.com/o/menjaga-alam.jpg?alt=media&token=76c6d57e-8ec0-42c5-9360-d23764493b0d";
 
 const AboutUsPage = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <Grid
             container
@@ -23,15 +33,29 @@ const AboutUsPage = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                <img
-                    src={illustration}
-                    alt="About Us"
-                    style={{
-                        width: '100%',
-                        height: 'auto',
-                        borderRadius: '10px',
-                    }}
-                />
+                {loading ?
+                    (
+                        <Skeleton
+                            variant="rectangular"
+                            width="100%"
+                            height={350}
+                            sx={{
+                                borderRadius: '10px',
+                            }}
+                        />
+                    )
+                    :
+                    (
+                        <img
+                            src={illustration}
+                            alt="About Us"
+                            style={{
+                                width: '100%',
+                                height: 'auto',
+                                borderRadius: '10px',
+                            }}
+                        />
+                    )}
             </Grid>
             <Grid
                 item
@@ -49,21 +73,34 @@ const AboutUsPage = () => {
                         pt: { xs: 3, md: 0 },
                     }}
                 >
-                    <Typography
-                        sx={{
-                            color: '#006E6F',
-                            typography: { xs: 'h5', md: 'h4' },
-                            fontWeight: {xs: 'bold', md: 'bold'},
-                        }}
-                    >
-                        About Us
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        textAlign="justify"
-                    >
-                        Welcome to GreenWay, where our passion for the environment meets the joy of discovery. At GreenWay, we are dedicated to promoting Eco-friendly tourism while introducing a myriad of captivating travel destinations to everyone. Our website is designed to inspire and educate, featuring engaging campaigns and providing a platform to connect with like-minded communities. Join us on our journey to explore the world's beauty sustainably and responsibly.
-                    </Typography>
+                    {loading ?
+                        (
+                            <LoadingAboutUs />
+                        ) : (
+                            <Typography
+                                sx={{
+                                    color: '#006E6F',
+                                    typography: { xs: 'h5', md: 'h4' },
+                                    fontWeight: { xs: 'bold', md: 'bold' },
+                                }}
+                            >
+                                About Us
+                            </Typography>
+                        )
+                    }
+                    {loading ?
+                        (
+                            <LoadingWordingAboutUs />
+                        ) :
+                        (
+                            <Typography
+                                variant="body1"
+                                textAlign="justify"
+                            >
+                                Welcome to GreenWay, where our passion for the environment meets the joy of discovery. At GreenWay, we are dedicated to promoting Eco-friendly tourism while introducing a myriad of captivating travel destinations to everyone. Our website is designed to inspire and educate, featuring engaging campaigns and providing a platform to connect with like-minded communities. Join us on our journey to explore the world's beauty sustainably and responsibly.
+                            </Typography>
+                        )
+                    }
                 </Stack>
             </Grid>
         </Grid>

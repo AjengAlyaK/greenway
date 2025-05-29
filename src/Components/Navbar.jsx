@@ -18,6 +18,8 @@ const pages = [
     { name: 'Home', link: '/' },
     { name: 'Artikel', link: '/articles' },
     { name: 'Destination', link: '/destinations' },
+    { name: 'Campaign', link: '/campaigns' },
+    { name: 'Discussion', link: '/discussion' },
     { name: 'About Us', link: '/about-us' }
 ];
 

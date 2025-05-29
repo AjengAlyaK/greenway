@@ -25,13 +25,12 @@ const Video = () => {
         if (!containerRef.current || !titleRef.current || !videoRef.current) return;
 
         const ctx = gsap.context(() => {
-            // Set initial state (hidden)
+
             gsap.set([titleRef.current, videoRef.current], {
                 opacity: 0,
                 y: 40
             });
 
-            // Title animation
             gsap.to(titleRef.current, {
                 opacity: 1,
                 y: 0,
@@ -44,7 +43,6 @@ const Video = () => {
                 }
             });
 
-            // Video card animation
             gsap.to(videoRef.current, {
                 opacity: 1,
                 y: 0,

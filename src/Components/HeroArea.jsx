@@ -4,13 +4,13 @@ import { Typewriter } from 'react-simple-typewriter';
 import LoadingHeroTitle from '../elements/sharing/skeleton/LoadingHeroTitle';
 import LoadingHeroText from '../elements/sharing/skeleton/LoadingHeroText';
 import LoadingButton from '../elements/sharing/skeleton/LoadingButton';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
 import LoadingImageHero from '../elements/sharing/skeleton/LoadingImageHero';
+import { useNavigate } from 'react-router';
 
 const HeroArea = () => {
     const [loading, setLoading] = useState(true);
     const container = useRef();
+    const navigate = useNavigate();
 
     const mainTitle = ['TRAVEL AND SAVE NATURE'];
     const heroTitle = "TRAVEL AND SAVE NATURE";
@@ -21,11 +21,9 @@ const HeroArea = () => {
         return () => clearTimeout(timer);
     }, []);
 
-    const { contextSafe } = useGSAP({ scope: container });
-
-    const onClickGood = contextSafe(() => {
-        gsap.to('.good', { rotation: 360 });
-    });
+    const onClickGood = () => {
+        navigate('/destinations');
+    };
 
     return (
         <Grid
@@ -55,7 +53,7 @@ const HeroArea = () => {
                                     pt: { xs: 2, sm: 4, md: 0 }, pr: { xs: 0, md: 3 },
                                     textAlign: { xs: 'center', md: 'start' }
                                 }}>
-                                <Typewriter words={mainTitle} typeSpeed={120} />
+                                <Typewriter words={mainTitle} typeSpeed={100} />
                             </Typography>
                         }
                         <Stack alignItems="flex-start" spacing={{ xs: 3, md: 4 }}>

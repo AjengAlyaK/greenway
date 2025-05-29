@@ -1,7 +1,8 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import LoadingRecord from '../elements/sharing/skeleton/LoadingRecord';
-import CountUp from 'react-countup';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const RecordContents = [
     {
@@ -26,13 +27,41 @@ const RecordContents = [
     },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Record = () => {
     const [loading, setLoading] = useState(true);
+    const recordRef = useRef(null);
+    const countersRef = useRef([]);
 
     useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 2000);
+        const timer = setTimeout(() => {
+            setLoading(false);
+            setTimeout(initAnimations, 100);
+        }, 2000);
         return () => clearTimeout(timer);
     }, []);
+
+    const initAnimations = () => {
+        countersRef.current.forEach((counter, index) => {
+            const countTo = RecordContents[index].count;
+
+            gsap.fromTo(counter,
+                { textContent: 0 },
+                {
+                    textContent: countTo,
+                    duration: 3,
+                    ease: "power1.out",
+                    snap: { textContent: 1 },
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: "top 80%",
+                        toggleActions: "play none none reset"
+                    }
+                }
+            );
+        });
+    };
 
     return (
         <>
@@ -43,6 +72,7 @@ const Record = () => {
                     sx={{
                         px: { xs: 2, sm: 5, md: 13 },
                     }}
+                    ref={recordRef}
                 >
                     <Grid
                         container
@@ -76,6 +106,7 @@ const Record = () => {
                                             spacing={{ xs: 1, md: 2 }}
                                         >
                                             <Typography
+                                                ref={el => countersRef.current[index] = el}
                                                 sx={{
                                                     typography: "h4",
                                                     fontWeight: "bold",
@@ -83,7 +114,7 @@ const Record = () => {
                                                     textAlign: "center"
                                                 }}
                                             >
-                                                <CountUp end={content.count} duration={3} />
+                                                0
                                             </Typography>
                                             <Typography
                                                 sx={{

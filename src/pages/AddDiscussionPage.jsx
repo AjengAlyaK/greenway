@@ -34,9 +34,9 @@ const AddDiscussionPage = () => {
                 <Stack spacing={{ xs: 3, sm: 4 }}>
                     <OneLineTitle title="Create New Discussion" />
                     <Stack spacing={2}>
-                        <TextField id="title" label="Title" variant="outlined" value={title} onChange={onChangeTitle} />
-                        <TextField id="category" label="Category" variant="outlined" value={category} onChange={onChangeCategory} />
-                        <TextField id="content" label="Content" variant="outlined" multiline rows={5} value={body} onChange={onBodyChange} />
+                        <TextField id="title" label="Title" variant="outlined" value={title} onChange={onChangeTitle} autoComplete="off" />
+                        <TextField id="category" label="Category" variant="outlined" value={category} onChange={onChangeCategory} autoComplete="off" />
+                        <TextField id="content" label="Content" variant="outlined" multiline rows={5} value={body} onChange={onBodyChange} autoComplete="off" />
                         <Button variant="contained" sx={{ bgcolor: "#006E6F" }} onClick={handleSubmit}>Create</Button>
                     </Stack>
                 </Stack>
